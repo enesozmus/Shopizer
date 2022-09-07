@@ -1,4 +1,13 @@
+using Persistence;
+
 var builder = WebApplication.CreateBuilder(args);
+
+#region Layers
+
+builder.Services.ConfigurePersistenceServices(builder.Configuration);
+//builder.Services.ConfigureApplicationServices();
+
+#endregion
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
