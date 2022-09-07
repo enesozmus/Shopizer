@@ -1,6 +1,7 @@
 ﻿using Domain.Entities;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Persistence.Configurations;
 
 namespace Persistence.Contexts;
 
@@ -33,6 +34,18 @@ public class ECommerceDbContext : IdentityDbContext<AppUser, AppRole, int>
           modelBuilder.Entity<Product_Order>().HasKey(x => new { x.ProductId, x.OrderId });
           modelBuilder.Entity<Product_Order>().HasOne(m => m.Order).WithMany(am => am.Products_Orders).HasForeignKey(m => m.OrderId);
           modelBuilder.Entity<Product_Order>().HasOne(m => m.Product).WithMany(am => am.Products_Orders).HasForeignKey(m => m.ProductId);
+
+          modelBuilder.ApplyConfiguration(new AppUserConfiguration());
+          modelBuilder.ApplyConfiguration(new AppRoleConfiguration());
+          modelBuilder.ApplyConfiguration(new ProductConfiguration());
+          modelBuilder.ApplyConfiguration(new CategoryConfiguration());
+          modelBuilder.ApplyConfiguration(new BrandConfiguration());
+          modelBuilder.ApplyConfiguration(new ColorConfiguration());
+          modelBuilder.ApplyConfiguration(new SizeConfiguration());
+          modelBuilder.ApplyConfiguration(new OrderConfiguration());
+          modelBuilder.ApplyConfiguration(new CustomerConfiguration());
+          modelBuilder.ApplyConfiguration(new OfferConfiguration());
+          modelBuilder.ApplyConfiguration(new InvoiceFileConfiguration());
 
           base.OnModelCreating(modelBuilder);
      }
