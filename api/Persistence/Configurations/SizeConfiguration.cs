@@ -20,5 +20,19 @@ public class SizeConfiguration : IEntityTypeConfiguration<Size>
                     .OnDelete(DeleteBehavior.Restrict);
 
           #endregion
+
+          #region SeedData
+
+          var size1 = new Size() { Id = 1, Name = "XS", CreatedDate = new DateTime(2022, 09, 08) };
+          var size2 = new Size() { Id = 2, Name = "S", CreatedDate = new DateTime(2022, 09, 08) };
+          var size3 = new Size() { Id = 3, Name = "M", CreatedDate = new DateTime(2022, 09, 08) };
+          var size4 = new Size() { Id = 4, Name = "L", CreatedDate = new DateTime(2022, 09, 08) };
+          var size5 = new Size() { Id = 5, Name = "XL", CreatedDate = new DateTime(2022, 09, 08) };
+          var size6 = new Size() { Id = 6, Name = "2XL", CreatedDate = new DateTime(2022, 09, 08) };
+          var size7 = new Size() { Id = 7, Name = "3XL", CreatedDate = new DateTime(2022, 09, 08) };
+
+          builder.HasData(size1, size2, size3, size4, size5, size6, size7);
+
+          #endregion
      }
 }

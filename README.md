@@ -1,5 +1,5 @@
 ## E-Commerce Application
-> * [Gençay Yıldız'ın](https://www.youtube.com/c/Gen%C3%A7ayY%C4%B1ld%C4%B1z/featured) `"Asp.NET Core 6 + Angular | Mini E-Ticaret Uygulama Serisi"` adlı video serisi takip edilerek geliştirilen e-ticaret kurgulu bir **ASP.NET Core Web API** tüketen **Angular** uygulamasıdır.
+> * [Gençay Yıldız'ın](https://www.youtube.com/c/Gen%C3%A7ayY%C4%B1ld%C4%B1z/featured) `"Asp.NET Core 6 + Angular 13 | Mini E-Ticaret Uygulama Serisi"` adlı video serisi takip edilerek geliştirilen e-ticaret kurgulu bir **ASP.NET Core Web API** tüketen **Angular** uygulamasıdır.
 > * Çalışma devam etmektedir.
 
 <p align="right">
@@ -19,4 +19,5 @@
 > * **EF Core Tracking Performans Optimizasyonu** sağlandı.
 > * Ekleme ve güncelleme işlemleri yaparken bu işlemlerin yapılış tarihlerini kaydetmeyi otomatik hale getiren **isteğe uyarlanmış SaveChangeAsync** yazıldı.
 > * Kendi API'miz ve Angular uygulamamız arasında iletişimi sağlamak adına bir sunucunun default olarak sahip olduğu **same-origin-policy** politikasını gevşetmesine izin veren ve bir W3C standardı olan **Cross Origin Resource Sharing** izinleri sağlandı.
-> * Client'ımızın bir başka uç noktayla (endpoint) iletişim kurması ve url üzerinden bu noktaya Http istekleri atabilmesini sağlayan özelleştirilmiş bir **HttpClient Servisi** yazıldı.
+> * Client'ımızın bir başka uç noktayla (endpoint) iletişim kurması ve url üzerinden bu noktaya Http istekleri atabilmesini sağlayan özelleştirilmiş bir **HttpClient Servis** yazıldı.
+> * Veri tabanı **tohumlandı**.

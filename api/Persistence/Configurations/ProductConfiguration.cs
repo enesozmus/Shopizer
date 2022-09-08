@@ -31,5 +31,15 @@ public class ProductConfiguration : IEntityTypeConfiguration<Product>
                     .OnDelete(DeleteBehavior.Cascade);
 
           #endregion
+
+          #region SeedData
+
+          var product1 = new Product() { Id = 1, CategoryId = 1, AppUserId = 1, SizeId = 1, BrandId = 1, ColorId = 1, IsOfferable = true, IsSold = false, Name = "Dik Yaka Erkek Deri Mont", Stock = 400, Price = 2699.99f, CreatedDate = new DateTime(2022, 09, 08) };
+          var product2 = new Product() { Id = 2, CategoryId = 1, AppUserId = 1, SizeId = 1, BrandId = 1, ColorId = 2, IsOfferable = true, IsSold = false, Name = "Biker Yaka Erkek Deri Mont", Stock = 400, Price = 2699.99f, CreatedDate = new DateTime(2022, 09, 08) };
+          var product3 = new Product() { Id = 3, CategoryId = 1, AppUserId = 1, SizeId = 1, BrandId = 1, ColorId = 3, IsOfferable = true, IsSold = false, Name = "Gömlek Yaka Erkek Şişme Mont", Stock = 400, Price = 2699.99f, CreatedDate = new DateTime(2022, 09, 08) };
+
+          builder.HasData(product1, product2);
+
+          #endregion
      }
 }
