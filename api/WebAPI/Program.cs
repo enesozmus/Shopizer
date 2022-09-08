@@ -1,3 +1,4 @@
+using Application;
 using Persistence;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -5,7 +6,7 @@ var builder = WebApplication.CreateBuilder(args);
 #region Layers
 
 builder.Services.ConfigurePersistenceServices(builder.Configuration);
-//builder.Services.ConfigureApplicationServices();
+builder.Services.ConfigureApplicationServices();
 
 #endregion
 

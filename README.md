@@ -21,3 +21,5 @@
 > * Kendi API'miz ve Angular uygulamamız arasında iletişimi sağlamak adına bir sunucunun default olarak sahip olduğu **same-origin-policy** politikasını gevşetmesine izin veren ve bir W3C standardı olan **Cross Origin Resource Sharing** izinleri sağlandı.
 > * Client'ımızın bir başka uç noktayla (endpoint) iletişim kurması ve url üzerinden bu noktaya Http istekleri atabilmesini sağlayan özelleştirilmiş bir **HttpClient Servis** yazıldı.
 > * Veri tabanı **tohumlandı**.
+> * Mapping işlemleri için **AutoMapper Kütüphanesi** kullanıldı.
+> * **'Command'** ve **'Query'** sorumluluklarının ayrılması prensibini esas alan bir yaklaşım olan **CQRS** ve bu yaklaşımı uygulayan **MediatR Kütüphanesi** kullanıldı.
