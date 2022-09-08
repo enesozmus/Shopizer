@@ -9,6 +9,14 @@ builder.Services.ConfigurePersistenceServices(builder.Configuration);
 
 #endregion
 
+#region CORS
+
+builder.Services.AddCors(options => options.AddPolicy("myclients", policy =>
+    policy.WithOrigins("http://localhost:4200/", "https://localhost:4200").AllowAnyHeader().AllowAnyMethod().AllowCredentials()
+));
+
+#endregion
+
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -21,8 +29,10 @@ if (app.Environment.IsDevelopment())
      app.UseSwaggerUI();
 }
 
+app.UseCors("myclients");
 app.UseHttpsRedirection();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();

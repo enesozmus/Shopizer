@@ -18,3 +18,4 @@
 > * **Optimal Generic Repository Design Pattern** kullanıldı.
 > * **EF Core Tracking Performans Optimizasyonu** sağlandı.
 > * Ekleme ve güncelleme işlemleri yaparken bu işlemlerin yapılış tarihlerini kaydetmeyi otomatik hale getiren **isteğe uyarlanmış SaveChangeAsync** yazıldı.
+> * Kendi API'miz ve Angular uygulamamız arasında iletişimi sağlamak adına bir sunucunun default olarak sahip olduğu **same-origin-policy** politikasını gevşetmesine izin veren ve bir W3C standardı olan **Cross Origin Resource Sharing** izinleri sağlandı.
