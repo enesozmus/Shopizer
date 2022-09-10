@@ -23,3 +23,8 @@
 > * Veri tabanı **tohumlandı**.
 > * Mapping işlemleri için **AutoMapper Kütüphanesi** kullanıldı.
 > * **'Command'** ve **'Query'** sorumluluklarının ayrılması prensibini esas alan bir yaklaşım olan **CQRS** ve bu yaklaşımı uygulayan **MediatR Kütüphanesi** kullanıldı.
+> * Hem API hem de Client tarafında ürün ekleme işlemi gerçekleştirildi.
+> * API tarafında **FluentValidation** kütüphanesi entegre edildi.
+> * Fluent doğrulama hataları ürün ekleme formunda olası hataları yakalamak üzere **Client tarafına taşınarak** kullanıcıya gösterildi.
+> * **!:** Client tarafında ayrıca doğrulama kuralları henüz yazılmadı ilerleyen günlerde yazılacaktır.
+> * **!:** Ürün ekleme işleminde kullanılan form ilerleyen günlerde **"reactive forms"** kullanımına geçirilecektir.

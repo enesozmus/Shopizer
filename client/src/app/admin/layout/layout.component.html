@@ -1,0 +1,52 @@
+<mat-drawer-container class="adminLayout-container">
+    <mat-drawer mode="side" opened class="adminLayout-left">
+
+        <mat-list role="list">
+            <a mat-list-item role="listitem" routerLink="dashboard">Dashboard</a>
+            <a mat-list-item role="listitem" routerLink="products">Products</a>
+        </mat-list>
+
+    </mat-drawer>
+
+    <mat-drawer-content>
+        <router-outlet></router-outlet>
+    </mat-drawer-content>
+
+</mat-drawer-container>
+<!--
+
+<div class="sidenav" [ngClass]="collapsed ? 'sidenav-collapsed' : ''">
+
+    <div class="logo-container">
+
+        <button class="logo" (click)="toggleCollapse()">A</button>
+
+        <div class="logo-text" *ngIf="collapsed">Angular</div>
+
+        <button class="btn-close" *ngIf="collapsed" (click)="closeSidenav()">
+            <i class="fal fa-times close-icon"></i>
+        </button>
+
+    </div>
+
+    <ul class="sidenav-nav">
+
+        <li class="sidenav-nav-item" *ngFor="let data of navData">
+
+            <a class="sidenav-nav-link" [routerLink]="[data.routerLink]">
+
+                <i class="sidenav-link-icon" [class]="data.icon"></i>
+                
+                <span class="sidenav-link-text" *ngIf="collapsed">
+                    {{data.label}}
+                </span>
+            </a>
+
+        </li>
+
+
+    </ul>
+
+</div>
+
+-->

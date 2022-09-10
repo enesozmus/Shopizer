@@ -1,4 +1,5 @@
-﻿using Application.Features.ProductOperations.Queries;
+﻿using Application.Features.ProductOperations.Command;
+using Application.Features.ProductOperations.Queries;
 using AutoMapper;
 using Domain.Entities;
 
@@ -15,5 +16,7 @@ public class MappingProfiles : Profile
                .ForMember(dest => dest.SizeName, opt => opt.MapFrom(src => src.Size.Name))
                .ForMember(dest => dest.UserName, opt => opt.MapFrom(src => src.AppUser.UserName))
                .ReverseMap();
+
+          CreateMap<Product, CreateProductCommandRequest>().ReverseMap();
      }
 }
