@@ -1,4 +1,5 @@
 using Application;
+using CrossCuttingConcerns.Exceptions;
 using Persistence;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -29,6 +30,15 @@ if (app.Environment.IsDevelopment())
      app.UseSwagger();
      app.UseSwaggerUI();
 }
+
+#region Global Exception Handler
+
+//if (app.Environment.IsProduction())
+//     app.ConfigureCustomExceptionMiddleware();
+
+app.ConfigureCustomExceptionMiddleware();
+
+#endregion
 
 app.UseCors("myclients");
 app.UseHttpsRedirection();
