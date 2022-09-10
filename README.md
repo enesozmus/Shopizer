@@ -26,5 +26,6 @@
 > * Hem API hem de Client tarafında ürün ekleme işlemi gerçekleştirildi.
 > * API tarafında **FluentValidation** kütüphanesi entegre edildi.
 > * Fluent doğrulama hataları ürün ekleme formunda olası hataları yakalamak üzere **Client tarafına taşınarak** kullanıcıya gösterildi.
+> * Bir request nesnesi doğrulanmak istendiğinde direkt geçersiz verilerle MediatR kütüphanesinin handler sınıflarına girmeyerek bu doğrulamayı daha önce kontrol etmeye yarayan **MediatR Pipeline Behaviour** projeye entegre edildi.
 > * **!:** Client tarafında ayrıca doğrulama kuralları henüz yazılmadı ilerleyen günlerde yazılacaktır.
 > * **!:** Ürün ekleme işleminde kullanılan form ilerleyen günlerde **"reactive forms"** kullanımına geçirilecektir.

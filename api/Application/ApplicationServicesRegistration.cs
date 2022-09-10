@@ -1,4 +1,5 @@
-﻿using FluentValidation;
+﻿using Application.Pipelines.Validation;
+using FluentValidation;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
@@ -17,6 +18,9 @@ public static class ApplicationServicesRegistration
 
           // FluentValidation
           services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
+
+          // MediatR Pipeline Behaviour
+          services.AddTransient(typeof(IPipelineBehavior<,>), typeof(RequestValidationBehavior<,>));
 
           return services;
      }
