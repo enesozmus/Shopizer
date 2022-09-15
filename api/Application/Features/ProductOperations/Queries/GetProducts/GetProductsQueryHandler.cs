@@ -19,10 +19,8 @@ public class GetProductsQueryHandler : IRequestHandler<GetProductsQueryRequest, 
      public async Task<IReadOnlyList<GetProductsQueryResponse>> Handle(GetProductsQueryRequest request, CancellationToken cancellationToken)
      {
           // getir
-          var products = await _productReadRepository.GetAsync(include: m => m.Include(x => x.Category).Include(x => x.Brand)
-                                                                      .Include(x => x.Color)
-                                                                      .Include(x => x.Size)
-                                                                      .Include(x => x.AppUser));
+          var products = await _productReadRepository.GetAllAsync();
+
           // sonucu eşleyerek gönder
           return _mapper.Map<IReadOnlyList<GetProductsQueryResponse>>(products);
      }

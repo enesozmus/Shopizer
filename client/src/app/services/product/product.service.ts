@@ -1,6 +1,7 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Create_Product } from 'src/app/contracts/products/create_product.ts';
+import { List_Product } from 'src/app/contracts/products/list_product';
 import { HttpClientService } from '../common/http-client.service';
 
 
@@ -11,6 +12,23 @@ import { HttpClientService } from '../common/http-client.service';
 export class ProductService {
 
   constructor(private httpClientService: HttpClientService) { }
+
+
+  // ürünleri listele
+
+  async list(successCallBack?: () => void, errorCallBack?: (errorMessage: string) => void): Promise<List_Product[]> {
+    const promiseData: Promise<List_Product[]> = this.httpClientService.get<List_Product[]>(
+      {
+        controller: "products"
+      }).toPromise();
+
+    promiseData.then(s => successCallBack())
+      .catch((errorResponse: HttpErrorResponse) => errorCallBack(errorResponse.message));
+
+    return await promiseData;
+  }
+
+
 
   // ürün ekle
   create(product: Create_Product, errorCallBack?: (errorMessage: string) => void) {

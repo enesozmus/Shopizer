@@ -1,4 +1,5 @@
-﻿using Domain.Entities;
+﻿using Application.Specifications;
+using Domain.Entities;
 using Microsoft.EntityFrameworkCore.Query;
 using System.Linq.Expressions;
 
@@ -37,6 +38,7 @@ public interface IReadRepository<T> : IRepository<T> where T : BaseEntity
 
      Task<T> GetFirstAsync(Expression<Func<T, bool>> predicate = null, params Expression<Func<T, object>>[] includes);
      Task<T> GetByIdAsync(int id);
+     Task<T> GetByIdAsyncWithIncludes(Expression<Func<T, bool>> predicate = null, Func<IQueryable<T>, IIncludableQueryable<T, object>>? include = null);
      Task<T> GetForMultipleKeys(params object[] keyValues);
 
      #endregion
@@ -45,6 +47,14 @@ public interface IReadRepository<T> : IRepository<T> where T : BaseEntity
 
      Task<int> CountAsync();
      Task<int> CountAsync(Expression<Func<T, bool>> predicate);
+
+     #endregion
+
+     #region ISpecification
+
+     Task<T> GetSingleAsyncWithSpec(ISpecification<T> spec);
+     Task<IReadOnlyList<T>> GetListAsyncWithSpec(ISpecification<T> spec);
+     Task<int> CountAsyncWithSpec(ISpecification<T> spec);
 
      #endregion
 

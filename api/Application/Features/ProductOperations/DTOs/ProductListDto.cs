@@ -1,11 +1,12 @@
-﻿namespace Application.Features.ProductOperations.Queries;
+﻿namespace Application.Features.ProductOperations.DTOs;
 
-public class GetProductsQueryResponse
+public class ProductListDto
 {
      public int Id { get; set; }
      public string Name { get; set; }
      public int Stock { get; set; }
      public float Price { get; set; }
+     public string BrandName { get; set; }
      public DateTime CreatedDate { get; set; }
      public DateTime? LastModifiedDate { get; set; }
 }

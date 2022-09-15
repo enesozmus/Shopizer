@@ -1,8 +1,10 @@
 ﻿using Application.IRepositories;
+using Application.Specifications;
 using Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Query;
 using Persistence.Contexts;
+using Persistence.Specifications;
 using System.Linq.Expressions;
 
 namespace Persistence.Repositories;
@@ -112,6 +114,15 @@ public class ReadRepository<T> : IReadRepository<T> where T : BaseEntity
      public async Task<T> GetByIdAsync(int id)
           => await _context.Set<T>().FindAsync(id);
 
+     public async Task<T> GetByIdAsyncWithIncludes(Expression<Func<T, bool>> predicate = null, Func<IQueryable<T>, IIncludableQueryable<T, object>>? include = null)
+     {
+          IQueryable<T> query = Table;
+
+          if (include != null) query = include(query);
+
+          return await query.AsNoTracking().FirstOrDefaultAsync();
+     }
+
      public async Task<T> GetFirstAsync(Expression<Func<T, bool>> predicate = null, params Expression<Func<T, object>>[] includes)
      {
           IQueryable<T> query = Table;
@@ -135,6 +146,32 @@ public class ReadRepository<T> : IReadRepository<T> where T : BaseEntity
 
      public async Task<int> CountAsync(Expression<Func<T, bool>> predicate)
            => await _context.Set<T>().CountAsync(predicate);
+
+     #endregion
+
+     #region ISpecification
+
+     public async Task<IReadOnlyList<T>> GetListAsyncWithSpec(ISpecification<T> spec)
+     {
+          var query = ApplySpecification(spec);
+
+          return await query.ToListAsync();
+     }
+
+     public async Task<T> GetSingleAsyncWithSpec(ISpecification<T> spec)
+          => await ApplySpecification(spec).FirstOrDefaultAsync();
+
+     public async Task<int> CountAsyncWithSpec(ISpecification<T> spec)
+          => await ApplySpecification(spec).CountAsync();
+
+     #endregion
+
+     #region ApplySpecification
+
+     private IQueryable<T> ApplySpecification(ISpecification<T> spec)
+     {
+          return SpecificationEvaluator<T>.GetQuery(_context.Set<T>().AsQueryable(), spec);
+     }
 
      #endregion
 
