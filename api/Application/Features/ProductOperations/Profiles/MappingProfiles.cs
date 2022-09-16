@@ -1,5 +1,7 @@
 ﻿using Application.Features.ProductOperations.Command;
+using Application.Features.ProductOperations.DTOs;
 using Application.Features.ProductOperations.Queries;
+using Application.Paging;
 using AutoMapper;
 using Domain.Entities;
 
@@ -22,14 +24,22 @@ public class MappingProfiles : Profile
           CreateMap<Product, CreateProductCommandRequest>().ReverseMap();
 
 
-          #region Test Specifications
+          #region Test Specification Design Pattern
 
-          CreateMap<Product, GetSpecificationsTestQueryResponse>()
+          CreateMap<Product, GetProductsBySpecificationPatternQueryResponse>()
                .ForMember(dest => dest.BrandName, opt => opt.MapFrom(src => src.Brand.Name))
                .ForMember(dest => dest.ColorName, opt => opt.MapFrom(src => src.Color.Name))
                .ForMember(dest => dest.SizeName, opt => opt.MapFrom(src => src.Size.Name))
                .ReverseMap();
 
+          #endregion
+
+          #region Test Pagination Logic
+
+          CreateMap<IPaginate<Product>, GetProductsByPaginationQueryResponse>().ReverseMap();
+          CreateMap<Product, ProductListDto>()
+               .ForMember(dest => dest.BrandName, opt => opt.MapFrom(src => src.Brand.Name))
+               .ReverseMap();
           #endregion
      }
 }

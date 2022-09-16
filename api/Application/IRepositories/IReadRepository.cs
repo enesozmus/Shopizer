@@ -1,4 +1,5 @@
-﻿using Application.Specifications;
+﻿using Application.Paging;
+using Application.Specifications;
 using Domain.Entities;
 using Microsoft.EntityFrameworkCore.Query;
 using System.Linq.Expressions;
@@ -50,11 +51,21 @@ public interface IReadRepository<T> : IRepository<T> where T : BaseEntity
 
      #endregion
 
-     #region ISpecification
+     #region Specification Design Pattern
 
      Task<T> GetSingleAsyncWithSpec(ISpecification<T> spec);
      Task<IReadOnlyList<T>> GetListAsyncWithSpec(ISpecification<T> spec);
      Task<int> CountAsyncWithSpec(ISpecification<T> spec);
+
+     #endregion
+
+     #region Pagination Logic
+
+     Task<IPaginate<T>> GetListAsPaginateAsync(Expression<Func<T, bool>>? predicate = null,
+                                Func<IQueryable<T>, IOrderedQueryable<T>>? orderBy = null,
+                                Func<IQueryable<T>, IIncludableQueryable<T, object>>? include = null,
+                                int index = 0, int size = 10, bool enableTracking = true,
+                                CancellationToken cancellationToken = default);
 
      #endregion
 

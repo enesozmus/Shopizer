@@ -1,7 +1,6 @@
 ﻿using Application.IRepositories;
 using AutoMapper;
 using MediatR;
-using Microsoft.EntityFrameworkCore;
 
 namespace Application.Features.ProductOperations.Queries;
 

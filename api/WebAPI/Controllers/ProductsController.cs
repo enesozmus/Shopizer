@@ -7,13 +7,20 @@ namespace WebAPI.Controllers;
 
 public class ProductsController : BaseController
 {
-     [HttpGet]
-     public async Task<IActionResult> GetProducts()
-          => Ok(await Mediator.Send(new GetProductsQueryRequest()));
+     // normally
+     //[HttpGet]
+     //public async Task<IActionResult> GetProducts()
+     //     => Ok(await Mediator.Send(new GetProductsQueryRequest()));
 
-     [HttpGet("testSpec")]
+     //by SpecificationPattern
+     [HttpGet]
      public async Task<IActionResult> GetProductsWithSpec([FromQuery] ProductSpecParams requests)
-          => Ok(await Mediator.Send(new GetSpecificationsTestQueryRequest { Params = requests }));
+          => Ok(await Mediator.Send(new GetProductsBySpecificationPatternQueryRequest { Params = requests }));
+
+     // by Pagination
+     //[HttpGet]
+     //public async Task<IActionResult> GetProductsWithPagination([FromQuery] GetProductsByPaginationQueryRequest request)
+     //     => Ok(await Mediator.Send(request));
 
      [HttpGet("{id}")]
      public async Task<IActionResult> GetProduct(int id)

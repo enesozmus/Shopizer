@@ -1,6 +1,6 @@
 ﻿namespace Application.Features.ProductOperations.Queries;
 
-public class GetSpecificationsTestQueryResponse
+public class GetProductsBySpecificationPatternQueryResponse
 {
      public int Id { get; set; }
      public string Name { get; set; }

@@ -1,4 +1,5 @@
 ﻿using Application.IRepositories;
+using Application.Paging;
 using Application.Specifications;
 using Domain.Entities;
 using Microsoft.EntityFrameworkCore;
@@ -149,7 +150,7 @@ public class ReadRepository<T> : IReadRepository<T> where T : BaseEntity
 
      #endregion
 
-     #region ISpecification
+     #region Specification Design Pattern
 
      public async Task<IReadOnlyList<T>> GetListAsyncWithSpec(ISpecification<T> spec)
      {
@@ -163,6 +164,21 @@ public class ReadRepository<T> : IReadRepository<T> where T : BaseEntity
 
      public async Task<int> CountAsyncWithSpec(ISpecification<T> spec)
           => await ApplySpecification(spec).CountAsync();
+
+     #endregion
+
+     #region Pagination Logic
+
+     public async Task<IPaginate<T>> GetListAsPaginateAsync(Expression<Func<T, bool>>? predicate = null, Func<IQueryable<T>, IOrderedQueryable<T>>? orderBy = null, Func<IQueryable<T>, IIncludableQueryable<T, object>>? include = null, int index = 0, int size = 10, bool enableTracking = true, CancellationToken cancellationToken = default)
+     {
+          IQueryable<T> queryable = Table;
+          if (!enableTracking) queryable = queryable.AsNoTracking();
+          if (include != null) queryable = include(queryable);
+          if (predicate != null) queryable = queryable.Where(predicate);
+          if (orderBy != null)
+               return await orderBy(queryable).ToPaginateAsync(index, size, 0, cancellationToken);
+          return await queryable.ToPaginateAsync(index, size, 0, cancellationToken);
+     }
 
      #endregion
 
