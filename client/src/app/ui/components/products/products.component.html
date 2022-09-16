@@ -1,1 +1,73 @@
-<p>products works!</p>
+<div class="container">
+    <div class="row">
+        <section class="col-md-3">
+            <h3 class="ms-2 mt-2">Sort</h3>
+            <select class="custom-select" (change)="onSortSelected($event.target.value)">
+                <option *ngFor="let sort of sortOptions" [value]="sort.value">
+                    {{sort.name}}
+                </option>
+            </select>
+
+            <h3 class="ms-2 mt-2">Brands</h3>
+            <ul class="list-group" style="margin-top: -14px;">
+                <li class="list-group-item" *ngFor="let brand of brands"
+                    [class.active]="brand.id === productParams.brandId" [value]="brand.id"
+                    (click)="onBrandSelected(brand.id)">
+                    {{brand.name}}
+                </li>
+            </ul>
+
+            <h3 class="ms-2 mt-2">Colors</h3>
+            <ul class="list-group" style="margin-top: -14px;">
+                <li class="list-group-item" *ngFor="let color of colors"
+                    [class.active]="color.id === productParams.colorId" [value]="color.id"
+                    (click)="onColorSelected(color.id)"> {{color.name}} </li>
+            </ul>
+
+            <h3 class="ms-2 mt-2">Sizes</h3>
+            <ul class="list-group" style="margin-top: -14px;">
+                <li class="list-group-item" *ngFor="let size of sizes" [class.active]="size.id === productParams.sizeId"
+                    [value]="size.id" (click)="onSizeSelected(size.id)"> {{size.name}} </li>
+            </ul>
+
+            <h3 class="ms-2 mt-2">Categories</h3>
+            <ul class="list-group" style="margin-top: -14px;">
+                <li class="list-group-item active" aria-current="true">An active item</li>
+                <li class="list-group-item">A second item</li>
+                <li class="list-group-item">A third item</li>
+                <li class="list-group-item">A fourth item</li>
+                <li class="list-group-item">And a fifth one</li>
+            </ul>
+
+        </section>
+        <section class="col-md-9">
+
+            <div class="d-flex justify-content-between align-items-center pb-2">
+
+                <app-paging-header [totalCount]="totalCount" [pageIndex]="productParams.pageIndex"
+                    [pageSize]="productParams.pageSize">
+                </app-paging-header>
+
+                <div class="d-flex flex-row align-items-center flex-wrap mt-2">
+                    <input type="text" class="form-control me-2" style="width: 300px;" placeholder="search">
+                    <button class="btn btn-sm btn-outline-success my-2 me-2">Search</button>
+                    <button class="btn btn-sm btn-outline-success my-2">Reset</button>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-md-4" *ngFor="let item of products">
+                    <app-product-item [product]="item"></app-product-item>
+                </div>
+            </div>
+
+
+            <app-paging-body [pageSize]="productParams.pageSize" [totalCount]="totalCount"
+                [pageIndex]="productParams.pageIndex" (pageChanged)="onPageChanged($event)">
+            </app-paging-body>
+
+
+        </section>
+    </div>
+</div>

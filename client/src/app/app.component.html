@@ -1,76 +1,70 @@
-<nav class="navbar navbar-expand-lg bg-light">
-  <div class="container-fluid">
-    <a class="navbar-brand" routerLink="">Angular 13</a>
-    <button
-      class="navbar-toggler"
-      type="button"
-      data-bs-toggle="collapse"
-      data-bs-target="#navbarSupportedContent"
-      aria-controls="navbarSupportedContent"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
-    >
+<nav class="navbar navbar-expand-lg bg-dark fixed-top">
+
+  <div class="container-fluid ms-5">
+
+    <a class="navbar-brand ms-5" href="#">
+      <img src="/assets/images/logo-nav@2x.png" alt="Angular 13" style="max-height: 70px; max-width: 175px;">
+    </a>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+    <div class="collapse navbar-collapse ms-5" id="navbarSupportedContent">
+
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" routerLink=""
-            >Ana Sayfa</a
-          >
-        </li>
 
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" routerLink="products"
-            >Ürünler</a
-          >
-        </li>
-
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" routerLink="admin"
-            >Yönetim Paneli</a
-          >
-        </li>
-
-        <li class="nav-item dropdown">
-          <a
-            class="nav-link dropdown-toggle"
-            href="#"
-            role="button"
-            data-bs-toggle="dropdown"
-            aria-expanded="false"
-          >
-            Dropdown
+          <a class="nav-link active text-light buttonBorder" id="testStyle" aria-current="page" routerLink="">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            Home
           </a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Action</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
-            <li><hr class="dropdown-divider" /></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
-          </ul>
         </li>
+
         <li class="nav-item">
-          <a class="nav-link disabled">Disabled</a>
+          <a class="nav-link active text-light buttonBorder" aria-current="page" routerLink="products">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            Products</a>
         </li>
+
+        <li class="nav-item">
+          <a class="nav-link active text-light buttonBorder" aria-current="page" routerLink="admin">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            Admin Panel</a>
+        </li>
+
       </ul>
-      <form class="d-flex" role="search">
-        <input
-          class="form-control me-2"
-          type="search"
-          placeholder="Search"
-          aria-label="Search"
-        />
-        <button class="btn btn-outline-success" type="submit">Search</button>
-      </form>
+
+      <div class="d-flex align-items-center me-5">
+        <a class="position-relative">
+          <i class="fa fa-shopping-cart fa-2x text-light me-4 mt-1"></i>
+          <div class="cart-no">5</div>
+        </a>
+        <a class="btn btn-sm btn-outline-success ">Login</a>
+        <a class="btn btn-sm btn-outline-danger ms-3">Sign up</a>
+      </div>
+
     </div>
   </div>
 </nav>
+
+
 
 <!-- ngx spinner -->
 <ngx-spinner color="#a0cadb" name="spinnerSquare" type="ball-grid-pulse"></ngx-spinner>
 <ngx-spinner color="#a0cadb" name="spinnerCircle" type="ball-spin-clockwise-fade-rotating"></ngx-spinner>
 <!-- ngx spinner -->
 
-<div class="appRouterOutlet">
+<div class="container appRouterOutlet">
   <router-outlet></router-outlet>
 </div>

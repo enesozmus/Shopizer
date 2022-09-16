@@ -10,7 +10,8 @@ import { Observable } from 'rxjs';
 
 export class HttpClientService {
 
-  // buradaki çalışmamız özünde HttpClient servisinin özelleştirilmiş halidir.
+  // buradaki çalışmamız özünde HttpClient servisinin özelleştirilmesidir.
+  // baseUrl app.module.ts'den alınarak string olarak constructor'a eklendi.
   constructor(private httpClient: HttpClient, @Inject("baseUrl") private baseUrl: string) { }
 
 

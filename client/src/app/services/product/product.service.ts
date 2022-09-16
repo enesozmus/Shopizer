@@ -1,7 +1,7 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Create_Product } from 'src/app/contracts/products/create_product.ts';
-import { List_Product } from 'src/app/contracts/products/list_product';
+import { Create_Product } from 'src/app/shared/contracts/products/create_product.ts';
+import { List_Product } from 'src/app/shared/contracts/products/list_product';
 import { HttpClientService } from '../common/http-client.service';
 
 
@@ -26,7 +26,7 @@ export class ProductService {
       .catch((errorResponse: HttpErrorResponse) => errorCallBack(errorResponse.message));
 
     return await promiseData;
-  }
+  } 
 
 
 

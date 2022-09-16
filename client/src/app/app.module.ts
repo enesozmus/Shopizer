@@ -15,17 +15,24 @@ import { NgxSpinnerModule } from 'ngx-spinner';
   declarations: [
     AppComponent
   ],
+
   imports: [
     BrowserModule,
     AppRoutingModule,
-    AdminModule, UiModule,
-    HttpClientModule,
     BrowserAnimationsModule,
+
+    AdminModule, UiModule,
+
+    HttpClientModule,
+
     NgxSpinnerModule
   ],
+
   providers: [
     { provide: "baseUrl", useValue: "http://localhost:5153/api", multi: true }
   ],
+
   bootstrap: [AppComponent]
+
 })
 export class AppModule { }

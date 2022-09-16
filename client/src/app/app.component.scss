@@ -1,3 +1,116 @@
-.appRouterOutlet{
-    background-color: cornflowerblue;
+.appRouterOutlet {
+    //background-color: cornflowerblue;
+    margin-top: 120px;
 }
+
+.nav-item{
+    margin-left: 30px;
+}
+
+.cart-no {
+    position: absolute;
+    min-height: 21px;
+    min-width: 21px;
+    border-radius: 50%;
+    font-size: 1em;
+    background-color: purple;
+    color: wheat;
+    text-align: center;
+    top: -10px;
+    right: 10px;
+}
+
+/* buttonBorder */
+.buttonBorder {
+    font-family: 'Poppins', sans-serif;
+    position: relative;
+    display: inline-block;
+    box-sizing: border-box;
+    padding: 10px 30px;
+    text-decoration: none;
+    text-transform: uppercase;
+    color: rgba(225, 255, 255, 0.4);
+    font-family: s;
+    letter-spacing: 1.5px;
+    font-size: 14px;
+    transition: 0.5s;
+}
+
+.buttonBorder:hover {
+    color: rgba(225, 255, 255, 1);
+}
+
+.buttonBorder span{
+    display: block;
+    position: absolute;
+    background: #2894ff;
+}
+
+.buttonBorder span:nth-child(1){
+    left: 0;
+    bottom: 0;
+    width: 1px;
+    height: 100%;
+    transform: scaleY(0);
+    transform-origin: top;
+    transition: transform 0.5s;
+}
+
+.buttonBorder:hover span:nth-child(1){
+    transform: scaleY(1);
+    transform-origin: bottom;
+    transition: transform 0.5s;
+}
+
+.buttonBorder span:nth-child(2){
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 1px;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.5s;
+}
+
+.buttonBorder:hover span:nth-child(2){
+    transform: scaleX(1);
+    transform-origin: left;
+    transition: transform 0.5s;
+}
+
+.buttonBorder span:nth-child(3){
+    right: 0;
+    bottom: 0;
+    width: 1px;
+    height: 100%;
+    transform: scaleY(0);
+    transform-origin: top;
+    transition: transform 0.5s;
+    transition: delay 0.5s;
+}
+
+.buttonBorder:hover span:nth-child(3){
+    transform: scaleY(1);
+    transform-origin: bottom;
+    transition: transform 0.5s;
+    transition: delay 0.5s;
+}
+
+.buttonBorder span:nth-child(4){
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 1px;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.5s;
+    transition: delay 0.5s;
+}
+
+.buttonBorder:hover span:nth-child(4){
+    transform: scaleX(1);
+    transform-origin: left;
+    transition: transform 0.5s;
+    transition: delay 0.5s;
+}
+/* buttonBorder */

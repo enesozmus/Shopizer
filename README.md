@@ -30,6 +30,7 @@
 > * Uygulama içindeki exception'larımızı merkezi bir konumdan yönetebilmemizi sağlayan ve bir middleware olan **"Global Excaption Handler"** middleware'i entegre edildi.
 > * Sorgulama, sıralama ve sayfalama mantığının nereye yerleştirileceği sorununa bir **Domain-Driven-Design** tasarım çözümü olan **Specification Design Pattern** projeye entegre edildi.
 > * 50'den fazla farklı **'loading spinners'** içeren bir kitaplık olan **ngx-spinner** projeye entegre edildi.
+> * **Specification Design Pattern** kullanılarak hem API hem de Client tarafında **sayfalama**, isim ve fiyat değerlerine göre **sıralama** ve marka-renk-beden değerlerine göre **filtreleme** işlemleri tamamlandı.
 
 > * **!:** Client tarafında ayrıca doğrulama kuralları henüz yazılmadı ilerleyen günlerde yazılacaktır.
 > * **!:** Ürün ekleme işleminde kullanılan form ilerleyen günlerde **"reactive forms"** kullanımına geçirilecektir.
