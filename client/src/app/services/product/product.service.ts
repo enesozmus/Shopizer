@@ -1,7 +1,8 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable, firstValueFrom } from 'rxjs';
+import { IPaginationWithParameters } from 'src/app/shared/contracts/paginations/paginationWithParamaters';
 import { Create_Product } from 'src/app/shared/contracts/products/create_product.ts';
-import { List_Product } from 'src/app/shared/contracts/products/list_product';
 import { HttpClientService } from '../common/http-client.service';
 
 
@@ -16,31 +17,31 @@ export class ProductService {
 
   // ürünleri listele
 
-  async list(successCallBack?: () => void, errorCallBack?: (errorMessage: string) => void): Promise<List_Product[]> {
-    const promiseData: Promise<List_Product[]> = this.httpClientService.get<List_Product[]>(
+  async list(index: number, size: number, successCallBack?: () => void, errorCallBack?: (errorMessage: string) => void): Promise<IPaginationWithParameters> {
+
+    const promiseData: Promise<IPaginationWithParameters> = this.httpClientService.get<IPaginationWithParameters>(
       {
-        controller: "products"
+        controller: "products/withParamaters",
+        queryString: `pageRequest.pageIndex=${index}&pageRequest.pageSize=${size}`
       }).toPromise();
 
     promiseData.then(s => successCallBack())
       .catch((errorResponse: HttpErrorResponse) => errorCallBack(errorResponse.message));
 
     return await promiseData;
-  } 
+  }
 
 
 
   // ürün ekle
-  create(product: Create_Product, errorCallBack?: (errorMessage: string) => void) {
+  create(product: Create_Product, successCallBack?: () => void, errorCallBack?: (errorMessage: string) => void) {
 
     this.httpClientService.post(
       {
         controller: "products"
-      },
-      product)
-
+      }, product)
       .subscribe(result => {
-        alert("başarılı")
+        successCallBack();
       }, (errorResponse: HttpErrorResponse) => {
         const _fluentErrors: Array<{ PropertyName: string, ErrorMessage: string, ErrorCode: string }> = errorResponse.error.Errors;
 
@@ -48,14 +49,23 @@ export class ProductService {
         _fluentErrors.forEach((value, index) => {
           message += `${value.ErrorMessage}<br>`;
         });
-
-        _fluentErrors[0].PropertyName;
-        _fluentErrors[0].ErrorMessage;
-        _fluentErrors[0].ErrorCode;
-
         console.log(message);
         errorCallBack(message);
+        //_fluentErrors[0].PropertyName;
+        //_fluentErrors[0].ErrorMessage;
+        //_fluentErrors[0].ErrorCode;
       });
+  }
+
+  // ürün sil
+  async delete(id: number) {
+
+    const deleteObservable: Observable<any> = this.httpClientService.delete<any>({
+      controller: "products",
+      //queryString: `pageRequest.pageIndex=${index}&pageRequest.pageSize=${size}`
+    }, id);
+
+    await firstValueFrom(deleteObservable);
   }
 }
 

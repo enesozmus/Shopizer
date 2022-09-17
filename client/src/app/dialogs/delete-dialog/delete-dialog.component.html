@@ -1,0 +1,12 @@
+<h2 mat-dialog-title style="color:red">Bir veriyi silme işlemi gerçekleştiriyorsunuz.</h2>
+
+<div mat-dialog-content>
+    <p>Silme işlemine devam etmek istiyor musunuz?</p>
+</div>
+
+<div mat-dialog-actions>
+    <!-- <button mat-button (click)="onNoClick()">No Thanks</button> -->
+    <button mat-button (click)="onNoClick()">Hayır, istemiyorum.</button>
+    <!-- <button mat-button [mat-dialog-close]="data.animal" cdkFocusInitial>Ok</button> -->
+    <button mat-button [mat-dialog-close]="data" cdkFocusInitial>Evet, istiyorum.</button>
+</div>

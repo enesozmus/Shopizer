@@ -62,7 +62,7 @@ export class HttpClientService {
   }
 
 
-  delete<T>(requestParameter: Partial<RequestParameters>, id: string): Observable<T> {
+  delete<T>(requestParameter: Partial<RequestParameters>, id: number): Observable<T> {
 
     let url: string = "";
 

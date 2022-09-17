@@ -3,13 +3,14 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-
 import { AdminModule } from './admin/admin.module';
 import { UiModule } from './ui/ui.module';
 import { HttpClientModule } from '@angular/common/http';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { NgxSpinnerModule } from 'ngx-spinner';
 
     HttpClientModule,
 
-    NgxSpinnerModule
+    NgxSpinnerModule,
+    FontAwesomeModule
   ],
 
   providers: [

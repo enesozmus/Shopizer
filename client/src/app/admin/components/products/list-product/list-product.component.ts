@@ -5,6 +5,9 @@ import { BaseComponent, SpinnerType } from 'src/app/base/base.component';
 import { List_Product } from 'src/app/shared/contracts/products/list_product';
 import { ProductService } from 'src/app/services/product/product.service';
 import { MatPaginator } from '@angular/material/paginator';
+import { IPaginationWithParameters } from 'src/app/shared/contracts/paginations/paginationWithParamaters';
+
+declare var $: any;
 
 @Component({
   selector: 'app-list-product',
@@ -15,28 +18,40 @@ import { MatPaginator } from '@angular/material/paginator';
 
 export class ListProductComponent extends BaseComponent implements OnInit {
 
-  
-  constructor(spinner: NgxSpinnerService, private productService: ProductService) {
+  constructor(private productService: ProductService, spinner: NgxSpinnerService) {
     super(spinner)
   }
 
-
-  displayedColumns: string[] = ['name', 'stock', 'price', 'createdDate', 'lastModifiedDate'];
+  /*** Angular Material */
+  displayedColumns: string[] = ['name', 'stock', 'price', 'createdDate', 'lastModifiedDate', 'update', 'delete'];
   dataSource: MatTableDataSource<List_Product> = null;
   @ViewChild(MatPaginator) paginator: MatPaginator;
-
-  async ngOnInit() {
-    await this.getProducts();
-  }
+  /*** Angular Material */
 
   async getProducts() {
 
     this.showSpinner(SpinnerType.BallSpinClockwiseFadeRotating);
 
-    const allProducts: List_Product[] = await this.productService.list(() => this.hideSpinner(SpinnerType.BallSpinClockwiseFadeRotating),
-      errorMessage => alert(errorMessage));
+    const getBigList: IPaginationWithParameters
+      = await this.productService.list(this.paginator ? this.paginator.pageIndex : 0, this.paginator ? this.paginator.pageSize : 5, () => this.hideSpinner(SpinnerType.BallSpinClockwiseFadeRotating),
+        errorMessage => alert(errorMessage));
 
-    this.dataSource = new MatTableDataSource<List_Product>(allProducts);
-    this.dataSource.paginator = this.paginator;
+    this.dataSource = new MatTableDataSource<List_Product>(getBigList.items);
+    this.paginator.length = getBigList.count;
+  }
+
+  async pageChanged() {
+    await this.getProducts();
+  }
+
+  /* delete(id, event) {
+    alert(id)
+    const icon: HTMLImageElement = event.srcElement;
+    $(icon.parentElement.parentElement).fadeOut(2000);
+    //console.log(icon.parentElement.parentElement)
+  }*/
+
+  async ngOnInit() {
+    await this.getProducts();
   }
 }

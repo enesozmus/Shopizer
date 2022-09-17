@@ -13,20 +13,24 @@ public class ProductsController : BaseController
      //     => Ok(await Mediator.Send(new GetProductsQueryRequest()));
 
      //by SpecificationPattern
-     [HttpGet]
-     public async Task<IActionResult> GetProductsWithSpec([FromQuery] ProductSpecParams requests)
-          => Ok(await Mediator.Send(new GetProductsBySpecificationPatternQueryRequest { Params = requests }));
+     //[HttpGet]
+     //public async Task<IActionResult> GetProductsWithSpec([FromQuery] ProductSpecParams requests)
+     //     => Ok(await Mediator.Send(new GetProductsBySpecificationPatternQueryRequest { Params = requests }));
 
      // by Pagination
-     //[HttpGet]
-     //public async Task<IActionResult> GetProductsWithPagination([FromQuery] GetProductsByPaginationQueryRequest request)
-     //     => Ok(await Mediator.Send(request));
+     [HttpGet("withParamaters")]
+     public async Task<IActionResult> GetProductsWithPagination([FromQuery] GetProductsByPaginationQueryRequest request)
+          => Ok(await Mediator.Send(request));
 
      [HttpGet("{id}")]
      public async Task<IActionResult> GetProduct(int id)
           => Ok(await Mediator.Send(new GetProductDetailQueryRequest { Id = id }));
 
      [HttpPost]
-     public async Task<IActionResult> CreateProducts(CreateProductCommandRequest request)
+     public async Task<IActionResult> CreateProduct(CreateProductCommandRequest request)
           => Ok(await Mediator.Send(request));
+
+     [HttpDelete("{id}")]
+     public async Task<IActionResult> RemoveProduct(int id)
+          => Ok(await Mediator.Send(new RemoveProductCommandRequest { Id = id }));
 }

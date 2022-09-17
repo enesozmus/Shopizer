@@ -12,4 +12,11 @@ export class ProductsComponent implements OnInit {
   ngOnInit(): void {
   }
 
+ /* @ViewChild(ListProductComponent) listComponents: ListProductComponent;
+
+  createdProduct(createdProduct: Create_Product){
+    this.listComponents.getProducts();
+
+  }*/
+
 }

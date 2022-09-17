@@ -31,10 +31,34 @@
             <td mat-cell *matCellDef="let element"> {{element.lastModifiedDate}} </td>
         </ng-container>
 
+        <!-- update column -->
+        <ng-container matColumnDef="update">
+            <th mat-header-cell *matHeaderCellDef></th>
+            <td mat-cell *matCellDef="let element">
+                <i class="fa-regular fa-copy fa-xl" style="color: green;"></i>
+            </td>
+        </ng-container>
+
+        <!-- delete column -->
+        <ng-container matColumnDef="delete">
+            <th mat-header-cell *matHeaderCellDef></th>
+            
+            <td mat-cell
+                *matCellDef="let element"
+                appDelete
+                [id]="element.id"
+                controller="products"
+                (updatelistwhendeleted)="getProducts()"
+            >
+                <!-- <i (click)="delete(element.id, $event)" class="fa-regular fa-trash-can fa-xl" style="color: red;"></i> -->
+            </td>
+        </ng-container>
+
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
 
-    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons aria-label="Select page of periodic elements">
+    <mat-paginator (page)="pageChanged()" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons
+        aria-label="Select page of periodic elements">
     </mat-paginator>
 </div>

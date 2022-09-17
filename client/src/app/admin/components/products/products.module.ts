@@ -4,18 +4,22 @@ import { ProductsComponent } from './products.component';
 import { RouterModule } from '@angular/router';
 
 
-import {MatSidenavModule} from '@angular/material/sidenav';
+import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
-import {MatGridListModule} from '@angular/material/grid-list';
-import {MatTableModule} from '@angular/material/table';
-import {MatPaginatorModule} from '@angular/material/paginator';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import {MatDialogModule} from '@angular/material/dialog';
 
 
 
 import { CreateProductComponent } from './create-product/create-product.component';
 import { ListProductComponent } from './list-product/list-product.component';
+
+import { DeleteDirective } from 'src/app/directives/admin/delete-directive';
+import { DeleteDialogComponent } from 'src/app/dialogs/delete-dialog/delete-dialog.component';
 
 
 
@@ -24,14 +28,16 @@ import { ListProductComponent } from './list-product/list-product.component';
   declarations: [
     ProductsComponent,
     CreateProductComponent,
-    ListProductComponent
+    ListProductComponent,
+    DeleteDirective,
+    DeleteDialogComponent
   ],
   imports: [
     CommonModule,
 
     RouterModule.forChild([
-      {path: "", component: ProductsComponent},
-      {path: "create-product", component: CreateProductComponent},
+      { path: "", component: ProductsComponent },
+      { path: "create-product", component: CreateProductComponent },
     ]),
 
     MatGridListModule,
@@ -40,7 +46,8 @@ import { ListProductComponent } from './list-product/list-product.component';
     MatInputModule,
     MatButtonModule,
     MatTableModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatDialogModule
   ]
 })
 export class ProductsModule { }
