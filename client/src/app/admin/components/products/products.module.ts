@@ -14,12 +14,12 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import {MatDialogModule} from '@angular/material/dialog';
 
 
-
 import { CreateProductComponent } from './create-product/create-product.component';
 import { ListProductComponent } from './list-product/list-product.component';
 
+import { FileUploadModule } from 'src/app/services/common/file-upload/file-upload.module';
+import { DialogModule } from 'src/app/dialogs/dialog.module';
 import { DeleteDirective } from 'src/app/directives/admin/delete-directive';
-import { DeleteDialogComponent } from 'src/app/dialogs/delete-dialog/delete-dialog.component';
 
 
 
@@ -29,8 +29,7 @@ import { DeleteDialogComponent } from 'src/app/dialogs/delete-dialog/delete-dial
     ProductsComponent,
     CreateProductComponent,
     ListProductComponent,
-    DeleteDirective,
-    DeleteDialogComponent
+    DeleteDirective
   ],
   imports: [
     CommonModule,
@@ -47,7 +46,10 @@ import { DeleteDialogComponent } from 'src/app/dialogs/delete-dialog/delete-dial
     MatButtonModule,
     MatTableModule,
     MatPaginatorModule,
-    MatDialogModule
+    MatDialogModule,
+
+    DialogModule,
+    FileUploadModule
   ]
 })
 export class ProductsModule { }

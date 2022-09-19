@@ -40,6 +40,9 @@ app.ConfigureCustomExceptionMiddleware();
 
 #endregion
 
+// wwwroot
+app.UseStaticFiles();
+
 app.UseCors("myclients");
 app.UseHttpsRedirection();
 

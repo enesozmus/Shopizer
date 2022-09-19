@@ -1,5 +1,6 @@
 ﻿using Application.Features.ProductOperations.Command;
 using Application.Features.ProductOperations.Queries;
+using Application.IRepositories;
 using Application.Requests;
 using Microsoft.AspNetCore.Mvc;
 
@@ -7,6 +8,17 @@ namespace WebAPI.Controllers;
 
 public class ProductsController : BaseController
 {
+     private readonly IProductReadRepository _productReadRepository;
+     private readonly IProductWriteRepository _productWriteRepository;
+     private readonly IWebHostEnvironment _webHostEnvironment;
+
+     public ProductsController(IProductReadRepository productReadRepository, IProductWriteRepository productWriteRepository, IWebHostEnvironment webHostEnvironment)
+     {
+          _productReadRepository = productReadRepository;
+          _productWriteRepository = productWriteRepository;
+          _webHostEnvironment = webHostEnvironment;
+     }
+
      // normally
      //[HttpGet]
      //public async Task<IActionResult> GetProducts()
@@ -33,4 +45,43 @@ public class ProductsController : BaseController
      [HttpDelete("{id}")]
      public async Task<IActionResult> RemoveProduct(int id)
           => Ok(await Mediator.Send(new RemoveProductCommandRequest { Id = id }));
+
+     [HttpPost("[action]")]
+     public async Task<IActionResult> Upload()
+     {
+          // wwwroot/resource/product-images
+          string uploadPath = Path.Combine(_webHostEnvironment.WebRootPath, "resource/product-images");
+
+          if (!Directory.Exists(uploadPath))
+               Directory.CreateDirectory(uploadPath);
+
+          Guid guid = Guid.NewGuid();
+          foreach (IFormFile file in Request.Form.Files)
+          {
+               string noExtension = Path.GetFileNameWithoutExtension(file.FileName).ToLower()
+                    .Replace(" ", "-")
+                    .Replace("ğ", "g")
+                    .Replace("ı", "i")
+                    .Replace("ö", "o")
+                    .Replace("ü", "u")
+                    .Replace("ş", "s")
+                    .Replace("ç", "c")
+                    .Replace("Ç", "c")
+                    .Replace("Ş", "s")
+                    .Replace("Ğ", "g")
+                    .Replace("Ü", "u")
+                    .Replace("İ", "i")
+                    .Replace("Ö", "o")
+                    .Trim();
+
+               string fullPath = Path.Combine(uploadPath, $"{noExtension + "-"}{guid}{Path.GetExtension(file.FileName)}");
+
+               using FileStream fileStream = new
+                    (fullPath, FileMode.Create, FileAccess.Write, FileShare.None, 1024 * 1024, useAsync: false);
+
+               await file.CopyToAsync(fileStream);
+               await fileStream.FlushAsync();
+          }
+          return Ok();
+     }
 }

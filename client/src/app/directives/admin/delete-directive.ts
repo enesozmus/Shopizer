@@ -4,9 +4,10 @@ import { HttpClientService } from 'src/app/services/common/http-client.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { SpinnerType } from '../../base/base.component';
 
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 import { DeleteDialogComponent, DeleteState } from 'src/app/dialogs/delete-dialog/delete-dialog.component';
 import { HttpErrorResponse } from '@angular/common/http';
+import { DialogService } from 'src/app/services/common/dialog.service';
 
 
 // JavaScript
@@ -19,7 +20,7 @@ declare var $: any;
 export class DeleteDirective {
 
   constructor(private element: ElementRef, private _renderer: Renderer2, private httpClientService: HttpClientService,
-    private spinner: NgxSpinnerService, public dialog: MatDialog) {
+    private spinner: NgxSpinnerService, public dialog: MatDialog, private dialogService: DialogService) {
     // icon'lar için i elementi
     const icon = _renderer.createElement("i");
     // class
@@ -41,59 +42,33 @@ export class DeleteDirective {
   @HostListener("click")
   async onclick() {
 
-    this.openDialog(async () => {
+    // dialog module
+    this.dialogService.openDialog({
+      componentType: DeleteDialogComponent,
+      data: DeleteState.Yes,
+      afterClosed: async () => {
+        // spinner show
+        this.spinner.show(SpinnerType.BallSpinClockwiseFadeRotating);
+        const td: HTMLTableCellElement = this.element.nativeElement;
 
-      this.spinner.show(SpinnerType.BallSpinClockwiseFadeRotating);
+        // request
+        this.httpClientService.delete({
+          controller: this.controller
+        }, this.id).subscribe(response => {
+          $(td.parentElement).fadeOut(900, () => {
+            this.updatelistwhendeleted.emit();
+          });
+        }, (errorResponse: HttpErrorResponse) => {
+          this.spinner.hide(SpinnerType.BallSpinClockwiseFadeRotating);
+          alert(errorResponse);
+        })
 
-
-      const td: HTMLTableCellElement = this.element.nativeElement;
-
-      //await this.productService.delete(this.id);
-      this.httpClientService.delete({
-        controller: this.controller
-      }, this.id).subscribe(response => {
-        $(td.parentElement).fadeOut(900, () => {
-          this.updatelistwhendeleted.emit();
-        });
-      }, (errorResponse: HttpErrorResponse) => {
-        this.spinner.hide(SpinnerType.BallSpinClockwiseFadeRotating);
-        alert(errorResponse);
-      })
-
-
-
+      }
     });
-
     // // analiz
     //console.log(this.element)
     // console.log(td.parentElement) => tr
     // console.log(this.id)
     //$(td.parentElement).fadeOut(2000)
-
-    /*
-        $(td.parentElement).animate({
-          opacity: 0,
-          letf: "+=50",
-          height: "toogle"
-        }, 700, () => {
-          this.updatelistwhendeleted.emit();
-        })*/
   }
-
-
-  openDialog(afterClosed: any): void {
-
-    const dialogRef = this.dialog.open(DeleteDialogComponent, {
-      width: '470px',
-      data: DeleteState.Yes,
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-
-      if (result == DeleteState.Yes)
-        afterClosed();
-
-    });
-  }
-
 }
