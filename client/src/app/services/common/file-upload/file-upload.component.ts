@@ -3,7 +3,6 @@ import { NgxFileDropEntry } from 'ngx-file-drop';
 import { HttpClientService } from '../http-client.service';
 import { HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FileUploadDialogComponent, FileUploadDialogState } from 'src/app/dialogs/file-upload-dialog/file-upload-dialog.component';
 import { DialogService } from '../dialog.service';
 import { NgxSpinnerService } from 'ngx-spinner';
@@ -17,8 +16,7 @@ import { SpinnerType } from 'src/app/base/base.component';
 })
 export class FileUploadComponent {
 
-  constructor(private httpClientService: HttpClientService, private dialogService: DialogService, private spinner: NgxSpinnerService, private dialog: MatDialog) {
-
+  constructor(private httpClientService: HttpClientService, private dialogService: DialogService, private spinner: NgxSpinnerService) {
   }
 
   // Dışarıdan alacağımız parametreler

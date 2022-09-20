@@ -1,19 +1,23 @@
 ﻿using Application.Features.ProductOperations.Command;
 using Application.Features.ProductOperations.Queries;
+using Application.IRepositories;
 using Application.Services;
+using Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebAPI.Controllers;
 
 public class ProductsController : BaseController
 {
-     private readonly IWebHostEnvironment _webHostEnvironment;
      private readonly IFileService _fileService;
+     private readonly IProductImageFileWriteRepository _productImageFileWriteRepository;
+     private readonly IInvoiceFileWriteRepository _invoiceFileWriteRepository;
 
-     public ProductsController(IWebHostEnvironment webHostEnvironment, IFileService fileService)
+     public ProductsController(IFileService fileService, IProductImageFileWriteRepository productImageFileWriteRepository, IInvoiceFileWriteRepository invoiceFileWriteRepository)
      {
-          _webHostEnvironment = webHostEnvironment;
           _fileService = fileService;
+          _productImageFileWriteRepository = productImageFileWriteRepository;
+          _invoiceFileWriteRepository = invoiceFileWriteRepository;
      }
 
      // normally
@@ -47,7 +51,22 @@ public class ProductsController : BaseController
      [HttpPost("[action]")]
      public async Task<IActionResult> Upload()
      {
-          await _fileService.UploadAsync("resource/product-images", Request.Form.Files);
+          var datas = await _fileService.UploadAsync("resource/product-images", Request.Form.Files);
+          await _productImageFileWriteRepository.AddRangeAsync(datas.Select(d => new ProductImageFile()
+          {
+               ProductId = 1,
+               FileName = d.fileName,
+               Path = d.path,
+               Showcase = false,
+               Storage = "test"
+          }).ToList());
+          await _invoiceFileWriteRepository.AddRangeAsync(datas.Select(d => new InvoiceFile()
+          {
+               FileName = d.fileName,
+               Path = d.path,
+               Storage = "test",
+               Price = 50.50m
+          }).ToList());
           return Ok();
      }
 

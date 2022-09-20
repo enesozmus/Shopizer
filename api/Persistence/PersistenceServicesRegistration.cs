@@ -19,32 +19,28 @@ public static class PersistenceServicesRegistration
 
           #endregion
 
-          #region Commons
+          #region Repositories
 
           services.AddScoped(typeof(IReadRepository<>), typeof(ReadRepository<>));
           services.AddScoped(typeof(IWriteRepository<>), typeof(WriteRepository<>));
 
-          #endregion
-
-          #region Repositories
-
-          services.AddScoped<IBaseFileReadRepository, BaseFileReadRepository>();
-          services.AddScoped<IBaseFileWriteRepository, BaseFileWriteRepository>();
+          services.AddScoped<ICategoryReadRepository, CategoryReadRepository>();
+          services.AddScoped<ICategoryWriteRepository, CategoryWriteRepository>();
 
           services.AddScoped<IBrandReadRepository, BrandReadRepository>();
           services.AddScoped<IBrandWriteRepository, BrandWriteRepository>();
 
-          services.AddScoped<ICategoryReadRepository, CategoryReadRepository>();
-          services.AddScoped<ICategoryWriteRepository, CategoryWriteRepository>();
-
           services.AddScoped<IColorReadRepository, ColorReadRepository>();
           services.AddScoped<IColorWriteRepository, ColorWriteRepository>();
 
+          services.AddScoped<ISizeReadRepository, SizeReadRepository>();
+          services.AddScoped<ISizeWriteRepository, SizeWriteRepository>();
+
+          services.AddScoped<IProductReadRepository, ProductReadRepository>();
+          services.AddScoped<IProductWriteRepository, ProductWriteRepository>();
+
           services.AddScoped<ICustomerReadRepository, CustomerReadRepository>();
           services.AddScoped<ICustomerWriteRepository, CustomerWriteRepository>();
-
-          services.AddScoped<IInvoiceFileReadRepository, InvoiceFileReadRepository>();
-          services.AddScoped<IInvoiceFileWriteRepository, InvoiceFileWriteRepository>();
 
           services.AddScoped<IOfferReadRepository, OfferReadRepository>();
           services.AddScoped<IOfferWriteRepository, OfferWriteRepository>();
@@ -52,18 +48,18 @@ public static class PersistenceServicesRegistration
           services.AddScoped<IOrderReadRepository, OrderReadRepository>();
           services.AddScoped<IOrderWriteRepository, OrderWriteRepository>();
 
-          services.AddScoped<IProductReadRepository, ProductReadRepository>();
-          services.AddScoped<IProductWriteRepository, ProductWriteRepository>();
+          services.AddScoped<IBaseFileReadRepository, BaseFileReadRepository>();
+          services.AddScoped<IBaseFileWriteRepository, BaseFileWriteRepository>();
 
           services.AddScoped<IProductImageFileReadRepository, ProductImageFileReadRepository>();
           services.AddScoped<IProductImageFileWriteRepository, ProductImageFileWriteRepository>();
 
-          services.AddScoped<ISizeReadRepository, SizeReadRepository>();
-          services.AddScoped<ISizeWriteRepository, SizeWriteRepository>();
+          services.AddScoped<IInvoiceFileReadRepository, InvoiceFileReadRepository>();
+          services.AddScoped<IInvoiceFileWriteRepository, InvoiceFileWriteRepository>();
 
           #endregion
 
-          #region Test
+          #region Services
 
           services.AddScoped<IFileService, FileService>();
 
