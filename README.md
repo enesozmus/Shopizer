@@ -34,6 +34,7 @@
 > * Bütün delete operasyonlarında kullanılabilecek custom bir directive olan **DeleteDirective** yazıldı.
 > * Bütün dosya yükleme işlemlerinde kullanılabilecek servis mantığında çalışacak bir **FileUploadComponent** yazıldı.
 > * Bütün diyalog pencerelerinde kullanılabilecek bir servis olan **DialogService** yazıldı.
+> * Kaydedilecek dosyaların isimleri **SEO standartlarına uygun olarak** manipüle edildi.
 
 > * **!:** Client tarafında ayrıca doğrulama kuralları henüz yazılmadı ilerleyen günlerde yazılacaktır.
 > * **!:** Ürün ekleme işleminde kullanılan form ilerleyen günlerde **"reactive forms"** kullanımına geçirilecektir.

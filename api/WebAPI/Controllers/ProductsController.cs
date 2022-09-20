@@ -1,22 +1,19 @@
 ﻿using Application.Features.ProductOperations.Command;
 using Application.Features.ProductOperations.Queries;
-using Application.IRepositories;
-using Application.Requests;
+using Application.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebAPI.Controllers;
 
 public class ProductsController : BaseController
 {
-     private readonly IProductReadRepository _productReadRepository;
-     private readonly IProductWriteRepository _productWriteRepository;
      private readonly IWebHostEnvironment _webHostEnvironment;
+     private readonly IFileService _fileService;
 
-     public ProductsController(IProductReadRepository productReadRepository, IProductWriteRepository productWriteRepository, IWebHostEnvironment webHostEnvironment)
+     public ProductsController(IWebHostEnvironment webHostEnvironment, IFileService fileService)
      {
-          _productReadRepository = productReadRepository;
-          _productWriteRepository = productWriteRepository;
           _webHostEnvironment = webHostEnvironment;
+          _fileService = fileService;
      }
 
      // normally
@@ -46,42 +43,50 @@ public class ProductsController : BaseController
      public async Task<IActionResult> RemoveProduct(int id)
           => Ok(await Mediator.Send(new RemoveProductCommandRequest { Id = id }));
 
+
      [HttpPost("[action]")]
      public async Task<IActionResult> Upload()
      {
-          // wwwroot/resource/product-images
-          string uploadPath = Path.Combine(_webHostEnvironment.WebRootPath, "resource/product-images");
-
-          if (!Directory.Exists(uploadPath))
-               Directory.CreateDirectory(uploadPath);
-
-          Guid guid = Guid.NewGuid();
-          foreach (IFormFile file in Request.Form.Files)
-          {
-               string noExtension = Path.GetFileNameWithoutExtension(file.FileName).ToLower()
-                    .Replace(" ", "-")
-                    .Replace("ğ", "g")
-                    .Replace("ı", "i")
-                    .Replace("ö", "o")
-                    .Replace("ü", "u")
-                    .Replace("ş", "s")
-                    .Replace("ç", "c")
-                    .Replace("Ç", "c")
-                    .Replace("Ş", "s")
-                    .Replace("Ğ", "g")
-                    .Replace("Ü", "u")
-                    .Replace("İ", "i")
-                    .Replace("Ö", "o")
-                    .Trim();
-
-               string fullPath = Path.Combine(uploadPath, $"{noExtension + "-"}{guid}{Path.GetExtension(file.FileName)}");
-
-               using FileStream fileStream = new
-                    (fullPath, FileMode.Create, FileAccess.Write, FileShare.None, 1024 * 1024, useAsync: false);
-
-               await file.CopyToAsync(fileStream);
-               await fileStream.FlushAsync();
-          }
+          await _fileService.UploadAsync("resource/product-images", Request.Form.Files);
           return Ok();
      }
+
+     //[HttpPost("[action]")]
+     //public async Task<IActionResult> Upload()
+     //{
+     //     // wwwroot/resource/product-images
+     //     string uploadPath = Path.Combine(_webHostEnvironment.WebRootPath, "resource/product-images");
+
+     //     if (!Directory.Exists(uploadPath))
+     //          Directory.CreateDirectory(uploadPath);
+
+     //     Guid guid = Guid.NewGuid();
+     //     foreach (IFormFile file in Request.Form.Files)
+     //     {
+     //          string noExtension = Path.GetFileNameWithoutExtension(file.FileName).ToLower()
+     //               .Replace(" ", "-")
+     //               .Replace("ğ", "g")
+     //               .Replace("ı", "i")
+     //               .Replace("ö", "o")
+     //               .Replace("ü", "u")
+     //               .Replace("ş", "s")
+     //               .Replace("ç", "c")
+     //               .Replace("Ç", "c")
+     //               .Replace("Ş", "s")
+     //               .Replace("Ğ", "g")
+     //               .Replace("Ü", "u")
+     //               .Replace("İ", "i")
+     //               .Replace("Ö", "o")
+     //               .Trim();
+
+     //          string fullPath = Path.Combine(uploadPath, $"{noExtension + "-"}{guid}{Path.GetExtension(file.FileName)}");
+
+     //          using FileStream fileStream = new
+     //               (fullPath, FileMode.Create, FileAccess.Write, FileShare.None, 1024 * 1024, useAsync: false);
+
+     //          await file.CopyToAsync(fileStream);
+     //          await fileStream.FlushAsync();
+     //     }
+     //     return Ok();
+     //}
 }
