@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Http;
 
 namespace Infrastructure.Services.Storage;
 
-public class LocalStorage : ILocalStorage
+public class LocalStorage : Storage, ILocalStorage
 {
      private readonly IWebHostEnvironment _webHostEnvironment;
 
@@ -30,7 +30,7 @@ public class LocalStorage : ILocalStorage
           List<bool> results = new();
           foreach (IFormFile file in files)
           {
-               string fileNewName = await FileRenameAsync(uploadPath, file.FileName);
+               string fileNewName = await FileRenameAsync(path, file.Name, HasFile);
 
                bool result = await CopyFileAsync($"{uploadPath}\\{fileNewName}", file);
                datas.Add((fileNewName, $"{path}\\{fileNewName}"));
@@ -48,68 +48,6 @@ public class LocalStorage : ILocalStorage
 
      public async Task DeleteAsync(string path, string fileName)
           => File.Delete($"{path}\\{fileName}");
-
-     async Task<string> FileRenameAsync(string path, string fileName, bool first = true)
-     {
-          string newFileName = await Task.Run<string>(async () =>
-          {
-               // dosyanın uzantısı salt olarak alındı (.jpg, .png, .pdf)
-               string extension = Path.GetExtension(fileName);
-               // sonuçta kendimizce oluşturmak istediğimiz formatta bir isim var
-               string newFileName = string.Empty;
-               if (first) // metot ilk kez çalışıyorsa istediğimiz format dışında bir isim geldiğini varsayıyoruz
-               {
-                    // dosyanın adı salt olarak alındı
-                    string oldName = Path.GetFileNameWithoutExtension(fileName);
-                    // alınan ismi kendimizce formatlayacağımız yere gönderiyoruz
-                    // ve ardından en yukarıda aldığımız dosya uzantısını yeni formatımıza ekleyerek
-                    // sonuca ulaşmış oluyoruz
-                    newFileName = $"{NameOperation.CharacterRegulatory(oldName)}{extension}";
-               }
-               else // metot '-2' eklemek üzere yeniden çalıştırıldığında
-               {
-                    // -2'siz mevcut isim elimizde
-                    newFileName = fileName;
-                    // ismimizde - karakterini ara ve index sayısını dön
-                    int indexNo1 = newFileName.IndexOf("-");
-                    if (indexNo1 == -1)
-                         newFileName = $"{Path.GetFileNameWithoutExtension(newFileName)}-2{extension}";
-                    else
-                    {
-                         // dosya adındaki son '-' nin index'ini bulmamız gerekiyor
-                         int lastIndex = 0;
-                         while (true)
-                         {
-                              lastIndex = indexNo1;
-                              indexNo1 = newFileName.IndexOf("-", indexNo1 + 1);
-                              if (indexNo1 == -1)
-                              {
-                                   indexNo1 = lastIndex;
-                                   break;
-                              }
-                         }
-
-                         int indexNo2 = newFileName.IndexOf(".");
-                         string fileNo = newFileName.Substring(indexNo1 + 1, indexNo2 - indexNo1 - 1);
-
-                         if (int.TryParse(fileNo, out int _fileNo))
-                         {
-                              _fileNo++;
-                              newFileName = newFileName.Remove(indexNo1 + 1, indexNo2 - indexNo1 - 1)
-                                                  .Insert(indexNo1 + 1, _fileNo.ToString());
-                         }
-                         else
-                              newFileName = $"{Path.GetFileNameWithoutExtension(newFileName)}-2{extension}";
-                    }
-               }
-
-               if (File.Exists($"{path}\\{newFileName}"))
-                    return await FileRenameAsync(path, newFileName, false);
-               else
-                    return newFileName;
-          });
-          return newFileName;
-     }
 
      public async Task<bool> CopyFileAsync(string path, IFormFile file)
      {

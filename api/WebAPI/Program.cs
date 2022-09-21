@@ -1,7 +1,7 @@
 using Application;
 using CrossCuttingConcerns.Exceptions;
 using Infrastructure;
-using Infrastructure.Services.Storage;
+using Infrastructure.Services.Storage.Azure;
 using Persistence;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -16,7 +16,8 @@ builder.Services.ConfigurePersistenceServices(builder.Configuration);
 
 #region Storage
 
-builder.Services.AddStorage<LocalStorage>();
+//builder.Services.AddStorage<LocalStorage>();
+builder.Services.AddStorage<AzureStorage>();
 
 #endregion
 

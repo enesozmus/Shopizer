@@ -1,6 +1,7 @@
 ﻿using Application.Abstractions.Storage;
 using Infrastructure.Enums;
 using Infrastructure.Services.Storage;
+using Infrastructure.Services.Storage.Azure;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Infrastructure;
@@ -25,7 +26,7 @@ public static class InfrastructureServicesRegistration
                     serviceCollection.AddScoped<IStorage, LocalStorage>();
                     break;
                case StorageType.Azure:
-
+                    serviceCollection.AddScoped<IStorage, AzureStorage>();
                     break;
                case StorageType.AWS:
 

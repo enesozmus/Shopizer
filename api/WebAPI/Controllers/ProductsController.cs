@@ -53,7 +53,7 @@ public class ProductsController : BaseController
      public async Task<IActionResult> Upload()
      {
           //var datas = await _fileService.UploadAsync("resource/product-images", Request.Form.Files);
-          var datas = await _storageService.UploadAsync("resource/files", Request.Form.Files);
+          var datas = await _storageService.UploadAsync("azurefiles", Request.Form.Files);
           await _productImageFileWriteRepository.AddRangeAsync(datas.Select(d => new ProductImageFile()
           {
                ProductId = 1,
