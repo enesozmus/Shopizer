@@ -36,6 +36,7 @@
 > * Bütün diyalog pencerelerinde kullanılabilecek bir servis olan **DialogService** yazıldı.
 > * Kaydedilecek dosyaların isimleri **SEO standartlarına uygun olarak** manipüle edildi.
 > * Veri tabanında tutacağımız dosya bilgileri **Table Per Hierarchy yaklaşımı** ile tasarlandı.
+> * Dosya yönetimi için **Storage Altyapısı** hazırlandı.
 
 > * **!:** Client tarafında ayrıca doğrulama kuralları henüz yazılmadı ilerleyen günlerde yazılacaktır.
 > * **!:** Ürün ekleme işleminde kullanılan form ilerleyen günlerde **"reactive forms"** kullanımına geçirilecektir.

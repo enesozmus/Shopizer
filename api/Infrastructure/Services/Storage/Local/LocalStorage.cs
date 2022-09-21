@@ -1,34 +1,53 @@
-﻿using Application.Services;
-using Microsoft.AspNetCore.Http;
+﻿using Application.Abstractions.Storage;
+using Infrastructure.Operations;
 using Microsoft.AspNetCore.Hosting;
-using Persistence.Services.Operations;
+using Microsoft.AspNetCore.Http;
 
-namespace Persistence.Services;
+namespace Infrastructure.Services.Storage;
 
-public class FileService : IFileService
+public class LocalStorage : ILocalStorage
 {
-     readonly IWebHostEnvironment _webHostEnvironment;
-     public FileService(IWebHostEnvironment webHostEnvironment)
+     private readonly IWebHostEnvironment _webHostEnvironment;
+
+     public LocalStorage(IWebHostEnvironment webHostEnvironment)
      {
           _webHostEnvironment = webHostEnvironment;
      }
 
-     public async Task<bool> CopyFileAsync(string path, IFormFile file)
+     public List<string> GetFiles(string path)
      {
-          try
-          {
-               await using FileStream fileStream = new(path, FileMode.Create, FileAccess.Write, FileShare.None, 1024 * 1024, useAsync: false);
-
-               await file.CopyToAsync(fileStream);
-               await fileStream.FlushAsync();
-               return true;
-          }
-          catch (Exception ex)
-          {
-               //todo log!
-               throw ex;
-          }
+          DirectoryInfo directory = new(path);
+          return directory.GetFiles().Select(f => f.Name).ToList();
      }
+
+     public async Task<List<(string fileName, string pathOrContainerName)>> UploadAsync(string path, IFormFileCollection files)
+     {
+          string uploadPath = Path.Combine(_webHostEnvironment.WebRootPath, path);
+          if (!Directory.Exists(uploadPath))
+               Directory.CreateDirectory(uploadPath);
+
+          List<(string fileName, string path)> datas = new();
+          List<bool> results = new();
+          foreach (IFormFile file in files)
+          {
+               string fileNewName = await FileRenameAsync(uploadPath, file.FileName);
+
+               bool result = await CopyFileAsync($"{uploadPath}\\{fileNewName}", file);
+               datas.Add((fileNewName, $"{path}\\{fileNewName}"));
+               results.Add(result);
+          }
+
+          if (results.TrueForAll(r => r.Equals(true)))
+               return datas;
+
+          return null;
+     }
+
+     public bool HasFile(string path, string fileName)
+          => File.Exists($"{path}\\{fileName}");
+
+     public async Task DeleteAsync(string path, string fileName)
+          => File.Delete($"{path}\\{fileName}");
 
      async Task<string> FileRenameAsync(string path, string fileName, bool first = true)
      {
@@ -92,28 +111,20 @@ public class FileService : IFileService
           return newFileName;
      }
 
-     public async Task<List<(string fileName, string path)>> UploadAsync(string path, IFormFileCollection files)
+     public async Task<bool> CopyFileAsync(string path, IFormFile file)
      {
-          string uploadPath = Path.Combine(_webHostEnvironment.WebRootPath, path);
-          if (!Directory.Exists(uploadPath))
-               Directory.CreateDirectory(uploadPath);
-
-          List<(string fileName, string path)> datas = new();
-          List<bool> results = new();
-          foreach (IFormFile file in files)
+          try
           {
-               string fileNewName = await FileRenameAsync(uploadPath, file.FileName);
+               await using FileStream fileStream = new(path, FileMode.Create, FileAccess.Write, FileShare.None, 1024 * 1024, useAsync: false);
 
-               bool result = await CopyFileAsync($"{uploadPath}\\{fileNewName}", file);
-               datas.Add((fileNewName, $"{path}\\{fileNewName}"));
-               results.Add(result);
+               await file.CopyToAsync(fileStream);
+               await fileStream.FlushAsync();
+               return true;
           }
-
-          if (results.TrueForAll(r => r.Equals(true)))
-               return datas;
-
-          return null;
-
-          //todo Eğer ki yukarıdaki if geçerli değilse burada dosyaların sunucuda yüklenirken hata alındığına dair uyarıcı bir exception oluşturulup fırlatılması gerekyior!
+          catch (Exception ex)
+          {
+               //todo log!
+               throw ex;
+          }
      }
 }

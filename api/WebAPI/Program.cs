@@ -1,13 +1,22 @@
 using Application;
 using CrossCuttingConcerns.Exceptions;
+using Infrastructure;
+using Infrastructure.Services.Storage;
 using Persistence;
 
 var builder = WebApplication.CreateBuilder(args);
 
 #region Layers
 
-builder.Services.ConfigurePersistenceServices(builder.Configuration);
 builder.Services.ConfigureApplicationServices();
+builder.Services.ConfigureInfrastructureServices();
+builder.Services.ConfigurePersistenceServices(builder.Configuration);
+
+#endregion
+
+#region Storage
+
+builder.Services.AddStorage<LocalStorage>();
 
 #endregion
 

@@ -1,4 +1,4 @@
-﻿namespace Persistence.Services.Operations;
+﻿namespace Infrastructure.Operations;
 
 public static class NameOperation
 {

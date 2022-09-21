@@ -1,7 +1,7 @@
-﻿using Application.Features.ProductOperations.Command;
+﻿using Application.Abstractions.Storage;
+using Application.Features.ProductOperations.Command;
 using Application.Features.ProductOperations.Queries;
 using Application.IRepositories;
-using Application.Services;
 using Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,13 +9,14 @@ namespace WebAPI.Controllers;
 
 public class ProductsController : BaseController
 {
-     private readonly IFileService _fileService;
+     private readonly IStorageService _storageService;
      private readonly IProductImageFileWriteRepository _productImageFileWriteRepository;
      private readonly IInvoiceFileWriteRepository _invoiceFileWriteRepository;
 
-     public ProductsController(IFileService fileService, IProductImageFileWriteRepository productImageFileWriteRepository, IInvoiceFileWriteRepository invoiceFileWriteRepository)
+     public ProductsController(IStorageService storageService, IProductImageFileWriteRepository productImageFileWriteRepository,
+          IInvoiceFileWriteRepository invoiceFileWriteRepository)
      {
-          _fileService = fileService;
+          _storageService = storageService;
           _productImageFileWriteRepository = productImageFileWriteRepository;
           _invoiceFileWriteRepository = invoiceFileWriteRepository;
      }
@@ -51,20 +52,21 @@ public class ProductsController : BaseController
      [HttpPost("[action]")]
      public async Task<IActionResult> Upload()
      {
-          var datas = await _fileService.UploadAsync("resource/product-images", Request.Form.Files);
+          //var datas = await _fileService.UploadAsync("resource/product-images", Request.Form.Files);
+          var datas = await _storageService.UploadAsync("resource/files", Request.Form.Files);
           await _productImageFileWriteRepository.AddRangeAsync(datas.Select(d => new ProductImageFile()
           {
                ProductId = 1,
                FileName = d.fileName,
-               Path = d.path,
+               Path = d.pathOrContainerName,
                Showcase = false,
-               Storage = "test"
+               Storage = _storageService.StorageName
           }).ToList());
           await _invoiceFileWriteRepository.AddRangeAsync(datas.Select(d => new InvoiceFile()
           {
                FileName = d.fileName,
-               Path = d.path,
-               Storage = "test",
+               Path = d.pathOrContainerName,
+               Storage = _storageService.StorageName,
                Price = 50.50m
           }).ToList());
           return Ok();
