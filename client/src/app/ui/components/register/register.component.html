@@ -1,0 +1,95 @@
+<div> <span></span></div>
+<div class="container" style="width: 700px; height: 100px; margin-top: 80px;">
+  <form [formGroup]="ourform" (ngSubmit)="onSubmit(ourform.value)">
+
+    <div class="row">
+      <div class="col-md-6">
+
+        <label for="firstName" class="form-label">First Name</label>
+        <input formControlName="firstName" [ngClass]="{'is-invalid': validatorsErrors.firstName.errors}" type="text"
+          class="form-control" id="firstName" placeholder="First Name">
+        <small class="form-text text-muted invalid-feedback" *ngIf=" validatorsErrors.firstName.errors?.required">Lütfen
+          ad alanını doldurunuz!</small>
+        <small class="form-text text-muted invalid-feedback"
+          *ngIf=" (validatorsErrors.firstName.errors?.maxlength || validatorsErrors.firstName.errors?.minlength)">Ad
+          alanı 2 ila 15 karakter arasında olmalıdır!</small>
+
+      </div>
+
+      <div class="col-md-6">
+
+        <label for="lastName" class="form-label">Last Name</label>
+        <input formControlName="lastName" [ngClass]="{'is-invalid': validatorsErrors.lastName.errors}" type="text"
+          class="form-control" id="lastName" placeholder="Last Name">
+        <small class="form-text text-muted invalid-feedback" *ngIf=" validatorsErrors.lastName.errors?.required">Lütfen
+          soyadı alanını doldurunuz!</small>
+        <small class="form-text text-muted invalid-feedback"
+          *ngIf=" (validatorsErrors.lastName.errors?.maxlength || validatorsErrors.lastName.errors?.minlength)">Soyadı
+          alanı 2 ila 15 karakter arasında olmalıdır!</small>
+
+      </div>
+    </div>
+
+    <div class="row mt-2">
+      <div class="col-md-6">
+
+        <label for="userName" class="form-label">User Name</label>
+        <input formControlName="userName" [ngClass]="{'is-invalid': validatorsErrors.userName.errors}" type="text"
+          class="form-control" id="userName" placeholder="User Name">
+        <small class="form-text text-muted invalid-feedback" *ngIf=" validatorsErrors.userName.errors?.required">Lütfen
+          kullanıcı adı alanını doldurunuz!</small>
+        <small class="form-text text-muted invalid-feedback"
+          *ngIf=" (validatorsErrors.userName.errors?.maxlength || validatorsErrors.userName.errors?.minlength)">Kullanıcı
+          adı alanı 2 ila 20 karakter arasında olmalıdır!</small>
+
+      </div>
+
+      <div class="col-md-6">
+
+        <label for="email" class="form-label">Email Address</label>
+        <input formControlName="email" [ngClass]="{'is-invalid': validatorsErrors.email.errors}" type="email"
+          class="form-control" id="email" placeholder="Email">
+        <small class="form-text text-muted invalid-feedback" *ngIf=" validatorsErrors.email.errors?.required">Lütfen
+          email alanını doldurunuz!</small>
+        <small class="form-text text-muted invalid-feedback" *ngIf=" validatorsErrors.email.errors?.email">Lütfen bir
+          email formatı kullanınız!</small>
+        <small class="form-text text-muted invalid-feedback"
+          *ngIf=" (validatorsErrors.email.errors?.maxlength || validatorsErrors.email.errors?.minlength)">Email alanı 4
+          ila 20 karakter arasında olmalıdır!</small>
+
+      </div>
+    </div>
+
+    <div class="row mt-2">
+      <div class="col-md-6">
+
+        <label for="password" class="form-label">Password</label>
+        <input formControlName="password" [ngClass]="{'is-invalid': validatorsErrors.password.errors}" type="password"
+          class="form-control" id="password" placeholder="Password">
+        <small class="form-text text-muted invalid-feedback" *ngIf=" validatorsErrors.password.errors?.required">Lütfen
+          şifre alanını doldurunuz!</small>
+        <small class="form-text text-muted invalid-feedback" *ngIf=" validatorsErrors.password.errors?.maxlength">Şifre
+          alanı 25 karakterden fazla olamaz!</small>
+        <small class="form-text text-muted invalid-feedback" *ngIf=" validatorsErrors.password.errors?.minlength">Şifre
+          alanı 8 karakterden az olamaz!</small>
+
+      </div>
+
+      <div class="col-md-6">
+
+        <label for="passwordAgain" class="form-label">Password Again</label>
+        <input formControlName="passwordAgain" [ngClass]="{'is-invalid': validatorsErrors.passwordAgain.errors}"
+          type="password" class="form-control" id="passwordAgain" placeholder="Retype Password">
+        <small class="form-text text-muted invalid-feedback"
+          *ngIf=" validatorsErrors.passwordAgain.errors?.required">Lütfen şifre alanını tekrar doldurunuz!</small>
+        <small class="form-text text-muted invalid-feedback"
+          *ngIf=" validatorsErrors.passwordAgain.errors?.maxlength">Şifre alanı 25 karakterden fazla olamaz!</small>
+        <small class="form-text text-muted invalid-feedback"
+          *ngIf=" validatorsErrors.passwordAgain.errors?.minlength">Şifre alanı 8 karakterden az olamaz!</small>
+        <small *ngIf=" ourform.hasError('notSame')">Girdiğiniz şifreler eşleşmemektedir!</small>
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary mt-2">Submit</button>
+  </form>
+</div>
