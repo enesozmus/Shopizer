@@ -1,6 +1,6 @@
 ## E-Commerce Application
 > * [Gençay Yıldız'ın](https://www.youtube.com/c/Gen%C3%A7ayY%C4%B1ld%C4%B1z/featured) `"Asp.NET Core 6 + Angular 13 | Mini E-Ticaret Uygulama Serisi"` adlı video serisi takip edilerek geliştirilen e-ticaret kurgulu bir **ASP.NET Core Web API** tüketen **Angular** uygulamasıdır.
-> * Çalışma devam etmektedir. (32/57)
+> * Çalışma devam etmektedir. (35/57)
 
 <p align="right">
         <a href="https://docs.microsoft.com/en-us/dotnet/csharp/" target="_blank"> <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/csharp/csharp-original.svg" alt="csharp" width="42" height="42"/></a>
@@ -9,6 +9,24 @@
         <a href="https://angular.io/" target="_blank"> <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/angularjs/angularjs-original.svg" alt="angular" width="42" height="42"/></a>
         <a href="https://www.typescriptlang.org/" target="_blank"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" alt="typescript" width="42" height="42"/></a>
 </p>
+
+## Fundamentals
+> * **Onion Architecture**
+> * **CQRS Pattern**
+> * **Mediator Behavioral Design Pattern**
+> * **Specification Design Pattern**
+> * **Entity Framework Core 6**
+> * **Optimal Generic Repository Design Pattern**
+> * **HttpClient Service**
+> * **Seed Datas**
+> * **MediatR Library**
+> * **FluentValidation Library**
+> * **MediatR Pipeline Behaviour**
+> * **Global Excaption Handler**
+> * **AutoMapper Library**
+> * **Table Per Hierarchy Approach**
+> * **Azure Blob Storage**
+
 
 ## İzlence
 > * **Onion Architecture** kullanıldı.
@@ -22,12 +40,14 @@
 > * Client'ımızın bir başka uç noktayla (endpoint) iletişim kurması ve url üzerinden bu noktaya Http istekleri atabilmesini sağlayan özelleştirilmiş bir **HttpClient Servis** yazıldı.
 > * Veri tabanı **tohumlandı**.
 > * Mapping işlemleri için **AutoMapper Kütüphanesi** kullanıldı.
-> * **'Command'** ve **'Query'** sorumluluklarının ayrılması prensibini esas alan bir yaklaşım olan **CQRS** ve bu yaklaşımı uygulayan **MediatR Kütüphanesi** kullanıldı.
+> * **'Command'** ve **'Query'** sorumluluklarının ayrılması prensibini esas alan **CQRS Pattern** projeye entegre edildi.
+> * Tek bir aracı nesnesi içerisinde çeşitli nesneler arasındaki karmaşık ilişkiler ağını yönetmenize olanak tanıyan **Mediator Behavioral Design Pattern** projeye entegre edildi.
+> * **Mediator Behavioral Design Pattern**'ı uygulamamıza olanak tanıyan **MediatR Kütüphanesi** projeye entegre edildi.
 > * Hem API hem de Client tarafında ürün ekleme işlemi gerçekleştirildi.
 > * API tarafında **FluentValidation** kütüphanesi entegre edildi.
 > * Fluent doğrulama hataları ürün ekleme formunda olası hataları yakalamak üzere **Client tarafına taşınarak** kullanıcıya gösterildi.
 > * Bir request nesnesi doğrulanmak istendiğinde direkt geçersiz verilerle MediatR kütüphanesinin handler sınıflarına girmeyerek bu doğrulamayı daha önce kontrol etmeye yarayan **MediatR Pipeline Behaviour** entegre edildi.
-> * Uygulama içindeki exception'larımızı merkezi bir konumdan yönetebilmemizi sağlayan ve bir middleware olan **"Global Excaption Handler"** middleware'i entegre edildi.
+> * Uygulama içindeki exception'larımızı merkezi bir konumdan yönetebilmemizi sağlayan ve bir middleware olan **Global Excaption Handler** middleware'i entegre edildi.
 > * Sorgulama, sıralama ve sayfalama mantığının nereye yerleştirileceği sorununa bir **Domain-Driven-Design** tasarım çözümü olan **Specification Design Pattern** projeye entegre edildi.
 > * 50'den fazla farklı **'loading spinners'** içeren bir kitaplık olan **ngx-spinner** projeye entegre edildi.
 > * **Specification Design Pattern** kullanılarak hem API hem de Client tarafında **sayfalama**, isim ve fiyat değerlerine göre **sıralama** ve marka-renk-beden değerlerine göre **filtreleme** işlemleri tamamlandı.
@@ -38,6 +58,7 @@
 > * Veri tabanında tutacağımız dosya bilgileri **Table Per Hierarchy yaklaşımı** ile tasarlandı.
 > * Dosya yönetimi için **Storage Altyapısı** hazırlandı.
 > * Dosya yönetimi için **Azure Blob Storage** projeye entegre edildi.
+> * Ürünlere ait resim listeleme, ekleme ve silme işlemleri gerçekleştirildi.
 
 > * **!:** Client tarafında ayrıca doğrulama kuralları henüz yazılmadı ilerleyen günlerde yazılacaktır.
 > * **!:** Ürün ekleme işleminde kullanılan form ilerleyen günlerde **"reactive forms"** kullanımına geçirilecektir.

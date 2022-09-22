@@ -4,21 +4,27 @@ using Application.Features.ProductOperations.Queries;
 using Application.IRepositories;
 using Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace WebAPI.Controllers;
 
 public class ProductsController : BaseController
 {
      private readonly IStorageService _storageService;
+     private readonly IProductImageFileReadRepository _productImageFileReadRepository;
      private readonly IProductImageFileWriteRepository _productImageFileWriteRepository;
-     private readonly IInvoiceFileWriteRepository _invoiceFileWriteRepository;
+     private readonly IProductReadRepository _productReadRepository;
+     readonly IConfiguration _configuration;
+
 
      public ProductsController(IStorageService storageService, IProductImageFileWriteRepository productImageFileWriteRepository,
-          IInvoiceFileWriteRepository invoiceFileWriteRepository)
+          IProductReadRepository productReadRepository, IProductImageFileReadRepository productImageFileReadRepository, IConfiguration configuration)
      {
           _storageService = storageService;
           _productImageFileWriteRepository = productImageFileWriteRepository;
-          _invoiceFileWriteRepository = invoiceFileWriteRepository;
+          _productReadRepository = productReadRepository;
+          _productImageFileReadRepository = productImageFileReadRepository;
+          _configuration = configuration;
      }
 
      // normally
@@ -48,66 +54,58 @@ public class ProductsController : BaseController
      public async Task<IActionResult> RemoveProduct(int id)
           => Ok(await Mediator.Send(new RemoveProductCommandRequest { Id = id }));
 
-
+     // query string
      [HttpPost("[action]")]
-     public async Task<IActionResult> Upload()
+     public async Task<IActionResult> Upload(int id)
      {
-          //var datas = await _fileService.UploadAsync("resource/product-images", Request.Form.Files);
-          var datas = await _storageService.UploadAsync("azurefiles", Request.Form.Files);
-          await _productImageFileWriteRepository.AddRangeAsync(datas.Select(d => new ProductImageFile()
+          List<(string fileName, string pathOrContainerName)> result = await _storageService.UploadAsync("product-images", Request.Form.Files);
+
+          Product product = await _productReadRepository.GetByIdAsync(id);
+
+          await _productImageFileWriteRepository.AddRangeAsync(result.Select(r => new ProductImageFile
           {
-               ProductId = 1,
-               FileName = d.fileName,
-               Path = d.pathOrContainerName,
-               Showcase = false,
-               Storage = _storageService.StorageName
-          }).ToList());
-          await _invoiceFileWriteRepository.AddRangeAsync(datas.Select(d => new InvoiceFile()
-          {
-               FileName = d.fileName,
-               Path = d.pathOrContainerName,
+               FileName = r.fileName,
+               Path = r.pathOrContainerName,
                Storage = _storageService.StorageName,
-               Price = 50.50m
+               Products = new List<Product>() { product }
           }).ToList());
           return Ok();
      }
 
-     //[HttpPost("[action]")]
-     //public async Task<IActionResult> Upload()
-     //{
-     //     // wwwroot/resource/product-images
-     //     string uploadPath = Path.Combine(_webHostEnvironment.WebRootPath, "resource/product-images");
+     // route
+     [HttpGet("[action]/{id}")]
+     public async Task<IActionResult> GetProductImages(int id)
+     {
+          Product? product = await _productReadRepository.Table
+               // eager loading
+               .Include(p => p.ProductImageFiles)
+               .FirstOrDefaultAsync(p => p.Id == id);
 
-     //     if (!Directory.Exists(uploadPath))
-     //          Directory.CreateDirectory(uploadPath);
+          // elimizdeki ürünün resimlerini dön
+          if (product != null)
+          {
+               return Ok(product.ProductImageFiles.Select(p => new
+               {
+                    p.Id,
+                    Path = $"{_configuration["BaseStorageUrl:"]}/{p.Path}",
+                    p.FileName
+               }));
+          }
+          return BadRequest();
+     }
 
-     //     Guid guid = Guid.NewGuid();
-     //     foreach (IFormFile file in Request.Form.Files)
-     //     {
-     //          string noExtension = Path.GetFileNameWithoutExtension(file.FileName).ToLower()
-     //               .Replace(" ", "-")
-     //               .Replace("ğ", "g")
-     //               .Replace("ı", "i")
-     //               .Replace("ö", "o")
-     //               .Replace("ü", "u")
-     //               .Replace("ş", "s")
-     //               .Replace("ç", "c")
-     //               .Replace("Ç", "c")
-     //               .Replace("Ş", "s")
-     //               .Replace("Ğ", "g")
-     //               .Replace("Ü", "u")
-     //               .Replace("İ", "i")
-     //               .Replace("Ö", "o")
-     //               .Trim();
+     [HttpDelete("[action]/{id}")]
+     public async Task<IActionResult> DeleteProductImage(int id, int imageId)
+     {
+          Product? product = await _productReadRepository.Table.Include(p => p.ProductImageFiles).FirstOrDefaultAsync(p => p.Id == id);
+          if (product != null)
+          {
+               ProductImageFile productImageFile = product.ProductImageFiles.FirstOrDefault(p => p.Id == imageId);
 
-     //          string fullPath = Path.Combine(uploadPath, $"{noExtension + "-"}{guid}{Path.GetExtension(file.FileName)}");
-
-     //          using FileStream fileStream = new
-     //               (fullPath, FileMode.Create, FileAccess.Write, FileShare.None, 1024 * 1024, useAsync: false);
-
-     //          await file.CopyToAsync(fileStream);
-     //          await fileStream.FlushAsync();
-     //     }
-     //     return Ok();
-     //}
+               if (productImageFile != null)
+                    product.ProductImageFiles.Remove(productImageFile);
+               return Ok();
+          }
+          return NotFound();
+     }
 }

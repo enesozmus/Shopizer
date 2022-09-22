@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, firstValueFrom } from 'rxjs';
 import { IPaginationWithParameters } from 'src/app/shared/contracts/paginations/paginationWithParamaters';
 import { Create_Product } from 'src/app/shared/contracts/products/create_product.ts';
+import { List_Product_Image } from 'src/app/shared/contracts/products/list_product_image';
 import { HttpClientService } from '../common/http-client.service';
 
 
@@ -16,7 +17,6 @@ export class ProductService {
 
 
   // ürünleri listele
-
   async list(index: number, size: number, successCallBack?: () => void, errorCallBack?: (errorMessage: string) => void): Promise<IPaginationWithParameters> {
 
     const promiseData: Promise<IPaginationWithParameters> = this.httpClientService.get<IPaginationWithParameters>(
@@ -30,8 +30,6 @@ export class ProductService {
 
     return await promiseData;
   }
-
-
 
   // ürün ekle
   create(product: Create_Product, successCallBack?: () => void, errorCallBack?: (errorMessage: string) => void) {
@@ -67,5 +65,28 @@ export class ProductService {
 
     await firstValueFrom(deleteObservable);
   }
+
+  // ürüne ait resimleri listele
+  async listImages(id: number, successCallBack?: () => void): Promise<List_Product_Image[]> {
+    const getObservable: Observable<List_Product_Image[]> = this.httpClientService.get<List_Product_Image[]>({
+      action: "getproductimages",
+      controller: "products"
+    }, id);
+
+    const images: List_Product_Image[] = await firstValueFrom(getObservable);
+    successCallBack();
+    return images;
+  }
+  // resim sil
+  async deleteImage(id: number, imageId: number, successCallBack?: () => void) {
+    const deleteObservable = this.httpClientService.delete({
+      action: "deleteproductimage",
+      controller: "products",
+      queryString: `imageId=${imageId}`
+    }, id);
+    await firstValueFrom(deleteObservable);
+    successCallBack();
+  }
+  
 }
 

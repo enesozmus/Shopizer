@@ -22,7 +22,7 @@ export class HttpClientService {
 
 
   // temel crud işlemlerinin url'ler aracılığıyla karşılanması
-  get<T>(requestParameter: Partial<RequestParameters>, id?: string): Observable<T> {
+  get<T>(requestParameter: Partial<RequestParameters>, id?: number): Observable<T> {
 
     // baseUrl'in /api/... devamı için
     let url: string = "";

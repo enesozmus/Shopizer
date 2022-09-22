@@ -23,12 +23,12 @@ public class ProductConfiguration : IEntityTypeConfiguration<Product>
                     // => Ürün silinirken silinmek istenen ürünle ilişkili teklifler de silinmeli.
                     .OnDelete(DeleteBehavior.Cascade);
 
-          builder.HasMany(x => x.ProductImageFiles)
-                    .WithOne(x => x.Product)
-                    .HasForeignKey(x => x.ProductId)
-                    .IsRequired(true)
-                    // => Ürün silinirken silinmek istenen ürünle ilişkili fotoğraflar de silinmeli.
-                    .OnDelete(DeleteBehavior.Cascade);
+          //builder.HasMany(x => x.ProductImageFiles)
+          //          .WithOne(x => x.Product)
+          //          .HasForeignKey(x => x.ProductId)
+          //          .IsRequired(true)
+          //          // => Ürün silinirken silinmek istenen ürünle ilişkili fotoğraflar de silinmeli.
+          //          .OnDelete(DeleteBehavior.Cascade);
 
           #endregion
 

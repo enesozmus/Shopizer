@@ -31,25 +31,28 @@
             <td mat-cell *matCellDef="let element"> {{element.lastModifiedDate}} </td>
         </ng-container>
 
+        <!-- photos column -->
+        <ng-container matColumnDef="photos">
+            <th mat-header-cell *matHeaderCellDef></th>
+            <td mat-cell *matCellDef="let element">
+                <i (click)="addProductImages(element.id)" class="fa-solid fa-file-image fa-xl" style="color: blue; cursor: pointer;"></i>
+            </td>
+        </ng-container>
+
         <!-- update column -->
         <ng-container matColumnDef="update">
             <th mat-header-cell *matHeaderCellDef></th>
             <td mat-cell *matCellDef="let element">
-                <i class="fa-regular fa-copy fa-xl" style="color: green;"></i>
+                <i class="fa-regular fa-copy fa-xl ms-4" style="color: green;"></i>
             </td>
         </ng-container>
 
         <!-- delete column -->
         <ng-container matColumnDef="delete">
             <th mat-header-cell *matHeaderCellDef></th>
-            
-            <td mat-cell
-                *matCellDef="let element"
-                appDelete
-                [id]="element.id"
-                controller="products"
-                (updatelistwhendeleted)="getProducts()"
-            >
+
+            <td mat-cell *matCellDef="let element" appDelete [id]="element.id" controller="products"
+                (updatelistwhendeleted)="getProducts()">
                 <!-- <i (click)="delete(element.id, $event)" class="fa-regular fa-trash-can fa-xl" style="color: red;"></i> -->
             </td>
         </ng-container>

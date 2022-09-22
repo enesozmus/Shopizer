@@ -6,6 +6,8 @@ import { List_Product } from 'src/app/shared/contracts/products/list_product';
 import { ProductService } from 'src/app/services/product/product.service';
 import { MatPaginator } from '@angular/material/paginator';
 import { IPaginationWithParameters } from 'src/app/shared/contracts/paginations/paginationWithParamaters';
+import { DialogService } from 'src/app/services/common/dialog.service';
+import { UploadProductImageDialogComponent } from 'src/app/dialogs/upload-product-image-dialog/upload-product-image-dialog.component';
 
 declare var $: any;
 
@@ -18,12 +20,14 @@ declare var $: any;
 
 export class ListProductComponent extends BaseComponent implements OnInit {
 
-  constructor(private productService: ProductService, spinner: NgxSpinnerService) {
+  constructor(private productService: ProductService,
+    private dialogService: DialogService,
+    spinner: NgxSpinnerService) {
     super(spinner)
   }
 
   /*** Angular Material */
-  displayedColumns: string[] = ['name', 'stock', 'price', 'createdDate', 'lastModifiedDate', 'update', 'delete'];
+  displayedColumns: string[] = ['name', 'stock', 'price', 'createdDate', 'lastModifiedDate', 'photos', 'update', 'delete'];
   dataSource: MatTableDataSource<List_Product> = null;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   /*** Angular Material */
@@ -44,12 +48,15 @@ export class ListProductComponent extends BaseComponent implements OnInit {
     await this.getProducts();
   }
 
-  /* delete(id, event) {
-    alert(id)
-    const icon: HTMLImageElement = event.srcElement;
-    $(icon.parentElement.parentElement).fadeOut(2000);
-    //console.log(icon.parentElement.parentElement)
-  }*/
+  addProductImages(id: number) {
+    this.dialogService.openDialog({
+      componentType: UploadProductImageDialogComponent,
+      data: id,
+      options: {
+        width: "1200px"
+      }
+    });
+  }
 
   async ngOnInit() {
     await this.getProducts();

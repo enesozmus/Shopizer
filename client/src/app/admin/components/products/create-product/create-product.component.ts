@@ -3,8 +3,6 @@ import { Create_Product } from 'src/app/shared/contracts/products/create_product
 import { ProductService } from 'src/app/services/product/product.service';
 import { BaseComponent, SpinnerType } from 'src/app/base/base.component';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { FileUploadOptions } from 'src/app/services/common/file-upload/file-upload.component';
-
 
 @Component({
   selector: 'app-create-product',
@@ -25,14 +23,6 @@ export class CreateProductComponent extends BaseComponent implements OnInit {
   // ** bir üst component'e veri fırlatma
   // ** satır 51 => this.createdProduct.emit(create_product);
   @Output() createdProduct: EventEmitter<Create_Product> = new EventEmitter();
-
-  @Output() fileUploadOptions: Partial<FileUploadOptions> = {
-    action: "upload",
-    controller: "products",
-    explanation: "Drag or select pictures...",
-    accept:".png, .jpg, .jpeg"
-  }
-
 
   create(name: HTMLInputElement, stock: HTMLInputElement, price: HTMLInputElement,
     isOfferable: HTMLInputElement, isSold: HTMLInputElement,
