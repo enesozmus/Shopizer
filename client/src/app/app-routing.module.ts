@@ -2,15 +2,16 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { DashboardComponent } from './admin/components/dashboard/dashboard.component';
 import { LayoutComponent } from './admin/layout/layout.component';
+import { AuthGuard } from './guards/auth.guard';
 import { HomeComponent } from './ui/components/home/home.component';
 
 const routes: Routes = [
   {
     path: "admin", component: LayoutComponent, children: [
-      { path: "dashboard", component: DashboardComponent },
-      { path: "products", loadChildren: () => import("./admin/components/products/products.module").then(module => module.ProductsModule) },
-      { path: "create-product", loadChildren: () => import("./admin/components/products/products.module").then(module => module.ProductsModule) }
-    ]
+      { path: "dashboard", component: DashboardComponent, canActivate: [AuthGuard] },
+      { path: "products", loadChildren: () => import("./admin/components/products/products.module").then(module => module.ProductsModule), canActivate: [AuthGuard] },
+      { path: "create-product", loadChildren: () => import("./admin/components/products/products.module").then(module => module.ProductsModule), canActivate: [AuthGuard] }
+    ], canActivate: [AuthGuard]
   },
   {
     path: "", component: HomeComponent
