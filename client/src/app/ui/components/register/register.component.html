@@ -77,15 +77,15 @@
 
       <div class="col-md-6">
 
-        <label for="passwordAgain" class="form-label">Password Again</label>
-        <input formControlName="passwordAgain" [ngClass]="{'is-invalid': validatorsErrors.passwordAgain.errors}"
-          type="password" class="form-control" id="passwordAgain" placeholder="Retype Password">
+        <label for="PasswordConfirm" class="form-label">Password Again</label>
+        <input formControlName="PasswordConfirm" [ngClass]="{'is-invalid': validatorsErrors.PasswordConfirm.errors}"
+          type="password" class="form-control" id="PasswordConfirm" placeholder="Retype Password">
         <small class="form-text text-muted invalid-feedback"
-          *ngIf=" validatorsErrors.passwordAgain.errors?.required">Lütfen şifre alanını tekrar doldurunuz!</small>
+          *ngIf=" validatorsErrors.PasswordConfirm.errors?.required">Lütfen şifre alanını tekrar doldurunuz!</small>
         <small class="form-text text-muted invalid-feedback"
-          *ngIf=" validatorsErrors.passwordAgain.errors?.maxlength">Şifre alanı 25 karakterden fazla olamaz!</small>
+          *ngIf=" validatorsErrors.PasswordConfirm.errors?.maxlength">Şifre alanı 25 karakterden fazla olamaz!</small>
         <small class="form-text text-muted invalid-feedback"
-          *ngIf=" validatorsErrors.passwordAgain.errors?.minlength">Şifre alanı 8 karakterden az olamaz!</small>
+          *ngIf=" validatorsErrors.PasswordConfirm.errors?.minlength">Şifre alanı 8 karakterden az olamaz!</small>
         <small *ngIf=" ourform.hasError('notSame')">Girdiğiniz şifreler eşleşmemektedir!</small>
       </div>
     </div>

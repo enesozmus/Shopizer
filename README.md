@@ -1,6 +1,6 @@
 ## E-Commerce Application
 > * [Gençay Yıldız'ın](https://www.youtube.com/c/Gen%C3%A7ayY%C4%B1ld%C4%B1z/featured) `"Asp.NET Core 6 + Angular 13 | Mini E-Ticaret Uygulama Serisi"` adlı video serisi takip edilerek geliştirilen e-ticaret kurgulu bir **ASP.NET Core Web API** tüketen **Angular** uygulamasıdır.
-> * Çalışma devam etmektedir. (38/57)
+> * Çalışma devam etmektedir. (39/57)
 
 <p align="right">
         <a href="https://docs.microsoft.com/en-us/dotnet/csharp/" target="_blank"> <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/csharp/csharp-original.svg" alt="csharp" width="42" height="42"/></a>
@@ -11,11 +11,13 @@
 </p>
 
 ## Fundamentals
+> * **Microsoft SQL Server**
 > * **Onion Architecture**
 > * **CQRS Pattern**
 > * **Mediator Behavioral Design Pattern**
 > * **Specification Design Pattern**
 > * **Entity Framework Core 6**
+> * **Microsoft.AspNetCore.Identity Library**
 > * **Optimal Generic Repository Design Pattern**
 > * **HttpClient Service**
 > * **Seed Datas**
@@ -59,7 +61,9 @@
 > * Veri tabanında tutacağımız dosya bilgileri **Table Per Hierarchy yaklaşımı** ile tasarlandı.
 > * Dosya yönetimi için **Storage Altyapısı** hazırlandı.
 > * Dosya yönetimi için **Azure Blob Storage** projeye entegre edildi.
-> * Ürünlere ait resim listeleme, ekleme ve silme işlemleri gerçekleştirildi.
+> * Ürünlere ait **resim listeleme, ekleme ve silme işlemleri** tamamlandı.
+> * Kimlik Doğrulama ve Yetkilendirme işlemlerini yönetebilmek için **Microsoft.AspNetCore.Identity Kütüphanesi** projeye entegre edildi.
+> * Uygulamaya **üye olabilme** işlemleri tamamlandı.
 
-> * **!:** Client tarafında ayrıca doğrulama kuralları henüz yazılmadı ilerleyen günlerde yazılacaktır.
+> * **!:** Ürün ekleme işleminde Client tarafında ayrıca doğrulama kuralları henüz yazılmadı ilerleyen günlerde yazılacaktır.
 > * **!:** Ürün ekleme işleminde kullanılan form ilerleyen günlerde **"reactive forms"** kullanımına geçirilecektir.

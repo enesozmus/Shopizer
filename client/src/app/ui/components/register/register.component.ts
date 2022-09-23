@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, AbstractControl, ValidationErrors } from '@angular/forms';
+import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/authentication/auth.service';
+import { Create_User } from 'src/app/shared/contracts/users/create_user';
+import { User } from 'src/app/shared/entities/user';
 
 
 @Component({
@@ -10,8 +14,9 @@ import { FormBuilder, FormGroup, Validators, AbstractControl, ValidationErrors }
 
 export class RegisterComponent implements OnInit {
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: FormBuilder, private authService: AuthService, private router: Router) { }
 
+  // reactive form
   ourform: FormGroup;
 
 
@@ -22,18 +27,26 @@ export class RegisterComponent implements OnInit {
       userName: ["", [Validators.required, Validators.maxLength(20), Validators.minLength(2)]],
       email: ["", [Validators.required, Validators.email, Validators.maxLength(20), Validators.minLength(4)]],
       password: ["", [Validators.required, Validators.maxLength(25), Validators.minLength(8)]],
-      passwordAgain: ["", [Validators.required, Validators.maxLength(25), Validators.minLength(8)]],
+      PasswordConfirm: ["", [Validators.required, Validators.maxLength(25), Validators.minLength(8)]],
     }, {
-        validators: (group: AbstractControl): ValidationErrors | null => {
+      validators: (group: AbstractControl): ValidationErrors | null => {
         let passwordFirst = group.get("password").value;
-        let passwordSecond = group.get("passwordAgain").value;
+        let passwordSecond = group.get("PasswordConfirm").value;
         return passwordFirst === passwordSecond ? null : { notSame: true };
       }
     });
   }
 
-  onSubmit(data: any) {
-    debugger;
+  async onSubmit(user: User) {
+    // register operation
+    // user => form'dan gelen user.
+    const result: Create_User = await this.authService.register(user);
+    if (result.isSucceeded)
+    {
+      this.router.navigateByUrl('/products');
+    }
+    else
+      alert(result.message);
   }
 
   // hataları döner
