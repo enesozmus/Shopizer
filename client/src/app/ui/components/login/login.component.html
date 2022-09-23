@@ -1,0 +1,42 @@
+<div> <span></span></div>
+<div class="container" style="width: 700px; height: 100px; margin-top: 80px;">
+    <form [formGroup]="ourform" (ngSubmit)="onSubmit(ourform.value)">
+
+        <div class="row">
+
+            <div class="col-md-6">
+
+                <label for="userName" class="form-label">User Name</label>
+                <input formControlName="userName" [ngClass]="{'is-invalid': validatorsErrors.userName.errors}"
+                    type="text" class="form-control" id="userName" placeholder="User Name">
+                <small class="form-text text-muted invalid-feedback"
+                    *ngIf=" validatorsErrors.userName.errors?.required">Lütfen
+                    kullanıcı adı alanını doldurunuz!</small>
+                <small class="form-text text-muted invalid-feedback"
+                    *ngIf=" (validatorsErrors.userName.errors?.maxlength || validatorsErrors.userName.errors?.minlength)">Kullanıcı
+                    adı alanı 2 ila 20 karakter arasında olmalıdır!</small>
+
+            </div>
+
+            <div class="col-md-6">
+
+                <label for="password" class="form-label">Password</label>
+                <input formControlName="password" [ngClass]="{'is-invalid': validatorsErrors.password.errors}"
+                    type="password" class="form-control" id="password" placeholder="Password">
+                <small class="form-text text-muted invalid-feedback"
+                    *ngIf=" validatorsErrors.password.errors?.required">Lütfen
+                    şifre alanını doldurunuz!</small>
+                <small class="form-text text-muted invalid-feedback"
+                    *ngIf=" validatorsErrors.password.errors?.maxlength">Şifre
+                    alanı 25 karakterden fazla olamaz!</small>
+                <small class="form-text text-muted invalid-feedback"
+                    *ngIf=" validatorsErrors.password.errors?.minlength">Şifre
+                    alanı 8 karakterden az olamaz!</small>
+
+            </div>
+
+        </div>
+
+        <button type="submit" class="btn btn-primary mt-2">Login</button>
+    </form>
+</div>

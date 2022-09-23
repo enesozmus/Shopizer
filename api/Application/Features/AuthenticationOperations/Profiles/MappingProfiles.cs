@@ -9,6 +9,7 @@ public class MappingProfiles : Profile
      public MappingProfiles()
      {
           CreateMap<AppUser, RegisterCommandRequest>().ReverseMap();
+          CreateMap<AppUser, LoginCommandRequest>().ReverseMap();
      }
 }
 

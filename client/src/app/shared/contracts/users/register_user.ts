@@ -1,4 +1,4 @@
-export class Create_User {
+export class Register_User {
     isSucceeded: boolean;
     message: string;
 }

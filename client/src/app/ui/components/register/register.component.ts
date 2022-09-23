@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, AbstractControl, ValidationErrors } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/authentication/auth.service';
-import { Create_User } from 'src/app/shared/contracts/users/create_user';
+import { Register_User } from 'src/app/shared/contracts/users/register_user';
 import { User } from 'src/app/shared/entities/user';
 
 
@@ -40,7 +40,7 @@ export class RegisterComponent implements OnInit {
   async onSubmit(user: User) {
     // register operation
     // user => form'dan gelen user.
-    const result: Create_User = await this.authService.register(user);
+    const result: Register_User = await this.authService.register(user);
     if (result.isSucceeded)
     {
       this.router.navigateByUrl('/products');
