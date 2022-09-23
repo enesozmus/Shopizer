@@ -1,8 +1,10 @@
 ﻿using Application.Features.BrandOperations.Queries;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebAPI.Controllers;
 
+[Authorize(AuthenticationSchemes = "Admin")]
 public class BrandsController : BaseController
 {
      [HttpGet]

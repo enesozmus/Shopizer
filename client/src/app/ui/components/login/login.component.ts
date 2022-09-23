@@ -35,7 +35,13 @@ export class LoginComponent extends BaseComponent implements OnInit {
   async onSubmit(user: User) {
     this.showSpinner(SpinnerType.BallSpinClockwiseFadeRotating);
     const result: Login_User = await this.authService.login(user.userName, user.password, () => this.hideSpinner(SpinnerType.BallSpinClockwiseFadeRotating));
-    alert(result.message);
+    if (result.token.accessToken != null) {
+      localStorage.setItem("accessToken", result.token.accessToken);
+    }
+    if (result.message != null) {
+      alert(result.message);
+    }
+    
   }
   /*userName: string, password: string*/
 }

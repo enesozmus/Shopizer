@@ -18,6 +18,7 @@
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
-    "enableIvy": true // NgxFileDropModule için kullandık
+    "enableIvy": true, // NgxFileDropModule için kullandık
+    "strictTemplates": true // vs code talebi
   }
 }

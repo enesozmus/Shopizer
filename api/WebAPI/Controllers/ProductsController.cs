@@ -3,7 +3,6 @@ using Application.Features.ProductImageOperations.Queries;
 using Application.Features.ProductOperations.Command;
 using Application.Features.ProductOperations.Queries;
 using Microsoft.AspNetCore.Mvc;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace WebAPI.Controllers;
 

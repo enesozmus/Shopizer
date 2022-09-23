@@ -1,5 +1,7 @@
-﻿using Application.Abstractions.Storage;
+﻿using Application.Abstractions.JWT;
+using Application.Abstractions.Storage;
 using Infrastructure.Enums;
+using Infrastructure.Services.JWT;
 using Infrastructure.Services.Storage;
 using Infrastructure.Services.Storage.Azure;
 using Microsoft.Extensions.DependencyInjection;
@@ -11,6 +13,7 @@ public static class InfrastructureServicesRegistration
      public static void ConfigureInfrastructureServices(this IServiceCollection services)
      {
           services.AddScoped<IStorageService, StorageService>();
+          services.AddScoped<ITokenHandler, TokenHandler>();
      }
 
      public static void AddStorage<T>(this IServiceCollection serviceCollection) where T : class, IStorage
