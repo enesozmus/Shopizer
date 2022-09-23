@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
-import { JwtHelperService } from '@auth0/angular-jwt';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { Observable } from 'rxjs';
 import { SpinnerType } from '../base/base.component';
+import { _isAuthenticated } from '../services/authentication/jwt.service';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +11,7 @@ import { SpinnerType } from '../base/base.component';
 
 export class AuthGuard implements CanActivate {
 
-  constructor(private jwtHelper: JwtHelperService, private router: Router, private spinner: NgxSpinnerService) {
+  constructor(private router: Router, private spinner: NgxSpinnerService) {
 
   }
 
@@ -20,6 +20,7 @@ export class AuthGuard implements CanActivate {
     // spinner
     this.spinner.show(SpinnerType.BallSpinClockwiseFadeRotating);
 
+    /*
     // localStorage & token
     const token: string = localStorage.getItem("accessToken");
     // süre kontrolü
@@ -31,7 +32,11 @@ export class AuthGuard implements CanActivate {
     } catch {
       expired = true;
     }
-    if (!token || expired) {
+      //const decodeToken = this.jwtHelper.decodeToken(token);
+      //const expirationDate: Date = this.jwtHelper.getTokenExpirationDate(token);
+    */
+
+    if (!_isAuthenticated) {
 
       // state.url → gitmek istenen url
       this.router.navigate(["login"], { queryParams: { returnUrl: state.url } });
@@ -41,8 +46,7 @@ export class AuthGuard implements CanActivate {
     this.spinner.hide(SpinnerType.BallSpinClockwiseFadeRotating);
     return true;
 
-    //const decodeToken = this.jwtHelper.decodeToken(token);
-    //const expirationDate: Date = this.jwtHelper.getTokenExpirationDate(token);
+
   }
 
 }

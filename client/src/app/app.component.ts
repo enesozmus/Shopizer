@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { JwtService } from './services/authentication/jwt.service';
 
 @Component({
   selector: 'app-root',
@@ -6,10 +8,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 
-export class AppComponent implements OnInit {
+export class AppComponent {
 
-  constructor() { }
 
-  ngOnInit(): void {
+  constructor(public jwtService: JwtService, private router: Router) {
+    jwtService.identityCheck();
+  }
+
+  signOut(){
+    localStorage.removeItem("accessToken");
+    this.jwtService.identityCheck();
+    this.router.navigate([""]);
   }
 }

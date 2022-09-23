@@ -1,6 +1,6 @@
 ## E-Commerce Application
 > * [Gençay Yıldız'ın](https://www.youtube.com/c/Gen%C3%A7ayY%C4%B1ld%C4%B1z/featured) `"Asp.NET Core 6 + Angular 13 | Mini E-Ticaret Uygulama Serisi"` adlı video serisi takip edilerek geliştirilen e-ticaret kurgulu bir **ASP.NET Core Web API** tüketen **Angular** uygulamasıdır.
-> * Çalışma devam etmektedir. (42/58)
+> * Çalışma devam etmektedir. (43/58)
 
 <p align="right">
         <a href="https://docs.microsoft.com/en-us/dotnet/csharp/" target="_blank"> <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/csharp/csharp-original.svg" alt="csharp" width="42" height="42"/></a>
@@ -68,6 +68,8 @@
 > * **Kimlik Doğrulama** işlemleri tamamlandı.
 > * Haberleşen iki veya daha fazla sistem arasında kullanıcı doğrulama ve veri bütünlüğünü sağlayabilmek adına **JSON Web Token** kullanıldı.
 > * Angular uygulamasında bir rotanın etkinleştirilip etkinleştirilemeyeceğine karar veren ve bir **route guard** görevi gören **CanActivate Interface'i** projeye entegre edildi.
+> * Kimlik doğrulaması yapılarak **buton ve link gösterme/gizleme işlemleri** tamamlandı.
+> * Doğrulanmamış bir kimlikle giriş işlemlerinde **girilmek istenen url yakalandı** ve login işleminden sonra kullanıcı o url'e yönlendirildi.
 
 > * **!:** Ürün ekleme işleminde Client tarafında ayrıca doğrulama kuralları henüz yazılmadı ilerleyen günlerde yazılacaktır.
 > * **!:** Ürün ekleme işleminde kullanılan form ilerleyen günlerde **"reactive forms"** kullanımına geçirilecektir.

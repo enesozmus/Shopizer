@@ -35,7 +35,7 @@
         </li>
 
         <li class="nav-item">
-          <a class="nav-link active text-light buttonBorder" aria-current="page" routerLink="admin">
+          <a class="nav-link active text-light buttonBorder" aria-current="page" routerLink="admin" *ngIf="jwtService.isAuthenticated">
             <span></span>
             <span></span>
             <span></span>
@@ -50,8 +50,9 @@
           <i class="fa fa-shopping-cart fa-2x text-light me-4 mt-1"></i>
           <div class="cart-no">5</div>
         </a>
-        <a class="btn btn-sm btn-outline-success" routerLink="login">Login</a>
-        <a class="btn btn-sm btn-outline-danger ms-3" routerLink="register">Register</a>
+        <a class="btn btn-sm btn-outline-success" style="cursor: pointer;" routerLink="login" *ngIf="!jwtService.isAuthenticated">Login</a>
+        <a class="btn btn-sm btn-outline-danger ms-3" style="cursor: pointer;" routerLink="register" *ngIf="!jwtService.isAuthenticated">Register</a>
+        <a class="btn btn-sm btn-outline-danger ms-3" style="cursor: pointer;" (click)="signOut()" *ngIf="jwtService.isAuthenticated">Logout</a>
       </div>
 
     </div>
