@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -12,10 +12,16 @@ import { NgxSpinnerModule } from 'ngx-spinner';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { JwtModule } from '@auth0/angular-jwt';
 
+import { SocialLoginModule, SocialAuthServiceConfig, GoogleLoginProvider } from '@abacritt/angularx-social-login';
+import { LoginComponent } from './ui/components/login/login.component';
+import { ReactiveFormsModule } from '@angular/forms';
+
+
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    LoginComponent
   ],
 
   imports: [
@@ -24,6 +30,8 @@ import { JwtModule } from '@auth0/angular-jwt';
     BrowserAnimationsModule,
 
     AdminModule, UiModule,
+    SocialLoginModule,
+    ReactiveFormsModule,
 
     HttpClientModule,
 
@@ -38,10 +46,24 @@ import { JwtModule } from '@auth0/angular-jwt';
   ],
 
   providers: [
-    { provide: "baseUrl", useValue: "http://localhost:5153/api", multi: true }
+    { provide: "baseUrl", useValue: "http://localhost:5153/api", multi: true },
+    {
+      provide: 'SocialAuthServiceConfig',
+      useValue: {
+        autoLogin: false,
+        providers: [
+          {
+            id: GoogleLoginProvider.PROVIDER_ID,
+            provider: new GoogleLoginProvider('310276995424-fib1s6dis96ta147vuamh6mha60kh2o8.apps.googleusercontent.com')
+          }
+        ],
+        onError: (err) => { console.error(err); }
+      } as SocialAuthServiceConfig,
+    }
   ],
 
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 
 export class AppModule { }

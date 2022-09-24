@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { BaseComponent, SpinnerType } from 'src/app/base/base.component';
@@ -8,6 +8,11 @@ import { JwtService } from 'src/app/services/authentication/jwt.service';
 import { Login_User } from 'src/app/shared/contracts/users/login_user';
 import { User } from 'src/app/shared/entities/user';
 
+import { SocialAuthService, SocialUser } from '@abacritt/angularx-social-login';
+import { HttpClientService } from 'src/app/services/common/http-client.service';
+import { Token } from 'src/app/shared/contracts/tokens/token';
+
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -15,17 +20,26 @@ import { User } from 'src/app/shared/entities/user';
 })
 export class LoginComponent extends BaseComponent implements OnInit {
 
-  constructor(private formBuilder: FormBuilder,
+  constructor(private formBuilder: UntypedFormBuilder,
     private authService: AuthService,
     spinner: NgxSpinnerService,
     private jwtService: JwtService,
     private router: Router,
-    private activatedRoute: ActivatedRoute) {
+    private activatedRoute: ActivatedRoute,
+    private socialAuthService: SocialAuthService) {
     super(spinner)
+    socialAuthService.authState.subscribe(async (user: SocialUser) => {
+      //console.log(user)
+      this.showSpinner(SpinnerType.BallSpinClockwiseFadeRotating);
+      await authService.googleLogin(user, () => {
+        this.jwtService.identityCheck();
+        this.hideSpinner(SpinnerType.BallSpinClockwiseFadeRotating);
+      })
+    })
   }
 
   // reactive form
-  ourform: FormGroup;
+  ourform: UntypedFormGroup;
 
   ngOnInit(): void {
     this.ourform = this.formBuilder.group({

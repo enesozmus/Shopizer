@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, AbstractControl, ValidationErrors } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators, AbstractControl, ValidationErrors } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/authentication/auth.service';
 import { Register_User } from 'src/app/shared/contracts/users/register_user';
@@ -14,10 +14,10 @@ import { User } from 'src/app/shared/entities/user';
 
 export class RegisterComponent implements OnInit {
 
-  constructor(private formBuilder: FormBuilder, private authService: AuthService, private router: Router) { }
+  constructor(private formBuilder: UntypedFormBuilder, private authService: AuthService, private router: Router) { }
 
   // reactive form
-  ourform: FormGroup;
+  ourform: UntypedFormGroup;
 
 
   ngOnInit(): void {
