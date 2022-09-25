@@ -21,7 +21,7 @@ public static class ApplicationServicesRegistration
 
           // MediatR Pipeline Behaviour
           services.AddTransient(typeof(IPipelineBehavior<,>), typeof(RequestValidationBehavior<,>));
-
+          
           return services;
      }
 }

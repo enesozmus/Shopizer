@@ -1,10 +1,12 @@
-﻿using Application.IRepositories;
+﻿using Application.Abstractions.Services;
+using Application.IRepositories;
 using Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Persistence.Contexts;
 using Persistence.Repositories;
+using Persistence.Services;
 
 namespace Persistence;
 
@@ -71,6 +73,12 @@ public static class PersistenceServicesRegistration
 
           services.AddScoped<IInvoiceFileReadRepository, InvoiceFileReadRepository>();
           services.AddScoped<IInvoiceFileWriteRepository, InvoiceFileWriteRepository>();
+
+          #endregion
+
+          #region Services
+
+          services.AddScoped<IAuthService, AuthService>();
 
           #endregion
 

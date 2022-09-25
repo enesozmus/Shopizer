@@ -1,5 +1,4 @@
 ﻿using Application.Features.AuthenticationOperations.Command;
-using Azure.Core;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebAPI.Controllers;
@@ -16,5 +15,9 @@ public class AuthController : BaseController
 
      [HttpPost("google-login")]
      public async Task<IActionResult> GoogleLogin([FromBody] GoogleLoginCommandRequest request)
+          => Ok(await Mediator.Send(request));
+
+     [HttpPost("facebook-login")]
+     public async Task<IActionResult> FacebookLogin([FromBody] FacebookLoginCommandRequest request)
           => Ok(await Mediator.Send(request));
 }

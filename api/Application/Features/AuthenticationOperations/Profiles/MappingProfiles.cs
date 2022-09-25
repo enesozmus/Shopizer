@@ -1,4 +1,5 @@
-﻿using Application.Features.AuthenticationOperations.Command;
+﻿using Application.DTOs;
+using Application.Features.AuthenticationOperations.Command;
 using AutoMapper;
 using Domain.Entities;
 
@@ -9,7 +10,10 @@ public class MappingProfiles : Profile
      public MappingProfiles()
      {
           CreateMap<AppUser, RegisterCommandRequest>().ReverseMap();
+          CreateMap<AppUser, RegisterRequestDTOs>().ReverseMap();
           CreateMap<AppUser, LoginCommandRequest>().ReverseMap();
+
+          
      }
 }
 

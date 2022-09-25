@@ -36,6 +36,7 @@ builder.Services.AddCors(options => options.AddPolicy("myclients", policy =>
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddHttpClient();
 
 #region Jwt Bearer Defaults
 
