@@ -17,6 +17,8 @@ export class AppComponent {
 
   signOut(){
     localStorage.removeItem("accessToken");
+    localStorage.removeItem("refreshToken");
+    localStorage.removeItem("randid");
     this.jwtService.identityCheck();
     this.router.navigate([""]);
   }

@@ -13,6 +13,10 @@ public class AuthController : BaseController
      public async Task<IActionResult> Login([FromBody] LoginCommandRequest request)
           => Ok(await Mediator.Send(request));
 
+     [HttpPost("[action]")]
+     public async Task<IActionResult> RefreshTokenLogin([FromBody] RefreshTokenLoginCommandRequest request)
+          => Ok(await Mediator.Send(request));
+
      [HttpPost("google-login")]
      public async Task<IActionResult> GoogleLogin([FromBody] GoogleLoginCommandRequest request)
           => Ok(await Mediator.Send(request));

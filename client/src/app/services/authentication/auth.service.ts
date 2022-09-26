@@ -33,12 +33,34 @@ export class AuthService {
         }, { userName, password });
 
         const login: Login_User = await firstValueFrom(observable) as Login_User;
+        
         if (login.token)
+        {
             localStorage.setItem("accessToken", login.token.accessToken);
+            localStorage.setItem("refreshToken", login.token.refreshToken);
+        }
+            
 
         callBackFunction();
         return login;
+    }
 
+    //
+    async refreshTokenLogin(refreshToken: string, callBackFunction?: () => void): Promise<any> {
+
+        const observable: Observable<any | Token> = this.httpClientService.post({
+            action: "refreshtokenlogin",
+            controller: "auth"
+        }, { refreshToken: refreshToken });
+
+        const token: Token = await firstValueFrom(observable) as Token;
+
+        if (token) {
+            localStorage.setItem("accessToken", token.accessToken);
+            localStorage.setItem("refreshToken", token.refreshToken);
+        }
+
+        callBackFunction();
     }
 
     // google-login
@@ -51,6 +73,7 @@ export class AuthService {
         const token: Token = await firstValueFrom(observable) as Token;
         if (token) {
             localStorage.setItem("accessToken", token.accessToken);
+            localStorage.setItem("refreshToken", token.refreshToken);
         }
         callBackFunction();
     }

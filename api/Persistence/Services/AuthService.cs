@@ -6,6 +6,7 @@ using AutoMapper;
 using Domain.Entities;
 using Google.Apis.Auth;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using System.Text.Json;
 
@@ -49,6 +50,19 @@ public class AuthService : IAuthService
           return response;
      }
 
+     public async Task UpdateRefreshToken(string refreshToken, AppUser user, DateTime accessTokenDate, int addOnAccessTokenDate)
+     {
+          if (user != null)
+          {
+               user.RefreshToken = refreshToken;
+               // seconds
+               user.RefreshTokenEndDate = accessTokenDate.AddSeconds(addOnAccessTokenDate);
+               await _userManager.UpdateAsync(user);
+          }
+          else
+               throw new Exception();
+     }
+
      public async Task<Token> LoginAsync(string userName, string password, int accessTokenLifeTime)
      {
           AppUser user = await _userManager.FindByNameAsync(userName);
@@ -59,6 +73,8 @@ public class AuthService : IAuthService
           if (result.Succeeded) //Authentication başarılı!
           {
                Token token = _tokenHandler.CreateAccessToken(accessTokenLifeTime);
+               // Refresh Token
+               await UpdateRefreshToken(token.RefreshToken, user, token.Expiration, 20);
                return token;
           }
           throw new Exception("Invalid internal authentication!");
@@ -89,6 +105,8 @@ public class AuthService : IAuthService
                await _userManager.AddLoginAsync(user, info); //AspNetUserLogins
 
                Token token = _tokenHandler.CreateAccessToken(accessTokenLifeTime);
+               // Refresh Token
+               await UpdateRefreshToken(token.RefreshToken, user, token.Expiration, 5);
                return token;
           }
           throw new Exception("Invalid external authentication!");
@@ -128,5 +146,20 @@ public class AuthService : IAuthService
                return await CreateUserExternalAsync(user, userInfo.Email, userInfo.Name, userInfo.Name, info, accessTokenLifeTime);
           }
           throw new Exception("Invalid external authentication!");
+     }
+
+     public async Task<Token> RefreshTokenLoginAsync(string refreshToken)
+     {
+          // user'ların arasında gelen refresh token değeri gelen refresh token değeriyle eşit olan var mı
+          AppUser? user = await _userManager.Users.FirstOrDefaultAsync(u => u.RefreshToken == refreshToken);
+
+          if (user != null && user?.RefreshTokenEndDate > DateTime.UtcNow)
+          {
+               Token token = _tokenHandler.CreateAccessToken(15);
+               await UpdateRefreshToken(token.RefreshToken, user, token.Expiration, 20);
+               return token;
+          }
+          else
+               throw new Exception();
      }
 }

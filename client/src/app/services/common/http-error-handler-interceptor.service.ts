@@ -3,6 +3,7 @@ import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, HttpStatusCode } 
 import { catchError, Observable, of } from 'rxjs';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { AuthService } from '../authentication/auth.service';
 
 
 @Injectable({
@@ -11,7 +12,7 @@ import { ToastrService } from 'ngx-toastr';
 
 export class HttpErrorHandlerInterceptorService implements HttpInterceptor {
 
-    constructor(private route: Router, private toastr: ToastrService) { }
+    constructor(private route: Router, private toastr: ToastrService, private authService: AuthService) { }
 
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
@@ -55,6 +56,7 @@ export class HttpErrorHandlerInterceptorService implements HttpInterceptor {
                     //this.route.navigateByUrl('not-found');
                     //alert('unauthorized-error');
                     this.toastr.error(error.message, error.statusText);
+                    this.authService.refreshTokenLogin(localStorage.getItem("refreshToken")).then(data => { });
                     /*this.toastrService.message("Bu işlemi yapmaya yetkiniz bulunmamaktadır!", "Yetkisiz işlem!", {
                         messageType: ToastrMessageType.Warning,
                         position: ToastrPosition.BottomFullWidth
