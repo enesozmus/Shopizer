@@ -5,18 +5,22 @@ import { RouterModule } from '@angular/router';
 import { ProductItemComponent } from './product-item/product-item.component';
 
 import { SharedModule } from 'src/app/shared/shared.module';
-
+import { ProductDetailsComponent } from './product-details/product-details.component';
 
 
 @NgModule({
   declarations: [
     ProductsComponent,
-    ProductItemComponent
+    ProductItemComponent,
+    ProductDetailsComponent
   ],
   imports: [
     CommonModule,
-    RouterModule.forChild([{path: "", component: ProductsComponent }]),
-    
+    RouterModule.forChild([
+      { path: '', component: ProductsComponent },
+      { path: 'products/:id', component: ProductDetailsComponent },
+    ]),
+
     SharedModule
   ]
 })

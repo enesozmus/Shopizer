@@ -7,6 +7,16 @@
     margin-left: 30px;
 }
 
+// active
+a {
+    text-decoration: none;
+    color: #7faad5;
+
+    &.active {
+        color: rgb(212, 90, 131)
+    }
+}
+
 .cart-no {
     position: absolute;
     min-height: 21px;
@@ -29,7 +39,7 @@
     padding: 10px 30px;
     text-decoration: none;
     text-transform: uppercase;
-    color: rgba(225, 255, 255, 0.4);
+    //color: rgba(225, 255, 255, 0.4);
     font-family: s;
     letter-spacing: 1.5px;
     font-size: 14px;

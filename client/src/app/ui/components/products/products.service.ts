@@ -5,6 +5,7 @@ import { IBrand } from 'src/app/shared/contracts/brand';
 import { IColor } from 'src/app/shared/contracts/color';
 import { IPagination } from 'src/app/shared/contracts/paginations/pagination';
 import { ProductParams } from 'src/app/shared/contracts/parameters/productParams';
+import { Item_Product } from 'src/app/shared/contracts/products/item_product';
 import { IProduct } from 'src/app/shared/contracts/products/product';
 import { ISize } from 'src/app/shared/contracts/size';
 
@@ -39,6 +40,10 @@ export class ProductsService {
 
     return this.http.get<IPagination>('http://localhost:5153/api/products', { observe: 'response', params })
       .pipe(map(response => { return response.body; }));
+  }
+
+  getProduct(id: number){
+    return this.http.get<Item_Product>('http://localhost:5153/api/products/' + id);
   }
 
   getBrands() {

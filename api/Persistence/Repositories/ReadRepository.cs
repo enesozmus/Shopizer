@@ -121,6 +121,8 @@ public class ReadRepository<T> : IReadRepository<T> where T : BaseEntity
 
           if (include != null) query = include(query);
 
+          if (predicate != null) query = query.Where(predicate);
+
           return await query.AsNoTracking().FirstOrDefaultAsync();
      }
 

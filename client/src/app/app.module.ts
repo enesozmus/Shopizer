@@ -5,7 +5,7 @@ import { AppComponent } from './app.component';
 
 import { AdminModule } from './admin/admin.module';
 import { UiModule } from './ui/ui.module';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgxSpinnerModule } from 'ngx-spinner';
@@ -15,6 +15,7 @@ import { JwtModule } from '@auth0/angular-jwt';
 import { SocialLoginModule, SocialAuthServiceConfig, GoogleLoginProvider } from '@abacritt/angularx-social-login';
 import { LoginComponent } from './ui/components/login/login.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { HttpErrorHandlerInterceptorService } from './services/common/http-error-handler-interceptor.service';
 
 
 
@@ -46,7 +47,11 @@ import { ReactiveFormsModule } from '@angular/forms';
   ],
 
   providers: [
+
+    { provide: HTTP_INTERCEPTORS, useClass: HttpErrorHandlerInterceptorService, multi: true },
+
     { provide: "baseUrl", useValue: "http://localhost:5153/api", multi: true },
+
     {
       provide: 'SocialAuthServiceConfig',
       useValue: {

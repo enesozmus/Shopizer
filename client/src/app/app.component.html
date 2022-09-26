@@ -1,10 +1,8 @@
 <nav class="navbar navbar-expand-lg bg-dark fixed-top">
 
-  <div class="container-fluid ms-5">
+  <div class="container-fluid ms-5" style="height: 75px;">
 
-    <a class="navbar-brand ms-5" href="#">
-      <img src="/assets/images/logo-nav@2x.png" alt="Angular 13" style="max-height: 70px; max-width: 175px;">
-    </a>
+      <img src="/assets/images/logo-nav@2x.png" alt="Angular 13" style="max-height: 70px; max-width: 175px; margin-left: 54px;">
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
       aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -16,7 +14,7 @@
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
         <li class="nav-item">
-          <a class="nav-link active text-light buttonBorder" id="testStyle" aria-current="page" routerLink="">
+          <a class="buttonBorder" aria-current="page" routerLink="" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
             <span></span>
             <span></span>
             <span></span>
@@ -26,7 +24,7 @@
         </li>
 
         <li class="nav-item">
-          <a class="nav-link active text-light buttonBorder" aria-current="page" routerLink="products">
+          <a class="buttonBorder" aria-current="page" routerLink="products" routerLinkActive="active">
             <span></span>
             <span></span>
             <span></span>
@@ -35,7 +33,17 @@
         </li>
 
         <li class="nav-item">
-          <a class="nav-link active text-light buttonBorder" aria-current="page" routerLink="admin" *ngIf="jwtService.isAuthenticated">
+          <a class="buttonBorder" aria-current="page" routerLink="test-errors" routerLinkActive="active">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            Erros</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="buttonBorder" aria-current="page" routerLink="admin" routerLinkActive="active"
+            *ngIf="jwtService.isAuthenticated">
             <span></span>
             <span></span>
             <span></span>
@@ -50,9 +58,12 @@
           <i class="fa fa-shopping-cart fa-2x text-light me-4 mt-1"></i>
           <div class="cart-no">5</div>
         </a>
-        <a class="btn btn-sm btn-outline-success" style="cursor: pointer;" routerLink="login" *ngIf="!jwtService.isAuthenticated">Login</a>
-        <a class="btn btn-sm btn-outline-danger ms-3" style="cursor: pointer;" routerLink="register" *ngIf="!jwtService.isAuthenticated">Register</a>
-        <a class="btn btn-sm btn-outline-danger ms-3" style="cursor: pointer;" (click)="signOut()" *ngIf="jwtService.isAuthenticated">Logout</a>
+        <a class="btn btn-sm btn-outline-success" style="cursor: pointer;" routerLink="login"
+          *ngIf="!jwtService.isAuthenticated">Login</a>
+        <a class="btn btn-sm btn-outline-danger ms-3" style="cursor: pointer;" routerLink="register"
+          *ngIf="!jwtService.isAuthenticated">Register</a>
+        <a class="btn btn-sm btn-outline-danger ms-3" style="cursor: pointer;" (click)="signOut()"
+          *ngIf="jwtService.isAuthenticated">Logout</a>
       </div>
 
     </div>

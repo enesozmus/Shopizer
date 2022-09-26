@@ -55,6 +55,7 @@
               "./node_modules/ngx-bootstrap/datepicker/bs-datepicker.css",
               "./node_modules/ngx-spinner/animations/ball-grid-pulse.css",
               "./node_modules/ngx-spinner/animations/ball-spin-clockwise-fade-rotating.css",
+              "./node_modules/ngx-toastr/toastr.css",
               "src/styles.scss"
             ],
             "scripts": [
