@@ -1,6 +1,6 @@
 ## E-Commerce Application
 > * [Gençay Yıldız'ın](https://www.youtube.com/c/Gen%C3%A7ayY%C4%B1ld%C4%B1z/featured) `"Asp.NET Core 6 + Angular 13 | Mini E-Ticaret Uygulama Serisi"` adlı video serisi takip edilerek geliştirilen e-ticaret kurgulu bir **ASP.NET Core Web API** tüketen **Angular** uygulamasıdır.
-> * Çalışma devam etmektedir. (48/58)
+> * Çalışma devam etmektedir. (49/58)
 
 <p align="right">
         <a href="https://docs.microsoft.com/en-us/dotnet/csharp/" target="_blank"> <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/csharp/csharp-original.svg" alt="csharp" width="42" height="42"/></a>
@@ -33,6 +33,7 @@
 > * **Angular Route Guards**
 > * **Http Interceptor To Catch Errors**
 > * **Refresh Token Configuration**
+> * **Logging With Serilog**
 
 ## İzlence
 > * **Onion Architecture** kullanıldı.

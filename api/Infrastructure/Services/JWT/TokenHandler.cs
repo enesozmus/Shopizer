@@ -1,8 +1,10 @@
 ﻿using Application.Abstractions.JWT;
 using Application.DTOs;
+using Domain.Entities;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
 
@@ -17,8 +19,15 @@ public class TokenHandler : ITokenHandler
           _configuration = configuration;
      }
 
-     public Token CreateAccessToken(int minute)
+     public Token CreateAccessToken(int minute, AppUser appUser)
      {
+          var claims = new List<Claim>
+          {
+               new Claim(ClaimTypes.Name, appUser.UserName),
+               new Claim(ClaimTypes.NameIdentifier, appUser.Id.ToString()),
+               new Claim(ClaimTypes.Email, appUser.Email),
+          };
+
           Token token = new();
 
           // Security Key'in simetriğini alıyoruz.
@@ -28,15 +37,15 @@ public class TokenHandler : ITokenHandler
           SigningCredentials signingCredentials = new(securityKey, SecurityAlgorithms.HmacSha256);
 
           // Oluşturulacak token ayarlarını veriyoruz.
-          // Seconds
-          token.Expiration = DateTime.UtcNow.AddSeconds(minute);
+          token.Expiration = DateTime.UtcNow.AddMinutes(minute);
 
           JwtSecurityToken securityToken = new(
               audience: _configuration["Token:Audience"],
               issuer: _configuration["Token:Issuer"],
               expires: token.Expiration,
               notBefore: DateTime.UtcNow,
-              signingCredentials: signingCredentials);
+              signingCredentials: signingCredentials,
+              claims: claims );
 
           // Token oluşturucu sınıfından bir örnek alalım.
           JwtSecurityTokenHandler tokenHandler = new();

@@ -34,8 +34,12 @@ public class ProductsController : BaseController
      public async Task<IActionResult> CreateProduct([FromBody] CreateProductCommandRequest request)
           => Ok(await Mediator.Send(request));
 
+     [HttpPut]
+     public async Task<IActionResult> UpdateProduct([FromBody] UpdateProductCommandRequest request)
+          => Ok(await Mediator.Send(request));
+
      [HttpDelete("{Id}")]
-     public async Task<IActionResult> RemoveProduct([FromRoute]RemoveProductCommandRequest request)
+     public async Task<IActionResult> RemoveProduct([FromRoute] RemoveProductCommandRequest request)
           => Ok(await Mediator.Send(request));
 
      // query string
