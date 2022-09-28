@@ -17,7 +17,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Persistence", "api\Persiste
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebAPI", "api\WebAPI\WebAPI.csproj", "{F4531CF8-C024-46ED-895E-AEE022121072}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CrossCuttingConcerns", "api\CrossCuttingConcerns\CrossCuttingConcerns.csproj", "{86A3A1D6-6465-458F-B293-7988A7160D42}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CrossCuttingConcerns", "api\CrossCuttingConcerns\CrossCuttingConcerns.csproj", "{86A3A1D6-6465-458F-B293-7988A7160D42}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SignalR", "api\SignalR\SignalR.csproj", "{70F0434A-1CDC-47FD-BA31-9F1008E00A0E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -49,6 +51,10 @@ Global
 		{86A3A1D6-6465-458F-B293-7988A7160D42}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{86A3A1D6-6465-458F-B293-7988A7160D42}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{86A3A1D6-6465-458F-B293-7988A7160D42}.Release|Any CPU.Build.0 = Release|Any CPU
+		{70F0434A-1CDC-47FD-BA31-9F1008E00A0E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{70F0434A-1CDC-47FD-BA31-9F1008E00A0E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{70F0434A-1CDC-47FD-BA31-9F1008E00A0E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{70F0434A-1CDC-47FD-BA31-9F1008E00A0E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -60,6 +66,7 @@ Global
 		{DDEBB4AF-4B49-466B-B6E8-BE0829EED061} = {F32425E2-E25B-4F1E-A7EF-C3B1C755FA4B}
 		{F4531CF8-C024-46ED-895E-AEE022121072} = {F32425E2-E25B-4F1E-A7EF-C3B1C755FA4B}
 		{86A3A1D6-6465-458F-B293-7988A7160D42} = {F32425E2-E25B-4F1E-A7EF-C3B1C755FA4B}
+		{70F0434A-1CDC-47FD-BA31-9F1008E00A0E} = {F32425E2-E25B-4F1E-A7EF-C3B1C755FA4B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C7C36ECE-AECD-4ED3-A362-64D0EF563E90}

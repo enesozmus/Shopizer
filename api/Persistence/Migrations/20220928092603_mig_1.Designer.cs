@@ -12,7 +12,7 @@ using Persistence.Contexts;
 namespace Persistence.Migrations
 {
     [DbContext(typeof(ECommerceDbContext))]
-    [Migration("20220926182447_mig_1")]
+    [Migration("20220928092603_mig_1")]
     partial class mig_1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -57,14 +57,14 @@ namespace Persistence.Migrations
                         new
                         {
                             Id = 1,
-                            ConcurrencyStamp = "b00c9154-0b99-4ace-9dd0-49df63113a62",
+                            ConcurrencyStamp = "23d7ad86-8c63-4e65-96ec-2ed327f37ebc",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
                             Id = 2,
-                            ConcurrencyStamp = "c62159af-a928-48c5-bc82-e36e2575eff8",
+                            ConcurrencyStamp = "687fe331-9824-43d7-a1d1-e260d1536757",
                             Name = "User",
                             NormalizedName = "USER"
                         });
@@ -160,7 +160,7 @@ namespace Persistence.Migrations
                         {
                             Id = 1,
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "52b49068-677f-461c-885e-36dea37ee60e",
+                            ConcurrencyStamp = "a29b3093-03e1-45de-9aa2-2b5de1123410",
                             Email = "enes@seeddata.com",
                             EmailConfirmed = true,
                             FirstName = "Enes",
@@ -168,10 +168,10 @@ namespace Persistence.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = " ENES@SEEDDATA.COM",
                             NormalizedUserName = "ENESOZMUS",
-                            PasswordHash = "AQAAAAEAACcQAAAAEOrNUVNLjMXlv6P4NlKm1uj8MvcigIIUqFFFuE9qi+cfZIp8Tm+7GTmhvZI6/eQFgQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAENf+JK2X3+GB4zvHAcQ9BaDCtDS35JpJQqs5IOdxeTsHCR7hZP/e2HnfmI3BCfUsWg==",
                             PhoneNumber = "0541 555 ####",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "68241cc4-b7d0-4485-89f4-700307f8ce83",
+                            SecurityStamp = "8b4a10af-e497-462c-b6a1-00d51b076d9f",
                             TwoFactorEnabled = false,
                             UserName = "enesozmus"
                         },
@@ -179,7 +179,7 @@ namespace Persistence.Migrations
                         {
                             Id = 2,
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "633be361-2ccf-492b-9259-0bb675232596",
+                            ConcurrencyStamp = "c653fe87-145f-4d6c-bb48-8b8820e2c6bf",
                             Email = "umay@seeddata.com",
                             EmailConfirmed = true,
                             FirstName = "Umay",
@@ -187,10 +187,10 @@ namespace Persistence.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "UMAY@SEEDDATA.COM",
                             NormalizedUserName = "UMAYZENGIN",
-                            PasswordHash = "AQAAAAEAACcQAAAAEG44ej+SStYd6xfSGGxmIR/sKPlkDOyCDhWqnx0iI5Uo3g3/H1JJxSQqgr/CYEkcXA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEDlWiSDVcZsZ4xs4Peoa5lO3GP8p8qwHpVQerjF59HPLsgZzJDsemysr+ghFH1Az9A==",
                             PhoneNumber = "0542 555 ####",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "f77cd1e9-c76d-45e0-aade-318d83b92ad6",
+                            SecurityStamp = "897a0163-28c8-49de-8b08-3b07e48b1433",
                             TwoFactorEnabled = false,
                             UserName = "umayzengin"
                         },
@@ -198,7 +198,7 @@ namespace Persistence.Migrations
                         {
                             Id = 3,
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "0dc05da1-ff31-4e1d-bd67-448d910e4886",
+                            ConcurrencyStamp = "6a25282a-3c32-40ef-993c-dd1b3a49a84a",
                             Email = "selim@seeddata.com",
                             EmailConfirmed = true,
                             FirstName = "Selim",
@@ -206,10 +206,10 @@ namespace Persistence.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "SELIM@SEEDDATA.COM",
                             NormalizedUserName = "SELIMKARACA",
-                            PasswordHash = "AQAAAAEAACcQAAAAEEHlreMYLL61J1GhwV88+0CuottnDtXvYG0I76q1ZQ8ee7Pay88L0eQimD+Nufk58w==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEPCCEt4Bfaq+cZOt1EOzIK3gc2V13hFydI1ieB1Kno6Y7GgxMosTF8DOu6ls36TfqA==",
                             PhoneNumber = "0543 555 ####",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "4bbd85f0-3e34-4098-895f-4b966adb4789",
+                            SecurityStamp = "b9a8c451-a1c8-4bcf-ae10-a4052467d83c",
                             TwoFactorEnabled = false,
                             UserName = "selimkaraca"
                         },
@@ -217,7 +217,7 @@ namespace Persistence.Migrations
                         {
                             Id = 4,
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "7a8792d0-f2c0-4666-afc6-538a5c56bddd",
+                            ConcurrencyStamp = "b5fe1d20-3e47-409e-afce-2fd49e991b65",
                             Email = "emine@seeddata.com",
                             EmailConfirmed = true,
                             FirstName = "Emine",
@@ -225,10 +225,10 @@ namespace Persistence.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "EMINE@SEEDDATA.COM",
                             NormalizedUserName = "EMINEYILDIRIM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEG3zyVOFvXEpHTr99ZVHn+OwV1nDcDsw3aLhqkktlAUaN0qWwV0y0+9DPiJ593+qTw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAECDJer4QvGn3Lb22ogpWHV2L9LVEqGDEp3YbrHnp45AsOScPvl2j0QYuJjkANCBY+w==",
                             PhoneNumber = "0544 555 ####",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "9f821f4e-4f51-45c3-86d7-461b1806fe2d",
+                            SecurityStamp = "34a05b52-b85b-4b80-9f07-5b74d8f37eac",
                             TwoFactorEnabled = false,
                             UserName = "emineyıldırım"
                         },
@@ -236,7 +236,7 @@ namespace Persistence.Migrations
                         {
                             Id = 5,
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "cbdeb2a8-00f6-4c82-8d25-2c97ed6f49e8",
+                            ConcurrencyStamp = "5143a181-2bf4-4d88-9882-ea05b034e6b0",
                             Email = "ihsan@seeddata.com",
                             EmailConfirmed = true,
                             FirstName = "İhsan",
@@ -244,10 +244,10 @@ namespace Persistence.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "IHSAN@SEEDDATA.COM",
                             NormalizedUserName = "IHSANYENILMEZ",
-                            PasswordHash = "AQAAAAEAACcQAAAAEGOd8zPNrq7/QVXz6BLNbPO9QllRQlp8j89nD0nb3m9tEC9zaJ7UzFbuDKdpF8oK1Q==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEAAal14Y8XVo2XRtnANJFHwC63Jk42blWiu03YwWzUy9TzsxaR7m82rNEpoF1HvC7A==",
                             PhoneNumber = "0545 555 ####",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "668c6d96-4201-46c5-a08e-1decc264dd74",
+                            SecurityStamp = "bc4d6b80-75b0-4821-8f5c-607817461bb9",
                             TwoFactorEnabled = false,
                             UserName = "ihsanyenilmez"
                         },
@@ -255,7 +255,7 @@ namespace Persistence.Migrations
                         {
                             Id = 6,
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "67a502f4-75d4-4d8e-8e8c-480531b3c437",
+                            ConcurrencyStamp = "62865a99-c7b6-4d2b-811f-be1bb9dc5762",
                             Email = "berrin@seeddata.com",
                             EmailConfirmed = true,
                             FirstName = "Berrin",
@@ -263,10 +263,10 @@ namespace Persistence.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "BERRIN@SEEDDATA.COM",
                             NormalizedUserName = "BERRINMIRAL",
-                            PasswordHash = "AQAAAAEAACcQAAAAEITUxgMOalIkBhgfSivrn0k/jgR+83AO0ntiuta79y3R8euvw9BS4EpMj3rvWTU6qA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEDPZCRih0+x/DTLelV8RYB3FF/Ri4dT5xN80/ZRONwuO4iL7tEDCFhyz24OLjz3SLA==",
                             PhoneNumber = "0546 555 ####",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "f155a9c1-ffed-480a-b79b-d2381147ce77",
+                            SecurityStamp = "3f024cb1-030f-420d-84a9-55e10df1eee5",
                             TwoFactorEnabled = false,
                             UserName = "berrinmiral"
                         },
@@ -274,7 +274,7 @@ namespace Persistence.Migrations
                         {
                             Id = 7,
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "e86ebec6-553a-4717-b47f-f7f983889da1",
+                            ConcurrencyStamp = "72c21fbf-2bbf-41dd-a59d-3ca4253c6074",
                             Email = "salih@seeddata.com",
                             EmailConfirmed = true,
                             FirstName = "Salih",
@@ -282,10 +282,10 @@ namespace Persistence.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "SALIH@SEEDDATA.COM",
                             NormalizedUserName = "SALIHYURDAKUL",
-                            PasswordHash = "AQAAAAEAACcQAAAAEL+yf5mg2AlaQOLH4pYDqaOUEWDxifZ5ubrX4HzQxkEo5ZhpH5U+UVgfU+OI/Wkz7A==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEGbDPcLnG406XUIcl70BWDLXNfOsr6aF+BD5f0EkQT9SuVw+SVcbWRBbrX9x64uBsA==",
                             PhoneNumber = "0547 555 ####",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "e0af7321-8903-415b-b59b-1d34220bb168",
+                            SecurityStamp = "c4586e1a-904f-4bd5-b904-14d6baaedd1b",
                             TwoFactorEnabled = false,
                             UserName = "salihyurdakul"
                         },
@@ -293,7 +293,7 @@ namespace Persistence.Migrations
                         {
                             Id = 8,
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "96d5c99d-9573-4dc0-bee2-e860af6303e5",
+                            ConcurrencyStamp = "1faff125-8cfa-435b-bade-a10440da76a5",
                             Email = "zafer@seeddata.com",
                             EmailConfirmed = true,
                             FirstName = "Zafer",
@@ -301,10 +301,10 @@ namespace Persistence.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ZAFER@SEEDDATA.COM",
                             NormalizedUserName = "ZAFERKIRAT",
-                            PasswordHash = "AQAAAAEAACcQAAAAEAhSWtXenV1NlefhbSxuDY9uEM3FC11o3dkl4N1GnJbyJae3TslhCcoC9Nc6uxk7ig==",
+                            PasswordHash = "AQAAAAEAACcQAAAAED5c6xPHyTN03WcmGB9fMVXRdKiDwCgYd9AZRZkAehWbK0HK4JweogMOZKqkvHC69w==",
                             PhoneNumber = "0548 555 ####",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "17e3cf04-f4ea-4680-b722-9af9a19ac9bf",
+                            SecurityStamp = "bd8d1f8a-b337-478c-8dd5-34d1ba69d4cc",
                             TwoFactorEnabled = false,
                             UserName = "zaferkırat"
                         },
@@ -312,7 +312,7 @@ namespace Persistence.Migrations
                         {
                             Id = 9,
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "b145c891-853e-43a8-9c23-6c8b3ba165a5",
+                            ConcurrencyStamp = "519eac7f-79cb-4d63-a222-4b8b93e785d6",
                             Email = "emre@seeddata.com",
                             EmailConfirmed = true,
                             FirstName = "Emre",
@@ -320,10 +320,10 @@ namespace Persistence.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "EMRE@SEEDDATA.COM",
                             NormalizedUserName = "EMREDEMIR",
-                            PasswordHash = "AQAAAAEAACcQAAAAEOcrRmbNeiJJDw9/5RzX+c57gj/SqVfRNq7VHlDKlIISBVooJ4W7U3b7bbcK2TspVw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAED1R4cfMSwfCGOr/SASHvy2JVvmhhCoF13adBD2ppXPE7rtbCohSU+HvTs7MeZTEzg==",
                             PhoneNumber = "0549 555 ####",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "0e8efff1-10c9-41d0-8ec0-14df4210ee94",
+                            SecurityStamp = "e23c778a-f521-4b7f-9eda-7084c568d8d6",
                             TwoFactorEnabled = false,
                             UserName = "emredemir"
                         });

@@ -24,6 +24,7 @@
     <ProjectReference Include="..\CrossCuttingConcerns\CrossCuttingConcerns.csproj" />
     <ProjectReference Include="..\Infrastructure\Infrastructure.csproj" />
     <ProjectReference Include="..\Persistence\Persistence.csproj" />
+    <ProjectReference Include="..\SignalR\SignalR.csproj" />
   </ItemGroup>
 
   <ItemGroup>

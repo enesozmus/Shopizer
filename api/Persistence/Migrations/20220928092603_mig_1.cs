@@ -1,11 +1,10 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Migrations;
+﻿using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
 namespace Persistence.Migrations
 {
-    public partial class mig_1 : Migration
+     public partial class mig_1 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -415,8 +414,8 @@ namespace Persistence.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { 1, "b00c9154-0b99-4ace-9dd0-49df63113a62", "Admin", "ADMIN" },
-                    { 2, "c62159af-a928-48c5-bc82-e36e2575eff8", "User", "USER" }
+                    { 1, "23d7ad86-8c63-4e65-96ec-2ed327f37ebc", "Admin", "ADMIN" },
+                    { 2, "687fe331-9824-43d7-a1d1-e260d1536757", "User", "USER" }
                 });
 
             migrationBuilder.InsertData(
@@ -424,15 +423,15 @@ namespace Persistence.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "RefreshToken", "RefreshTokenEndDate", "SecurityStamp", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { 1, 0, "52b49068-677f-461c-885e-36dea37ee60e", "enes@seeddata.com", true, "Enes", "Ozmus", false, null, " ENES@SEEDDATA.COM", "ENESOZMUS", "AQAAAAEAACcQAAAAEOrNUVNLjMXlv6P4NlKm1uj8MvcigIIUqFFFuE9qi+cfZIp8Tm+7GTmhvZI6/eQFgQ==", "0541 555 ####", false, null, null, "68241cc4-b7d0-4485-89f4-700307f8ce83", false, "enesozmus" },
-                    { 2, 0, "633be361-2ccf-492b-9259-0bb675232596", "umay@seeddata.com", true, "Umay", "Zengin", false, null, "UMAY@SEEDDATA.COM", "UMAYZENGIN", "AQAAAAEAACcQAAAAEG44ej+SStYd6xfSGGxmIR/sKPlkDOyCDhWqnx0iI5Uo3g3/H1JJxSQqgr/CYEkcXA==", "0542 555 ####", false, null, null, "f77cd1e9-c76d-45e0-aade-318d83b92ad6", false, "umayzengin" },
-                    { 3, 0, "0dc05da1-ff31-4e1d-bd67-448d910e4886", "selim@seeddata.com", true, "Selim", "Karaca", false, null, "SELIM@SEEDDATA.COM", "SELIMKARACA", "AQAAAAEAACcQAAAAEEHlreMYLL61J1GhwV88+0CuottnDtXvYG0I76q1ZQ8ee7Pay88L0eQimD+Nufk58w==", "0543 555 ####", false, null, null, "4bbd85f0-3e34-4098-895f-4b966adb4789", false, "selimkaraca" },
-                    { 4, 0, "7a8792d0-f2c0-4666-afc6-538a5c56bddd", "emine@seeddata.com", true, "Emine", "Yıldırım", false, null, "EMINE@SEEDDATA.COM", "EMINEYILDIRIM", "AQAAAAEAACcQAAAAEG3zyVOFvXEpHTr99ZVHn+OwV1nDcDsw3aLhqkktlAUaN0qWwV0y0+9DPiJ593+qTw==", "0544 555 ####", false, null, null, "9f821f4e-4f51-45c3-86d7-461b1806fe2d", false, "emineyıldırım" },
-                    { 5, 0, "cbdeb2a8-00f6-4c82-8d25-2c97ed6f49e8", "ihsan@seeddata.com", true, "İhsan", "Yenilmez", false, null, "IHSAN@SEEDDATA.COM", "IHSANYENILMEZ", "AQAAAAEAACcQAAAAEGOd8zPNrq7/QVXz6BLNbPO9QllRQlp8j89nD0nb3m9tEC9zaJ7UzFbuDKdpF8oK1Q==", "0545 555 ####", false, null, null, "668c6d96-4201-46c5-a08e-1decc264dd74", false, "ihsanyenilmez" },
-                    { 6, 0, "67a502f4-75d4-4d8e-8e8c-480531b3c437", "berrin@seeddata.com", true, "Berrin", "Miral", false, null, "BERRIN@SEEDDATA.COM", "BERRINMIRAL", "AQAAAAEAACcQAAAAEITUxgMOalIkBhgfSivrn0k/jgR+83AO0ntiuta79y3R8euvw9BS4EpMj3rvWTU6qA==", "0546 555 ####", false, null, null, "f155a9c1-ffed-480a-b79b-d2381147ce77", false, "berrinmiral" },
-                    { 7, 0, "e86ebec6-553a-4717-b47f-f7f983889da1", "salih@seeddata.com", true, "Salih", "Yurdakul", false, null, "SALIH@SEEDDATA.COM", "SALIHYURDAKUL", "AQAAAAEAACcQAAAAEL+yf5mg2AlaQOLH4pYDqaOUEWDxifZ5ubrX4HzQxkEo5ZhpH5U+UVgfU+OI/Wkz7A==", "0547 555 ####", false, null, null, "e0af7321-8903-415b-b59b-1d34220bb168", false, "salihyurdakul" },
-                    { 8, 0, "96d5c99d-9573-4dc0-bee2-e860af6303e5", "zafer@seeddata.com", true, "Zafer", "Kırat", false, null, "ZAFER@SEEDDATA.COM", "ZAFERKIRAT", "AQAAAAEAACcQAAAAEAhSWtXenV1NlefhbSxuDY9uEM3FC11o3dkl4N1GnJbyJae3TslhCcoC9Nc6uxk7ig==", "0548 555 ####", false, null, null, "17e3cf04-f4ea-4680-b722-9af9a19ac9bf", false, "zaferkırat" },
-                    { 9, 0, "b145c891-853e-43a8-9c23-6c8b3ba165a5", "emre@seeddata.com", true, "Emre", "Demir", false, null, "EMRE@SEEDDATA.COM", "EMREDEMIR", "AQAAAAEAACcQAAAAEOcrRmbNeiJJDw9/5RzX+c57gj/SqVfRNq7VHlDKlIISBVooJ4W7U3b7bbcK2TspVw==", "0549 555 ####", false, null, null, "0e8efff1-10c9-41d0-8ec0-14df4210ee94", false, "emredemir" }
+                    { 1, 0, "a29b3093-03e1-45de-9aa2-2b5de1123410", "enes@seeddata.com", true, "Enes", "Ozmus", false, null, " ENES@SEEDDATA.COM", "ENESOZMUS", "AQAAAAEAACcQAAAAENf+JK2X3+GB4zvHAcQ9BaDCtDS35JpJQqs5IOdxeTsHCR7hZP/e2HnfmI3BCfUsWg==", "0541 555 ####", false, null, null, "8b4a10af-e497-462c-b6a1-00d51b076d9f", false, "enesozmus" },
+                    { 2, 0, "c653fe87-145f-4d6c-bb48-8b8820e2c6bf", "umay@seeddata.com", true, "Umay", "Zengin", false, null, "UMAY@SEEDDATA.COM", "UMAYZENGIN", "AQAAAAEAACcQAAAAEDlWiSDVcZsZ4xs4Peoa5lO3GP8p8qwHpVQerjF59HPLsgZzJDsemysr+ghFH1Az9A==", "0542 555 ####", false, null, null, "897a0163-28c8-49de-8b08-3b07e48b1433", false, "umayzengin" },
+                    { 3, 0, "6a25282a-3c32-40ef-993c-dd1b3a49a84a", "selim@seeddata.com", true, "Selim", "Karaca", false, null, "SELIM@SEEDDATA.COM", "SELIMKARACA", "AQAAAAEAACcQAAAAEPCCEt4Bfaq+cZOt1EOzIK3gc2V13hFydI1ieB1Kno6Y7GgxMosTF8DOu6ls36TfqA==", "0543 555 ####", false, null, null, "b9a8c451-a1c8-4bcf-ae10-a4052467d83c", false, "selimkaraca" },
+                    { 4, 0, "b5fe1d20-3e47-409e-afce-2fd49e991b65", "emine@seeddata.com", true, "Emine", "Yıldırım", false, null, "EMINE@SEEDDATA.COM", "EMINEYILDIRIM", "AQAAAAEAACcQAAAAECDJer4QvGn3Lb22ogpWHV2L9LVEqGDEp3YbrHnp45AsOScPvl2j0QYuJjkANCBY+w==", "0544 555 ####", false, null, null, "34a05b52-b85b-4b80-9f07-5b74d8f37eac", false, "emineyıldırım" },
+                    { 5, 0, "5143a181-2bf4-4d88-9882-ea05b034e6b0", "ihsan@seeddata.com", true, "İhsan", "Yenilmez", false, null, "IHSAN@SEEDDATA.COM", "IHSANYENILMEZ", "AQAAAAEAACcQAAAAEAAal14Y8XVo2XRtnANJFHwC63Jk42blWiu03YwWzUy9TzsxaR7m82rNEpoF1HvC7A==", "0545 555 ####", false, null, null, "bc4d6b80-75b0-4821-8f5c-607817461bb9", false, "ihsanyenilmez" },
+                    { 6, 0, "62865a99-c7b6-4d2b-811f-be1bb9dc5762", "berrin@seeddata.com", true, "Berrin", "Miral", false, null, "BERRIN@SEEDDATA.COM", "BERRINMIRAL", "AQAAAAEAACcQAAAAEDPZCRih0+x/DTLelV8RYB3FF/Ri4dT5xN80/ZRONwuO4iL7tEDCFhyz24OLjz3SLA==", "0546 555 ####", false, null, null, "3f024cb1-030f-420d-84a9-55e10df1eee5", false, "berrinmiral" },
+                    { 7, 0, "72c21fbf-2bbf-41dd-a59d-3ca4253c6074", "salih@seeddata.com", true, "Salih", "Yurdakul", false, null, "SALIH@SEEDDATA.COM", "SALIHYURDAKUL", "AQAAAAEAACcQAAAAEGbDPcLnG406XUIcl70BWDLXNfOsr6aF+BD5f0EkQT9SuVw+SVcbWRBbrX9x64uBsA==", "0547 555 ####", false, null, null, "c4586e1a-904f-4bd5-b904-14d6baaedd1b", false, "salihyurdakul" },
+                    { 8, 0, "1faff125-8cfa-435b-bade-a10440da76a5", "zafer@seeddata.com", true, "Zafer", "Kırat", false, null, "ZAFER@SEEDDATA.COM", "ZAFERKIRAT", "AQAAAAEAACcQAAAAED5c6xPHyTN03WcmGB9fMVXRdKiDwCgYd9AZRZkAehWbK0HK4JweogMOZKqkvHC69w==", "0548 555 ####", false, null, null, "bd8d1f8a-b337-478c-8dd5-34d1ba69d4cc", false, "zaferkırat" },
+                    { 9, 0, "519eac7f-79cb-4d63-a222-4b8b93e785d6", "emre@seeddata.com", true, "Emre", "Demir", false, null, "EMRE@SEEDDATA.COM", "EMREDEMIR", "AQAAAAEAACcQAAAAED1R4cfMSwfCGOr/SASHvy2JVvmhhCoF13adBD2ppXPE7rtbCohSU+HvTs7MeZTEzg==", "0549 555 ####", false, null, null, "e23c778a-f521-4b7f-9eda-7084c568d8d6", false, "emredemir" }
                 });
 
             migrationBuilder.InsertData(

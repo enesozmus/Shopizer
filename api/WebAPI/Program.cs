@@ -10,6 +10,7 @@ using Serilog;
 using Serilog.Context;
 using Serilog.Core;
 using Serilog.Sinks.MSSqlServer;
+using SignalR.HubMapRegistrations;
 using System.Collections.ObjectModel;
 using System.Security.Claims;
 using System.Text;
@@ -25,6 +26,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.ConfigureApplicationServices();
 builder.Services.ConfigureInfrastructureServices();
 builder.Services.ConfigurePersistenceServices(builder.Configuration);
+builder.Services.ConfigureSignalRServices();
 
 #endregion
 
@@ -38,7 +40,10 @@ builder.Services.AddStorage<AzureStorage>();
 #region CORS
 
 builder.Services.AddCors(options => options.AddPolicy("myclients", policy =>
-    policy.WithOrigins("http://localhost:4200", "https://localhost:4200").AllowAnyHeader().AllowAnyMethod().AllowCredentials()
+    policy.WithOrigins("http://localhost:4200", "https://localhost:4200")
+    .AllowAnyHeader()
+    .AllowAnyMethod()
+    .AllowCredentials()
 ));
 
 #endregion
@@ -182,7 +187,6 @@ app.UseStaticFiles();
 
 #endregion
 
-
 app.UseCors("myclients");
 app.UseHttpsRedirection();
 
@@ -205,5 +209,6 @@ app.Use(async (context, next) =>
 #endregion
 
 app.MapControllers();
+app.MapHubs();
 
 app.Run();
