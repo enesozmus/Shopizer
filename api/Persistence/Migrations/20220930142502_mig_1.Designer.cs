@@ -12,7 +12,7 @@ using Persistence.Contexts;
 namespace Persistence.Migrations
 {
     [DbContext(typeof(ECommerceDbContext))]
-    [Migration("20220928092603_mig_1")]
+    [Migration("20220930142502_mig_1")]
     partial class mig_1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -57,14 +57,14 @@ namespace Persistence.Migrations
                         new
                         {
                             Id = 1,
-                            ConcurrencyStamp = "23d7ad86-8c63-4e65-96ec-2ed327f37ebc",
+                            ConcurrencyStamp = "6ffb1668-dddf-4059-9ed4-30ad209ff0d2",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
                             Id = 2,
-                            ConcurrencyStamp = "687fe331-9824-43d7-a1d1-e260d1536757",
+                            ConcurrencyStamp = "f40c9353-e6aa-4c4e-9d35-54561aa6892c",
                             Name = "User",
                             NormalizedName = "USER"
                         });
@@ -160,7 +160,7 @@ namespace Persistence.Migrations
                         {
                             Id = 1,
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "a29b3093-03e1-45de-9aa2-2b5de1123410",
+                            ConcurrencyStamp = "f6b8cb7d-a7ab-4cd4-a69d-feaf90c14084",
                             Email = "enes@seeddata.com",
                             EmailConfirmed = true,
                             FirstName = "Enes",
@@ -168,10 +168,10 @@ namespace Persistence.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = " ENES@SEEDDATA.COM",
                             NormalizedUserName = "ENESOZMUS",
-                            PasswordHash = "AQAAAAEAACcQAAAAENf+JK2X3+GB4zvHAcQ9BaDCtDS35JpJQqs5IOdxeTsHCR7hZP/e2HnfmI3BCfUsWg==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEOMfDhoL92w0eg94WSNK0qdqsiZ4gmvcUk2NdXpQNFvjDG32EcHlrPmJLZY3SDV5hg==",
                             PhoneNumber = "0541 555 ####",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "8b4a10af-e497-462c-b6a1-00d51b076d9f",
+                            SecurityStamp = "b7822267-5fe3-43b9-9152-910d63ebd39c",
                             TwoFactorEnabled = false,
                             UserName = "enesozmus"
                         },
@@ -179,7 +179,7 @@ namespace Persistence.Migrations
                         {
                             Id = 2,
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "c653fe87-145f-4d6c-bb48-8b8820e2c6bf",
+                            ConcurrencyStamp = "f3ee0a02-0065-480a-a367-139cfa83c225",
                             Email = "umay@seeddata.com",
                             EmailConfirmed = true,
                             FirstName = "Umay",
@@ -187,10 +187,10 @@ namespace Persistence.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "UMAY@SEEDDATA.COM",
                             NormalizedUserName = "UMAYZENGIN",
-                            PasswordHash = "AQAAAAEAACcQAAAAEDlWiSDVcZsZ4xs4Peoa5lO3GP8p8qwHpVQerjF59HPLsgZzJDsemysr+ghFH1Az9A==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEGTseNDKKx0uePTANKtLSjCedARn9gfWRADg/B8MuVBQQEai8c5OyYxoV1zdXPP+nw==",
                             PhoneNumber = "0542 555 ####",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "897a0163-28c8-49de-8b08-3b07e48b1433",
+                            SecurityStamp = "e633be65-3b0a-4bb9-89dc-93b00f23d019",
                             TwoFactorEnabled = false,
                             UserName = "umayzengin"
                         },
@@ -198,7 +198,7 @@ namespace Persistence.Migrations
                         {
                             Id = 3,
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "6a25282a-3c32-40ef-993c-dd1b3a49a84a",
+                            ConcurrencyStamp = "678a702f-ff70-4ff6-a10f-37cb99b7252e",
                             Email = "selim@seeddata.com",
                             EmailConfirmed = true,
                             FirstName = "Selim",
@@ -206,10 +206,10 @@ namespace Persistence.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "SELIM@SEEDDATA.COM",
                             NormalizedUserName = "SELIMKARACA",
-                            PasswordHash = "AQAAAAEAACcQAAAAEPCCEt4Bfaq+cZOt1EOzIK3gc2V13hFydI1ieB1Kno6Y7GgxMosTF8DOu6ls36TfqA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEC0m/hhWAIStCoDSZbgKs+VHcNsRWB47LEZHPLGnR0s0dTpucw2QsFHkLBo7sPiJPA==",
                             PhoneNumber = "0543 555 ####",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "b9a8c451-a1c8-4bcf-ae10-a4052467d83c",
+                            SecurityStamp = "0392de8b-e9d0-491e-b5cd-506e709f10a9",
                             TwoFactorEnabled = false,
                             UserName = "selimkaraca"
                         },
@@ -217,7 +217,7 @@ namespace Persistence.Migrations
                         {
                             Id = 4,
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "b5fe1d20-3e47-409e-afce-2fd49e991b65",
+                            ConcurrencyStamp = "618351ec-9b2e-41d9-82c7-f2905612edf9",
                             Email = "emine@seeddata.com",
                             EmailConfirmed = true,
                             FirstName = "Emine",
@@ -225,10 +225,10 @@ namespace Persistence.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "EMINE@SEEDDATA.COM",
                             NormalizedUserName = "EMINEYILDIRIM",
-                            PasswordHash = "AQAAAAEAACcQAAAAECDJer4QvGn3Lb22ogpWHV2L9LVEqGDEp3YbrHnp45AsOScPvl2j0QYuJjkANCBY+w==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEDDssodahdIr2YtB7NMdbVocLDXMNZKYGuvTzlycWgzYcifMS/GnJNTXoM8NO0HOSw==",
                             PhoneNumber = "0544 555 ####",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "34a05b52-b85b-4b80-9f07-5b74d8f37eac",
+                            SecurityStamp = "55323e1e-d5a5-4b17-8c9f-834d00a761ca",
                             TwoFactorEnabled = false,
                             UserName = "emineyıldırım"
                         },
@@ -236,7 +236,7 @@ namespace Persistence.Migrations
                         {
                             Id = 5,
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "5143a181-2bf4-4d88-9882-ea05b034e6b0",
+                            ConcurrencyStamp = "2bba985c-8076-4f9e-b675-16fb4c8795f7",
                             Email = "ihsan@seeddata.com",
                             EmailConfirmed = true,
                             FirstName = "İhsan",
@@ -244,10 +244,10 @@ namespace Persistence.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "IHSAN@SEEDDATA.COM",
                             NormalizedUserName = "IHSANYENILMEZ",
-                            PasswordHash = "AQAAAAEAACcQAAAAEAAal14Y8XVo2XRtnANJFHwC63Jk42blWiu03YwWzUy9TzsxaR7m82rNEpoF1HvC7A==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEGMDeCu6w4jK1lcISjBYbGHdSADAhSipUO6TVJXRDLOQug/WOZdw0AsywKv3HKbC3g==",
                             PhoneNumber = "0545 555 ####",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "bc4d6b80-75b0-4821-8f5c-607817461bb9",
+                            SecurityStamp = "f3f994d0-f48c-4023-89e6-fa29d9c6c286",
                             TwoFactorEnabled = false,
                             UserName = "ihsanyenilmez"
                         },
@@ -255,7 +255,7 @@ namespace Persistence.Migrations
                         {
                             Id = 6,
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "62865a99-c7b6-4d2b-811f-be1bb9dc5762",
+                            ConcurrencyStamp = "141bdc61-b80b-4f61-a022-eb79d7c2c166",
                             Email = "berrin@seeddata.com",
                             EmailConfirmed = true,
                             FirstName = "Berrin",
@@ -263,10 +263,10 @@ namespace Persistence.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "BERRIN@SEEDDATA.COM",
                             NormalizedUserName = "BERRINMIRAL",
-                            PasswordHash = "AQAAAAEAACcQAAAAEDPZCRih0+x/DTLelV8RYB3FF/Ri4dT5xN80/ZRONwuO4iL7tEDCFhyz24OLjz3SLA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEFoajWIjrX1O7zMYqGLsCKx/iYfG+K6MPIbIRXNa6zQmVykosbn51+XQg2h9if2uaA==",
                             PhoneNumber = "0546 555 ####",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "3f024cb1-030f-420d-84a9-55e10df1eee5",
+                            SecurityStamp = "3517814f-d424-4c4a-8d98-73436777f5fa",
                             TwoFactorEnabled = false,
                             UserName = "berrinmiral"
                         },
@@ -274,7 +274,7 @@ namespace Persistence.Migrations
                         {
                             Id = 7,
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "72c21fbf-2bbf-41dd-a59d-3ca4253c6074",
+                            ConcurrencyStamp = "4c7088e8-6f2d-4aea-af96-c48b9d6491ec",
                             Email = "salih@seeddata.com",
                             EmailConfirmed = true,
                             FirstName = "Salih",
@@ -282,10 +282,10 @@ namespace Persistence.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "SALIH@SEEDDATA.COM",
                             NormalizedUserName = "SALIHYURDAKUL",
-                            PasswordHash = "AQAAAAEAACcQAAAAEGbDPcLnG406XUIcl70BWDLXNfOsr6aF+BD5f0EkQT9SuVw+SVcbWRBbrX9x64uBsA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEFmq7WwP1+I7MEyhMOxbfZ53XyTQMUHrFzqxYl4Vk1vQa/iMXr/DX98g6EyCYHlF5g==",
                             PhoneNumber = "0547 555 ####",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "c4586e1a-904f-4bd5-b904-14d6baaedd1b",
+                            SecurityStamp = "6133c290-212f-44dd-bb59-daa2cc381a8e",
                             TwoFactorEnabled = false,
                             UserName = "salihyurdakul"
                         },
@@ -293,7 +293,7 @@ namespace Persistence.Migrations
                         {
                             Id = 8,
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "1faff125-8cfa-435b-bade-a10440da76a5",
+                            ConcurrencyStamp = "6487b072-c376-40f0-ac45-d037138ebcb2",
                             Email = "zafer@seeddata.com",
                             EmailConfirmed = true,
                             FirstName = "Zafer",
@@ -301,10 +301,10 @@ namespace Persistence.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ZAFER@SEEDDATA.COM",
                             NormalizedUserName = "ZAFERKIRAT",
-                            PasswordHash = "AQAAAAEAACcQAAAAED5c6xPHyTN03WcmGB9fMVXRdKiDwCgYd9AZRZkAehWbK0HK4JweogMOZKqkvHC69w==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEJ/2tNCZohCCyOBuwCZmrdOCRfiF5BVnDPgBs1JVQC54aBvThaPKypUjgTA0+uzujg==",
                             PhoneNumber = "0548 555 ####",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "bd8d1f8a-b337-478c-8dd5-34d1ba69d4cc",
+                            SecurityStamp = "217eeafb-11f5-4b50-8084-54f3b3c5713c",
                             TwoFactorEnabled = false,
                             UserName = "zaferkırat"
                         },
@@ -312,7 +312,7 @@ namespace Persistence.Migrations
                         {
                             Id = 9,
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "519eac7f-79cb-4d63-a222-4b8b93e785d6",
+                            ConcurrencyStamp = "85e3914a-e370-4660-9854-b4dec9418044",
                             Email = "emre@seeddata.com",
                             EmailConfirmed = true,
                             FirstName = "Emre",
@@ -320,10 +320,10 @@ namespace Persistence.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "EMRE@SEEDDATA.COM",
                             NormalizedUserName = "EMREDEMIR",
-                            PasswordHash = "AQAAAAEAACcQAAAAED1R4cfMSwfCGOr/SASHvy2JVvmhhCoF13adBD2ppXPE7rtbCohSU+HvTs7MeZTEzg==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEDe7lTVVAAIxGCBQB1nG/IVPzIK5UjKnwK113G9UDT7foRyF8M/qvIxoeH8PbNj3rg==",
                             PhoneNumber = "0549 555 ####",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "e23c778a-f521-4b7f-9eda-7084c568d8d6",
+                            SecurityStamp = "25dd280b-d561-4c6e-b76a-ebd51485174e",
                             TwoFactorEnabled = false,
                             UserName = "emredemir"
                         });
@@ -364,6 +364,62 @@ namespace Persistence.Migrations
                     b.ToTable("BaseFiles");
 
                     b.HasDiscriminator<string>("Discriminator").HasValue("BaseFile");
+                });
+
+            modelBuilder.Entity("Domain.Entities.Basket", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("AppUserId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("LastModifiedDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AppUserId");
+
+                    b.ToTable("Baskets");
+                });
+
+            modelBuilder.Entity("Domain.Entities.BasketItem", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("BasketId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("LastModifiedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("BasketId");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("BasketItems");
                 });
 
             modelBuilder.Entity("Domain.Entities.Brand", b =>
@@ -693,10 +749,7 @@ namespace Persistence.Migrations
             modelBuilder.Entity("Domain.Entities.Order", b =>
                 {
                     b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("Address")
                         .IsRequired()
@@ -1264,6 +1317,36 @@ namespace Persistence.Migrations
                     b.HasDiscriminator().HasValue("ProductImageFile");
                 });
 
+            modelBuilder.Entity("Domain.Entities.Basket", b =>
+                {
+                    b.HasOne("Domain.Entities.AppUser", "AppUser")
+                        .WithMany("Baskets")
+                        .HasForeignKey("AppUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("AppUser");
+                });
+
+            modelBuilder.Entity("Domain.Entities.BasketItem", b =>
+                {
+                    b.HasOne("Domain.Entities.Basket", "Basket")
+                        .WithMany("BasketItems")
+                        .HasForeignKey("BasketId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Domain.Entities.Product", "Product")
+                        .WithMany("BasketItems")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Basket");
+
+                    b.Navigation("Product");
+                });
+
             modelBuilder.Entity("Domain.Entities.Offer", b =>
                 {
                     b.HasOne("Domain.Entities.AppUser", "AppUser")
@@ -1275,7 +1358,7 @@ namespace Persistence.Migrations
                     b.HasOne("Domain.Entities.Product", "Product")
                         .WithMany("Offers")
                         .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("AppUser");
@@ -1291,6 +1374,14 @@ namespace Persistence.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("Domain.Entities.Basket", "Basket")
+                        .WithOne("Order")
+                        .HasForeignKey("Domain.Entities.Order", "Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Basket");
+
                     b.Navigation("Customer");
                 });
 
@@ -1299,7 +1390,7 @@ namespace Persistence.Migrations
                     b.HasOne("Domain.Entities.AppUser", "AppUser")
                         .WithMany("Products")
                         .HasForeignKey("AppUserId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Domain.Entities.Brand", "Brand")
@@ -1342,13 +1433,13 @@ namespace Persistence.Migrations
                     b.HasOne("Domain.Entities.Order", "Order")
                         .WithMany("Products_Orders")
                         .HasForeignKey("OrderId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.HasOne("Domain.Entities.Product", "Product")
                         .WithMany("Products_Orders")
                         .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.Navigation("Order");
@@ -1424,9 +1515,19 @@ namespace Persistence.Migrations
 
             modelBuilder.Entity("Domain.Entities.AppUser", b =>
                 {
+                    b.Navigation("Baskets");
+
                     b.Navigation("Offers");
 
                     b.Navigation("Products");
+                });
+
+            modelBuilder.Entity("Domain.Entities.Basket", b =>
+                {
+                    b.Navigation("BasketItems");
+
+                    b.Navigation("Order")
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Domain.Entities.Brand", b =>
@@ -1456,6 +1557,8 @@ namespace Persistence.Migrations
 
             modelBuilder.Entity("Domain.Entities.Product", b =>
                 {
+                    b.Navigation("BasketItems");
+
                     b.Navigation("Offers");
 
                     b.Navigation("Products_Orders");

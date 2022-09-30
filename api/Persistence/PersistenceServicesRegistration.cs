@@ -41,6 +41,9 @@ public static class PersistenceServicesRegistration
           services.AddScoped(typeof(IReadRepository<>), typeof(ReadRepository<>));
           services.AddScoped(typeof(IWriteRepository<>), typeof(WriteRepository<>));
 
+          services.AddScoped<ICustomerReadRepository, CustomerReadRepository>();
+          services.AddScoped<ICustomerWriteRepository, CustomerWriteRepository>();
+
           services.AddScoped<ICategoryReadRepository, CategoryReadRepository>();
           services.AddScoped<ICategoryWriteRepository, CategoryWriteRepository>();
 
@@ -56,14 +59,17 @@ public static class PersistenceServicesRegistration
           services.AddScoped<IProductReadRepository, ProductReadRepository>();
           services.AddScoped<IProductWriteRepository, ProductWriteRepository>();
 
-          services.AddScoped<ICustomerReadRepository, CustomerReadRepository>();
-          services.AddScoped<ICustomerWriteRepository, CustomerWriteRepository>();
-
-          services.AddScoped<IOfferReadRepository, OfferReadRepository>();
-          services.AddScoped<IOfferWriteRepository, OfferWriteRepository>();
+          services.AddScoped<IBasketItemReadRepository, BasketItemReadRepository>();
+          services.AddScoped<IBasketItemWriteRepository, BasketItemWriteRepository>();
 
           services.AddScoped<IOrderReadRepository, OrderReadRepository>();
           services.AddScoped<IOrderWriteRepository, OrderWriteRepository>();
+
+          services.AddScoped<IBasketReadRepository, BasketReadRepository>();
+          services.AddScoped<IBasketWriteRepository, BasketWriteRepository>();
+
+          services.AddScoped<IOfferReadRepository, OfferReadRepository>();
+          services.AddScoped<IOfferWriteRepository, OfferWriteRepository>();
 
           services.AddScoped<IBaseFileReadRepository, BaseFileReadRepository>();
           services.AddScoped<IBaseFileWriteRepository, BaseFileWriteRepository>();
@@ -79,6 +85,7 @@ public static class PersistenceServicesRegistration
           #region Services
 
           services.AddScoped<IAuthService, AuthService>();
+          //services.AddScoped<IBasketService, BasketService>();
 
           #endregion
 

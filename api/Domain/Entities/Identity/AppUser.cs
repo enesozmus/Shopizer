@@ -12,4 +12,5 @@ public class AppUser : IdentityUser<int>
 
      public ICollection<Offer> Offers { get; set; }
      public ICollection<Product> Products { get; set; }
+     public ICollection<Basket> Baskets { get; set; }
 }

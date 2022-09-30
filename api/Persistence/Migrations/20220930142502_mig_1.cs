@@ -1,10 +1,11 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
 namespace Persistence.Migrations
 {
-     public partial class mig_1 : Migration
+    public partial class mig_1 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -255,24 +256,22 @@ namespace Persistence.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Orders",
+                name: "Baskets",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Description = table.Column<string>(type: "nvarchar(300)", maxLength: 300, nullable: false),
-                    Address = table.Column<string>(type: "nvarchar(120)", maxLength: 120, nullable: false),
-                    CustomerId = table.Column<int>(type: "int", nullable: false),
+                    AppUserId = table.Column<int>(type: "int", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     LastModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Orders", x => x.Id);
+                    table.PrimaryKey("PK_Baskets", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Orders_Customers_CustomerId",
-                        column: x => x.CustomerId,
-                        principalTable: "Customers",
+                        name: "FK_Baskets_AspNetUsers_AppUserId",
+                        column: x => x.AppUserId,
+                        principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -304,7 +303,7 @@ namespace Persistence.Migrations
                         column: x => x.AppUserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Products_Brands_BrandId",
                         column: x => x.BrandId,
@@ -327,6 +326,63 @@ namespace Persistence.Migrations
                         name: "FK_Products_Sizes_SizeId",
                         column: x => x.SizeId,
                         principalTable: "Sizes",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Orders",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(300)", maxLength: 300, nullable: false),
+                    Address = table.Column<string>(type: "nvarchar(120)", maxLength: 120, nullable: false),
+                    CustomerId = table.Column<int>(type: "int", nullable: false),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    LastModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Orders", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Orders_Baskets_Id",
+                        column: x => x.Id,
+                        principalTable: "Baskets",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Orders_Customers_CustomerId",
+                        column: x => x.CustomerId,
+                        principalTable: "Customers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "BasketItems",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Quantity = table.Column<int>(type: "int", nullable: false),
+                    BasketId = table.Column<int>(type: "int", nullable: false),
+                    ProductId = table.Column<int>(type: "int", nullable: false),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    LastModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_BasketItems", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_BasketItems_Baskets_BasketId",
+                        column: x => x.BasketId,
+                        principalTable: "Baskets",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_BasketItems_Products_ProductId",
+                        column: x => x.ProductId,
+                        principalTable: "Products",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -358,7 +414,7 @@ namespace Persistence.Migrations
                         column: x => x.ProductId,
                         principalTable: "Products",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -399,14 +455,12 @@ namespace Persistence.Migrations
                         name: "FK_Products_Orders_Orders_OrderId",
                         column: x => x.OrderId,
                         principalTable: "Orders",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_Products_Orders_Products_ProductId",
                         column: x => x.ProductId,
                         principalTable: "Products",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.InsertData(
@@ -414,8 +468,8 @@ namespace Persistence.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { 1, "23d7ad86-8c63-4e65-96ec-2ed327f37ebc", "Admin", "ADMIN" },
-                    { 2, "687fe331-9824-43d7-a1d1-e260d1536757", "User", "USER" }
+                    { 1, "6ffb1668-dddf-4059-9ed4-30ad209ff0d2", "Admin", "ADMIN" },
+                    { 2, "f40c9353-e6aa-4c4e-9d35-54561aa6892c", "User", "USER" }
                 });
 
             migrationBuilder.InsertData(
@@ -423,15 +477,15 @@ namespace Persistence.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "RefreshToken", "RefreshTokenEndDate", "SecurityStamp", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { 1, 0, "a29b3093-03e1-45de-9aa2-2b5de1123410", "enes@seeddata.com", true, "Enes", "Ozmus", false, null, " ENES@SEEDDATA.COM", "ENESOZMUS", "AQAAAAEAACcQAAAAENf+JK2X3+GB4zvHAcQ9BaDCtDS35JpJQqs5IOdxeTsHCR7hZP/e2HnfmI3BCfUsWg==", "0541 555 ####", false, null, null, "8b4a10af-e497-462c-b6a1-00d51b076d9f", false, "enesozmus" },
-                    { 2, 0, "c653fe87-145f-4d6c-bb48-8b8820e2c6bf", "umay@seeddata.com", true, "Umay", "Zengin", false, null, "UMAY@SEEDDATA.COM", "UMAYZENGIN", "AQAAAAEAACcQAAAAEDlWiSDVcZsZ4xs4Peoa5lO3GP8p8qwHpVQerjF59HPLsgZzJDsemysr+ghFH1Az9A==", "0542 555 ####", false, null, null, "897a0163-28c8-49de-8b08-3b07e48b1433", false, "umayzengin" },
-                    { 3, 0, "6a25282a-3c32-40ef-993c-dd1b3a49a84a", "selim@seeddata.com", true, "Selim", "Karaca", false, null, "SELIM@SEEDDATA.COM", "SELIMKARACA", "AQAAAAEAACcQAAAAEPCCEt4Bfaq+cZOt1EOzIK3gc2V13hFydI1ieB1Kno6Y7GgxMosTF8DOu6ls36TfqA==", "0543 555 ####", false, null, null, "b9a8c451-a1c8-4bcf-ae10-a4052467d83c", false, "selimkaraca" },
-                    { 4, 0, "b5fe1d20-3e47-409e-afce-2fd49e991b65", "emine@seeddata.com", true, "Emine", "Yıldırım", false, null, "EMINE@SEEDDATA.COM", "EMINEYILDIRIM", "AQAAAAEAACcQAAAAECDJer4QvGn3Lb22ogpWHV2L9LVEqGDEp3YbrHnp45AsOScPvl2j0QYuJjkANCBY+w==", "0544 555 ####", false, null, null, "34a05b52-b85b-4b80-9f07-5b74d8f37eac", false, "emineyıldırım" },
-                    { 5, 0, "5143a181-2bf4-4d88-9882-ea05b034e6b0", "ihsan@seeddata.com", true, "İhsan", "Yenilmez", false, null, "IHSAN@SEEDDATA.COM", "IHSANYENILMEZ", "AQAAAAEAACcQAAAAEAAal14Y8XVo2XRtnANJFHwC63Jk42blWiu03YwWzUy9TzsxaR7m82rNEpoF1HvC7A==", "0545 555 ####", false, null, null, "bc4d6b80-75b0-4821-8f5c-607817461bb9", false, "ihsanyenilmez" },
-                    { 6, 0, "62865a99-c7b6-4d2b-811f-be1bb9dc5762", "berrin@seeddata.com", true, "Berrin", "Miral", false, null, "BERRIN@SEEDDATA.COM", "BERRINMIRAL", "AQAAAAEAACcQAAAAEDPZCRih0+x/DTLelV8RYB3FF/Ri4dT5xN80/ZRONwuO4iL7tEDCFhyz24OLjz3SLA==", "0546 555 ####", false, null, null, "3f024cb1-030f-420d-84a9-55e10df1eee5", false, "berrinmiral" },
-                    { 7, 0, "72c21fbf-2bbf-41dd-a59d-3ca4253c6074", "salih@seeddata.com", true, "Salih", "Yurdakul", false, null, "SALIH@SEEDDATA.COM", "SALIHYURDAKUL", "AQAAAAEAACcQAAAAEGbDPcLnG406XUIcl70BWDLXNfOsr6aF+BD5f0EkQT9SuVw+SVcbWRBbrX9x64uBsA==", "0547 555 ####", false, null, null, "c4586e1a-904f-4bd5-b904-14d6baaedd1b", false, "salihyurdakul" },
-                    { 8, 0, "1faff125-8cfa-435b-bade-a10440da76a5", "zafer@seeddata.com", true, "Zafer", "Kırat", false, null, "ZAFER@SEEDDATA.COM", "ZAFERKIRAT", "AQAAAAEAACcQAAAAED5c6xPHyTN03WcmGB9fMVXRdKiDwCgYd9AZRZkAehWbK0HK4JweogMOZKqkvHC69w==", "0548 555 ####", false, null, null, "bd8d1f8a-b337-478c-8dd5-34d1ba69d4cc", false, "zaferkırat" },
-                    { 9, 0, "519eac7f-79cb-4d63-a222-4b8b93e785d6", "emre@seeddata.com", true, "Emre", "Demir", false, null, "EMRE@SEEDDATA.COM", "EMREDEMIR", "AQAAAAEAACcQAAAAED1R4cfMSwfCGOr/SASHvy2JVvmhhCoF13adBD2ppXPE7rtbCohSU+HvTs7MeZTEzg==", "0549 555 ####", false, null, null, "e23c778a-f521-4b7f-9eda-7084c568d8d6", false, "emredemir" }
+                    { 1, 0, "f6b8cb7d-a7ab-4cd4-a69d-feaf90c14084", "enes@seeddata.com", true, "Enes", "Ozmus", false, null, " ENES@SEEDDATA.COM", "ENESOZMUS", "AQAAAAEAACcQAAAAEOMfDhoL92w0eg94WSNK0qdqsiZ4gmvcUk2NdXpQNFvjDG32EcHlrPmJLZY3SDV5hg==", "0541 555 ####", false, null, null, "b7822267-5fe3-43b9-9152-910d63ebd39c", false, "enesozmus" },
+                    { 2, 0, "f3ee0a02-0065-480a-a367-139cfa83c225", "umay@seeddata.com", true, "Umay", "Zengin", false, null, "UMAY@SEEDDATA.COM", "UMAYZENGIN", "AQAAAAEAACcQAAAAEGTseNDKKx0uePTANKtLSjCedARn9gfWRADg/B8MuVBQQEai8c5OyYxoV1zdXPP+nw==", "0542 555 ####", false, null, null, "e633be65-3b0a-4bb9-89dc-93b00f23d019", false, "umayzengin" },
+                    { 3, 0, "678a702f-ff70-4ff6-a10f-37cb99b7252e", "selim@seeddata.com", true, "Selim", "Karaca", false, null, "SELIM@SEEDDATA.COM", "SELIMKARACA", "AQAAAAEAACcQAAAAEC0m/hhWAIStCoDSZbgKs+VHcNsRWB47LEZHPLGnR0s0dTpucw2QsFHkLBo7sPiJPA==", "0543 555 ####", false, null, null, "0392de8b-e9d0-491e-b5cd-506e709f10a9", false, "selimkaraca" },
+                    { 4, 0, "618351ec-9b2e-41d9-82c7-f2905612edf9", "emine@seeddata.com", true, "Emine", "Yıldırım", false, null, "EMINE@SEEDDATA.COM", "EMINEYILDIRIM", "AQAAAAEAACcQAAAAEDDssodahdIr2YtB7NMdbVocLDXMNZKYGuvTzlycWgzYcifMS/GnJNTXoM8NO0HOSw==", "0544 555 ####", false, null, null, "55323e1e-d5a5-4b17-8c9f-834d00a761ca", false, "emineyıldırım" },
+                    { 5, 0, "2bba985c-8076-4f9e-b675-16fb4c8795f7", "ihsan@seeddata.com", true, "İhsan", "Yenilmez", false, null, "IHSAN@SEEDDATA.COM", "IHSANYENILMEZ", "AQAAAAEAACcQAAAAEGMDeCu6w4jK1lcISjBYbGHdSADAhSipUO6TVJXRDLOQug/WOZdw0AsywKv3HKbC3g==", "0545 555 ####", false, null, null, "f3f994d0-f48c-4023-89e6-fa29d9c6c286", false, "ihsanyenilmez" },
+                    { 6, 0, "141bdc61-b80b-4f61-a022-eb79d7c2c166", "berrin@seeddata.com", true, "Berrin", "Miral", false, null, "BERRIN@SEEDDATA.COM", "BERRINMIRAL", "AQAAAAEAACcQAAAAEFoajWIjrX1O7zMYqGLsCKx/iYfG+K6MPIbIRXNa6zQmVykosbn51+XQg2h9if2uaA==", "0546 555 ####", false, null, null, "3517814f-d424-4c4a-8d98-73436777f5fa", false, "berrinmiral" },
+                    { 7, 0, "4c7088e8-6f2d-4aea-af96-c48b9d6491ec", "salih@seeddata.com", true, "Salih", "Yurdakul", false, null, "SALIH@SEEDDATA.COM", "SALIHYURDAKUL", "AQAAAAEAACcQAAAAEFmq7WwP1+I7MEyhMOxbfZ53XyTQMUHrFzqxYl4Vk1vQa/iMXr/DX98g6EyCYHlF5g==", "0547 555 ####", false, null, null, "6133c290-212f-44dd-bb59-daa2cc381a8e", false, "salihyurdakul" },
+                    { 8, 0, "6487b072-c376-40f0-ac45-d037138ebcb2", "zafer@seeddata.com", true, "Zafer", "Kırat", false, null, "ZAFER@SEEDDATA.COM", "ZAFERKIRAT", "AQAAAAEAACcQAAAAEJ/2tNCZohCCyOBuwCZmrdOCRfiF5BVnDPgBs1JVQC54aBvThaPKypUjgTA0+uzujg==", "0548 555 ####", false, null, null, "217eeafb-11f5-4b50-8084-54f3b3c5713c", false, "zaferkırat" },
+                    { 9, 0, "85e3914a-e370-4660-9854-b4dec9418044", "emre@seeddata.com", true, "Emre", "Demir", false, null, "EMRE@SEEDDATA.COM", "EMREDEMIR", "AQAAAAEAACcQAAAAEDe7lTVVAAIxGCBQB1nG/IVPzIK5UjKnwK113G9UDT7foRyF8M/qvIxoeH8PbNj3rg==", "0549 555 ####", false, null, null, "25dd280b-d561-4c6e-b76a-ebd51485174e", false, "emredemir" }
                 });
 
             migrationBuilder.InsertData(
@@ -564,6 +618,21 @@ namespace Persistence.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
+                name: "IX_BasketItems_BasketId",
+                table: "BasketItems",
+                column: "BasketId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_BasketItems_ProductId",
+                table: "BasketItems",
+                column: "ProductId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Baskets_AppUserId",
+                table: "Baskets",
+                column: "AppUserId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Offers_AppUserId",
                 table: "Offers",
                 column: "AppUserId");
@@ -632,6 +701,9 @@ namespace Persistence.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
+                name: "BasketItems");
+
+            migrationBuilder.DropTable(
                 name: "Offers");
 
             migrationBuilder.DropTable(
@@ -653,10 +725,10 @@ namespace Persistence.Migrations
                 name: "Products");
 
             migrationBuilder.DropTable(
-                name: "Customers");
+                name: "Baskets");
 
             migrationBuilder.DropTable(
-                name: "AspNetUsers");
+                name: "Customers");
 
             migrationBuilder.DropTable(
                 name: "Brands");
@@ -669,6 +741,9 @@ namespace Persistence.Migrations
 
             migrationBuilder.DropTable(
                 name: "Sizes");
+
+            migrationBuilder.DropTable(
+                name: "AspNetUsers");
         }
     }
 }

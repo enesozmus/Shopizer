@@ -12,13 +12,15 @@ public class ECommerceDbContext : IdentityDbContext<AppUser, AppRole, int>
 
      #region Entities
 
-     public DbSet<Product> Products { get; set; }
+     public DbSet<Customer> Customers { get; set; }
      public DbSet<Category> Categories { get; set; }
      public DbSet<Brand> Brands { get; set; }
      public DbSet<Color> Colors { get; set; }
      public DbSet<Size> Sizes { get; set; }
+     public DbSet<Product> Products { get; set; }
+     public DbSet<BasketItem> BasketItems { get; set; }
      public DbSet<Order> Orders { get; set; }
-     public DbSet<Customer> Customers { get; set; }
+     public DbSet<Basket> Baskets { get; set; }
      public DbSet<Offer> Offers { get; set; }
      public DbSet<BaseFile> BaseFiles { get; set; }
      public DbSet<ProductImageFile> ProductImageFiles { get; set; }
@@ -54,18 +56,21 @@ public class ECommerceDbContext : IdentityDbContext<AppUser, AppRole, int>
      protected override void OnModelCreating(ModelBuilder modelBuilder)
      {
           modelBuilder.Entity<Product_Order>().HasKey(x => new { x.ProductId, x.OrderId });
-          modelBuilder.Entity<Product_Order>().HasOne(m => m.Order).WithMany(am => am.Products_Orders).HasForeignKey(m => m.OrderId);
-          modelBuilder.Entity<Product_Order>().HasOne(m => m.Product).WithMany(am => am.Products_Orders).HasForeignKey(m => m.ProductId);
+          modelBuilder.Entity<Product_Order>().HasOne(m => m.Order).WithMany(am => am.Products_Orders).HasForeignKey(m => m.OrderId).OnDelete(DeleteBehavior.NoAction);
+          modelBuilder.Entity<Product_Order>().HasOne(m => m.Product).WithMany(am => am.Products_Orders).HasForeignKey(m => m.ProductId).OnDelete(DeleteBehavior.NoAction);
+
+          modelBuilder.Entity<Basket>().HasOne(b => b.Order).WithOne(o => o.Basket).HasForeignKey<Order>(b => b.Id);
 
           modelBuilder.ApplyConfiguration(new AppUserConfiguration());
           modelBuilder.ApplyConfiguration(new AppRoleConfiguration());
-          modelBuilder.ApplyConfiguration(new ProductConfiguration());
+          modelBuilder.ApplyConfiguration(new CustomerConfiguration());
           modelBuilder.ApplyConfiguration(new CategoryConfiguration());
           modelBuilder.ApplyConfiguration(new BrandConfiguration());
           modelBuilder.ApplyConfiguration(new ColorConfiguration());
           modelBuilder.ApplyConfiguration(new SizeConfiguration());
+          modelBuilder.ApplyConfiguration(new ProductConfiguration());
+          modelBuilder.ApplyConfiguration(new BasketConfiguration());
           modelBuilder.ApplyConfiguration(new OrderConfiguration());
-          modelBuilder.ApplyConfiguration(new CustomerConfiguration());
           modelBuilder.ApplyConfiguration(new OfferConfiguration());
           modelBuilder.ApplyConfiguration(new InvoiceFileConfiguration());
 

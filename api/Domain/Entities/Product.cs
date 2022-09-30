@@ -22,6 +22,7 @@ public class Product : BaseEntity
 
      //public ICollection<Order> Orders { get; set; }
      public ICollection<Offer> Offers { get; set; }
+     public ICollection<BasketItem> BasketItems { get; set; }
      public ICollection<ProductImageFile> ProductImageFiles { get; set; }
 
      public List<Product_Order> Products_Orders { get; set; }

@@ -21,7 +21,14 @@ public class ProductConfiguration : IEntityTypeConfiguration<Product>
                     .HasForeignKey(x => x.ProductId)
                     .IsRequired(true)
                     // => Ürün silinirken silinmek istenen ürünle ilişkili teklifler de silinmeli.
-                    .OnDelete(DeleteBehavior.Cascade);
+                    .OnDelete(DeleteBehavior.Restrict);
+
+          builder.HasMany(x => x.BasketItems)
+                    .WithOne(x => x.Product)
+                    .HasForeignKey(x => x.ProductId)
+                    // => Kısıtlandı.
+                    // => Ürün silinirken silinmek istenen ürünle ilişkili sepet içeriği varsa ürün silinemesin.
+                    .OnDelete(DeleteBehavior.Restrict);
 
           //builder.HasMany(x => x.ProductImageFiles)
           //          .WithOne(x => x.Product)

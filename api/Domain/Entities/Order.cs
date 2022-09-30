@@ -9,5 +9,6 @@ public class Order : BaseEntity
      public Customer Customer { get; set; }
 
      public List<Product_Order> Products_Orders { get; set; }
-     //public ICollection<Product> Products { get; set; }
+
+     public Basket Basket { get; set; }
 }

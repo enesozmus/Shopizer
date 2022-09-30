@@ -25,9 +25,14 @@ internal class AppUserConfiguration : IEntityTypeConfiguration<AppUser>
           builder.HasMany(x => x.Products)
                     .WithOne(x => x.AppUser)
                     .HasForeignKey(x => x.AppUserId)
-                    // => Kısıtlandı.
                     // => Kullanıcı silinirken silinmek istenen kullanıcıyla ilişkili ürünler de silinmeli.
-                    .OnDelete(DeleteBehavior.Restrict);
+                    .OnDelete(DeleteBehavior.Cascade);
+
+          builder.HasMany(x => x.Baskets)
+                    .WithOne(x => x.AppUser)
+                    .HasForeignKey(x => x.AppUserId)
+                    // => Kullanıcı silinirken silinmek istenen kullanıcıyla ilişkili sepetler de silinmeli.
+                    .OnDelete(DeleteBehavior.Cascade);
 
           #endregion
 
