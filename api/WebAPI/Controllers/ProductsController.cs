@@ -16,12 +16,12 @@ public class ProductsController : BaseController
      //     => Ok(await Mediator.Send(new GetProductsQueryRequest()));
 
      ////by SpecificationPattern
-     //[HttpGet]
-     //public async Task<IActionResult> GetProductsWithSpec([FromQuery] ProductSpecParams requests)
-     //     => Ok(await Mediator.Send(new GetProductsBySpecificationPatternQueryRequest { Params = requests }));
+     [HttpGet]
+     public async Task<IActionResult> GetProductsWithSpec([FromQuery] ProductSpecParams requests)
+          => Ok(await Mediator.Send(new GetProductsBySpecificationPatternQueryRequest { Params = requests }));
 
      // by Pagination for Admin
-     [Authorize(AuthenticationSchemes = "Admin")]
+     //[Authorize(AuthenticationSchemes = "Admin")]
      [HttpGet("withParamaters")]
      public async Task<IActionResult> GetProductsWithPagination([FromQuery] GetProductsByPaginationQueryRequest request)
           => Ok(await Mediator.Send(request));
@@ -31,14 +31,17 @@ public class ProductsController : BaseController
           => Ok(await Mediator.Send(request));
 
      [HttpPost]
+     [Authorize(AuthenticationSchemes = "Admin")]
      public async Task<IActionResult> CreateProduct([FromBody] CreateProductCommandRequest request)
           => Ok(await Mediator.Send(request));
 
      [HttpPut]
+     [Authorize(AuthenticationSchemes = "Admin")]
      public async Task<IActionResult> UpdateProduct([FromBody] UpdateProductCommandRequest request)
           => Ok(await Mediator.Send(request));
 
      [HttpDelete("{Id}")]
+     [Authorize(AuthenticationSchemes = "Admin")]
      public async Task<IActionResult> RemoveProduct([FromRoute] RemoveProductCommandRequest request)
           => Ok(await Mediator.Send(request));
 
@@ -61,15 +64,21 @@ public class ProductsController : BaseController
      #endregion
 
      // route
-     [HttpGet("[action]/{id}")]
+     [HttpGet("[action]/{Id}")]
      public async Task<IActionResult> GetProductImages([FromRoute] GetProductImagesQueryRequest request)
           => Ok(await Mediator.Send(request));
 
      // delete image
      [HttpDelete("[action]/{id}")]
+     [Authorize(AuthenticationSchemes = "Admin")]
      public async Task<IActionResult> DeleteProductImage([FromRoute] RemoveProductImageCommandRequest request, [FromQuery] int imageId)
      {
           request.ImageId = imageId;
           return Ok(await Mediator.Send(request));
      }
+
+     [HttpGet("[action]")]
+     [Authorize(AuthenticationSchemes = "Admin")]
+     public async Task<IActionResult> ChangeShowcaseImage([FromQuery] ChangeShowcaseCommandRequest request)
+          => Ok(await Mediator.Send(request));
 }

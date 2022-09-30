@@ -37,9 +37,12 @@ public class MappingProfiles : Profile
           #region Test Pagination Logic
 
           CreateMap<IPaginate<Product>, GetProductsByPaginationQueryResponse>().ReverseMap();
+
           CreateMap<Product, ProductListDto>()
                .ForMember(dest => dest.BrandName, opt => opt.MapFrom(src => src.Brand.Name))
+               .ForMember(dest => dest.Path, opt => opt.MapFrom(src => src.ProductImageFiles.FirstOrDefault(x => x.Showcase).Path))
                .ReverseMap();
+
           #endregion
      }
 }

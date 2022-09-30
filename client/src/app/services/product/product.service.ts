@@ -87,6 +87,18 @@ export class ProductService {
     await firstValueFrom(deleteObservable);
     successCallBack();
   }
+
+  // vitrin resmini değiştir
+  async changeShowcase(imageId: number, productId: number, successCallBack?: () => void): Promise<void>{
+
+    const changeShowcaseImageObservable = this.httpClientService.get({
+      controller: "products",
+      action: "changeshowcaseimage",
+      queryString: `imageId=${imageId}&productId=${productId}`
+    });
+
+    await firstValueFrom(changeShowcaseImageObservable);
+    successCallBack();
+  }
   
 }
-

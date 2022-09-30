@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+
+    <div class="gallery">
+
+        <div class="content" *ngFor="let product of products">
+
+            <img  *ngIf="product.path == null" src="/assets/images/no-image.png" class="card-img-top" alt="...">
+            <img  *ngIf="product.path != null" src="{{baseStorageUrl.url}}/{{product.path}}" class="card-img-top" alt="...">
+
+            <h3>{{product.name}}</h3>
+            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit!</p>
+            <h6>{{product.price | currency: '₺'}}</h6>
+            <ul>
+                <li><i class="fa fa-star checked"></i></li>
+                <li><i class="fa fa-star checked"></i></li>
+                <li><i class="fa fa-star checked"></i></li>
+                <li><i class="fa fa-star checked"></i></li>
+                <li><i class="fa fa-star"></i></li>
+            </ul>
+            <button class="buy-1">Buy Now</button>
+        </div>
+
+    </div>
+
+    <div class="row">
+        <div class="col-md-3"></div>
+
+        <div class="col-md-6">
+            <nav aria-label="Page navigation example">
+                <ul class="pagination">
+
+                    <li class="page-item">
+                        <a class="page-link">{{currentPageNo}}/{{totalPageCount}}</a>
+                    </li>
+
+                    <li class="page-item">
+                        <a class="page-link"
+                            [routerLink]="['/products', currentPageNo - 1 <= 0 ? 1 : currentPageNo - 1]">Önceki</a>
+                    </li>
+
+                    <li class="page-item" *ngFor="let pageNo of pageList;" routerLinkActive="active">
+                        <a class="page-link" [routerLink]="['/products', pageNo]">{{pageNo}}</a>
+                    </li>
+
+                    <li class="page-item">
+                        <a class="page-link"
+                            [routerLink]="['/products', currentPageNo + 1 >= totalPageCount ? totalPageCount : currentPageNo + 1]">Sonraki</a>
+                    </li>
+
+                </ul>
+            </nav>
+        </div>
+
+        <div class="col-md-3"></div>
+    </div>
+
+    <!--  <div class="card" style="width: 18rem;">
+
+        <img src="/assets/images/no-image.png" class="card-img-top" alt="...">
+
+        <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+                content.</p>
+            <a href="#" class="btn btn-primary">Go somewhere</a>
+        </div>
+
+    </div>-->
+
+
+
+</body>
+
+</html>

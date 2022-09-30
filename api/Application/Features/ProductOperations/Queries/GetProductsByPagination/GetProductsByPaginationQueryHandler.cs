@@ -22,7 +22,8 @@ public class GetProductsByPaginationQueryHandler : IRequestHandler<GetProductsBy
      {
           // getir
           IPaginate<Product> products = await _productReadRepository.
-               GetListAsPaginateAsync(include: m => m.Include(x => x.Brand), index: request.PageRequest.PageIndex, size: request.PageRequest.PageSize);
+               GetListAsPaginateAsync(include: m => m.Include(x => x.Brand).Include(x => x.ProductImageFiles),
+               index: request.PageRequest.PageIndex, size: request.PageRequest.PageSize);
 
           // eşle
           GetProductsByPaginationQueryResponse mappedProducts = _mapper.Map<GetProductsByPaginationQueryResponse>(products);

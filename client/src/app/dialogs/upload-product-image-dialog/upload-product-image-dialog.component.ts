@@ -65,8 +65,16 @@ export class UploadProductImageDialogComponent extends BaseDialog<UploadProductI
           card.fadeOut(500);
         })
       }
-
     });
+  }
+
+  changeShowcase(imageId: number) {
+    /*alert("imageId: " + imageId + "- productId: " + this.data)*/
+    this.spinner.show(SpinnerType.BallSpinClockwiseFadeRotating);
+
+    this.productService.changeShowcase(imageId, this.data as number, () => {
+      this.spinner.hide(SpinnerType.BallSpinClockwiseFadeRotating);
+    })
   }
 
 
