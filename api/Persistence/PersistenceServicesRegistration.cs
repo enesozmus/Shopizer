@@ -85,7 +85,7 @@ public static class PersistenceServicesRegistration
           #region Services
 
           services.AddScoped<IAuthService, AuthService>();
-          //services.AddScoped<IBasketService, BasketService>();
+          services.AddScoped<IBasketService, BasketService>();
 
           #endregion
 

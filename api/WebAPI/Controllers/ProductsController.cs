@@ -10,7 +10,7 @@ namespace WebAPI.Controllers;
 
 public class ProductsController : BaseController
 {
-     // normal
+     // first
      //[HttpGet]
      //public async Task<IActionResult> GetProducts()
      //     => Ok(await Mediator.Send(new GetProductsQueryRequest()));
