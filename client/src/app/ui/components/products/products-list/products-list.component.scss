@@ -6,7 +6,7 @@ body {
     background-color: #f2f2f2;
 }
 
-h3 {
+.productName {
     text-align: center;
     font-size: 11px;
     //margin: 0;
@@ -33,7 +33,7 @@ a {
     box-sizing: border-box;
     float: left;
     text-align: center;
-    cursor: pointer;
+    //cursor: pointer;
     padding-top: 10px;
     border-radius: 20px;
     box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
@@ -54,14 +54,14 @@ img {
     display: block;
 }
 
-p {
+.productExp {
     text-align: center;
     color: #b2bec3;
     margin-top: 12px;
     padding-top: 0 8px;
 }
 
-h6 {
+.productPrice {
     font-size: 26px;
     text-align: center;
     color: #222f3e;
@@ -98,7 +98,7 @@ li {
     color: #ff9f43;
 }
 
-button{
+.buy-1 {
     text-align: center;
     font-size: 24px;
     color: #fff;
@@ -110,20 +110,18 @@ button{
     margin-top: 5px;
     border-bottom-right-radius: 20px;
     border-bottom-left-radius: 20px;
-}
-
-.buy-1{
+    cursor: pointer;
     background-color: #2183a2;
 }
 
-@media(max-width: 1000px){
-    .content{
+@media(max-width: 1000px) {
+    .content {
         width: 45%;
     }
 }
 
-@media(max-width: 750px){
-    .content{
+@media(max-width: 750px) {
+    .content {
         width: 100%;
     }
 }

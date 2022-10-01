@@ -15,12 +15,13 @@
 
         <div class="content" *ngFor="let product of products">
 
-            <img  *ngIf="product.path == null" src="/assets/images/no-image.png" class="card-img-top" alt="...">
-            <img  *ngIf="product.path != null" src="{{baseStorageUrl.url}}/{{product.path}}" class="card-img-top" alt="...">
+            <img *ngIf="product.path == null" src="/assets/images/no-image.png" class="card-img-top" alt="...">
+            <img *ngIf="product.path != null" src="{{baseStorageUrl.url}}/{{product.path}}" class="card-img-top"
+                alt="...">
 
-            <h3>{{product.name}}</h3>
-            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit!</p>
-            <h6>{{product.price | currency: '₺'}}</h6>
+            <h3 class="productName">{{product.name}}</h3>
+            <p class="productExp">Lorem ipsum dolor sit, amet consectetur adipisicing elit!</p>
+            <h6 class="productPrice">{{product.price | currency: '₺'}}</h6>
             <ul>
                 <li><i class="fa fa-star checked"></i></li>
                 <li><i class="fa fa-star checked"></i></li>
@@ -28,7 +29,7 @@
                 <li><i class="fa fa-star checked"></i></li>
                 <li><i class="fa fa-star"></i></li>
             </ul>
-            <button class="buy-1">Buy Now</button>
+            <button (click)="addToBasket(product.id)" class="buy-1" data-bs-toggle="modal" data-bs-target="#exampleModal">Buy Now</button>
         </div>
 
     </div>
@@ -77,8 +78,6 @@
         </div>
 
     </div>-->
-
-
 
 </body>
 

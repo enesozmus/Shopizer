@@ -1,10 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { BasketService } from 'src/app/services/basket/basket.service';
 import { FileService } from 'src/app/services/common/file.service';
 import { ProductService } from 'src/app/services/product/product.service';
 import { BaseStorageUrl } from 'src/app/shared/contracts/base_storage_url';
+import { Create_Basket_Item } from 'src/app/shared/contracts/baskets/create_basket_item';
 import { List_Product } from 'src/app/shared/contracts/products/list_product';
 import { List_Product_Image } from 'src/app/shared/contracts/products/list_product_image';
+
+import { NgxSpinnerService } from 'ngx-spinner';
+import { BaseComponent, SpinnerType } from 'src/app/base/base.component';
 
 
 @Component({
@@ -13,11 +18,13 @@ import { List_Product_Image } from 'src/app/shared/contracts/products/list_produ
   styleUrls: ['./products-list.component.scss']
 })
 
-export class ProductsListComponent implements OnInit {
+export class ProductsListComponent extends BaseComponent implements OnInit {
 
 
   constructor(private productService: ProductService, private activatedRoute: ActivatedRoute
-    , private fileService: FileService) { }
+    , private fileService: FileService, private basketService: BasketService, spinner: NgxSpinnerService) {
+    super(spinner)
+  }
 
 
   images: List_Product_Image[];
@@ -34,7 +41,6 @@ export class ProductsListComponent implements OnInit {
 
 
     this.baseStorageUrl = await this.fileService.getBaseStorageUrl();
-    console.log(this.baseStorageUrl);
 
     this.activatedRoute.params.subscribe(async params => {
 
@@ -76,4 +82,20 @@ export class ProductsListComponent implements OnInit {
     });
 
   }
+
+
+  async addToBasket(id: number) {
+
+    this.showSpinner(SpinnerType.BallSpinClockwiseFadeRotating);
+
+    let _basketItem: Create_Basket_Item = new Create_Basket_Item();
+    _basketItem.productId = id;
+    _basketItem.quantity = 1;
+
+    await this.basketService.add(_basketItem);
+    
+    this.hideSpinner(SpinnerType.BallSpinClockwiseFadeRotating);
+  }
+
+
 }

@@ -9,8 +9,6 @@ import { Login_User } from 'src/app/shared/contracts/users/login_user';
 import { User } from 'src/app/shared/entities/user';
 
 import { SocialAuthService, SocialUser } from '@abacritt/angularx-social-login';
-import { HttpClientService } from 'src/app/services/common/http-client.service';
-import { Token } from 'src/app/shared/contracts/tokens/token';
 
 
 @Component({

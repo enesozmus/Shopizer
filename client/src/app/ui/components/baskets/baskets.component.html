@@ -1,0 +1,50 @@
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+    <div class="modal-dialog modal-xl">
+
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h2 class="modal-title" id="exampleModalLabel">Shopping Basket</h2>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <div class="modal-body">
+
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Product</th>
+                            <th scope="col">Price</th>
+                            <th scope="col">Quantity</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let basketItem of basketItems; let i = index" class="{{basketItem.basketItemId}}"> 
+                            
+                            <th scope="row"> {{i + 1}}</th>
+                            <td>{{basketItem.name}}</td>
+                            <td>{{basketItem.price}}</td>
+                            <td> <input  (change)="changeQuantity($event)" type="number" [value]="basketItem.quantity" style="width:60px;" data-id="{{basketItem.basketItemId}}"></td>
+                            <td> <button (click)="removeBasketItem(basketItem.basketItemId)" type="button" class="btn btn-danger">X</button></td>
+
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-outline-success">Save changes</button>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+<!-- Modal -->
